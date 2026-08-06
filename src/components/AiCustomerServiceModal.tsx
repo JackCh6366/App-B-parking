@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, Sparkles, MessageSquare, Trash2, RefreshCw, ChevronRight, HelpCircle, AlertCircle } from 'lucide-react';
-import { City, ParkingSpot } from '../types/parking';
+import { Bot, Send, X, Sparkles, MessageSquare, Trash2, RefreshCw, ChevronRight, HelpCircle, AlertCircle, Cpu } from 'lucide-react';
+import { ParkingSpot, AiProvider } from '../types/parking';
+import { AI_PROVIDERS } from '../config/aiProviders.config';
 
 interface Message {
   id: string;
@@ -35,11 +36,12 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedProvider, setSelectedProvider] = useState<AiProvider>('gemini');
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome-1',
       role: 'assistant',
-      content: `您好！我是 **Jack的停車位小幫手 AI 客服** 🤖\n\n我可以為您解答全台與大台北、大台中地區的：\n• **特殊車位規定**（孕婦格、身障格、充電格、裝卸貨格）\n• **違規罰則與舉報管道**\n• **收費時段與超商/行動支付繳費方法**\n• **停車壓力熱力圖** 與尋找車位的實用技巧\n\n請隨時問我任何關於停車的問題！`,
+      content: `您好！我是 **Jack的停車位小幫手 AI 客服** 🤖\n\n我可以為您解答全台與大台北、大台中地區的：\n• **特殊車位規定**（孕婦格、身障格、充電格、裝卸貨格）\n• **違規罰則與舉報管道**\n• **收費時段與超商/行動支付繳費方法**\n• **停車壓力熱力圖** 與尋找車位的實用技巧\n\n您可隨時切換上方 AI 引擎選單（支援 Gemini, Nemotron, Gemma 4, GPT-OSS 等 7 款模型）。`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -52,6 +54,8 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isOpen, isLoading]);
+
+  const currentProviderInfo = AI_PROVIDERS.find(p => p.id === selectedProvider) || AI_PROVIDERS[0];
 
   const handleSendMessage = async (textToSend?: string) => {
     const messageText = (textToSend || input).trim();
@@ -70,18 +74,19 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
     setIsLoading(true);
 
     try {
-      // 轉換歷史訊息格式送至 API
+      // 轉換歷史訊息格式送至 /api/analyze
       const apiMessages = newMessages.map((m) => ({
         role: m.role,
         content: m.content,
       }));
 
-      const response = await fetch('/api/ai-chat', {
+      const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          provider: selectedProvider,
           messages: apiMessages,
           context: {
             cityName: currentCityName,
@@ -93,11 +98,11 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Server response error');
-      }
-
       const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || `呼叫 ${currentProviderInfo.name} 失敗 (${response.status})`);
+      }
 
       const assistantMsg: Message = {
         id: (Date.now() + 1).toString(),
@@ -107,12 +112,12 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
       };
 
       setMessages((prev) => [...prev, assistantMsg]);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to get AI reply:', err);
       const errorMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: '⚠️ 網路連線或系統服務繁忙，請稍後重試。如有急事請撥打 1999 市民專線諮詢路邊停車資訊。',
+        content: `⚠️ **AI 引擎回應失敗 (${currentProviderInfo.name})**\n\n${err?.message || '網路連線或系統服務繁忙，請手動切換其他 AI 引擎或稍後再試。'}`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -136,7 +141,6 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
   const renderFormattedContent = (content: string) => {
     const lines = content.split('\n');
     return lines.map((line, lIdx) => {
-      // 處理 **粗體**
       const parts = line.split(/(\*\*.*?\*\*)/g);
       return (
         <p key={lIdx} className={`${line.trim() === '' ? 'h-2' : 'my-0.5'} leading-relaxed`}>
@@ -181,39 +185,55 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header 頂部欄 */}
-            <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white p-4 flex items-center justify-between border-b border-slate-800">
-              <div className="flex items-center gap-3">
-                <div className="relative p-2.5 rounded-2xl bg-indigo-600/30 border border-indigo-400/30">
-                  <Bot className="w-6 h-6 text-cyan-300" />
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+            <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white p-4 flex flex-col gap-2.5 border-b border-slate-800">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="relative p-2 rounded-2xl bg-indigo-600/30 border border-indigo-400/30">
+                    <Bot className="w-5 h-5 text-cyan-300" />
+                    <span className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm text-white flex items-center gap-1.5">
+                      Jack的停車位小幫手 AI 客服
+                    </h3>
+                    <p className="text-[11px] text-slate-300 flex items-center gap-1">
+                      📍 城市: <span className="text-amber-300 font-medium">{currentCityName}</span> | 區: {district === 'all' ? '全區' : district}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-base flex items-center gap-1.5 text-white">
-                    Jack的停車位小幫手 AI 客服
-                    <span className="text-[10px] bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 px-1.5 py-0.5 rounded-full font-mono">
-                      Gemini 3.6
-                    </span>
-                  </h3>
-                  <p className="text-xs text-slate-300 flex items-center gap-1">
-                    📍 城市: <span className="text-amber-300 font-medium">{currentCityName}</span> | 區: {district === 'all' ? '全區' : district}
-                  </p>
+
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={handleClearHistory}
+                    title="重置對話記錄"
+                    className="p-1.5 text-slate-400 hover:text-rose-300 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={handleClearHistory}
-                  title="重置對話記錄"
-                  className="p-2 text-slate-400 hover:text-rose-300 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+              {/* AI 引擎切換下拉選單 (7 引擎) */}
+              <div className="flex items-center gap-2 bg-slate-800/80 px-2.5 py-1.5 rounded-xl border border-slate-700">
+                <Cpu className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                <span className="text-xs text-slate-300 font-medium shrink-0">AI 引擎:</span>
+                <select
+                  value={selectedProvider}
+                  onChange={(e) => setSelectedProvider(e.target.value as AiProvider)}
+                  className="flex-1 bg-slate-900 text-cyan-300 text-xs font-semibold rounded-lg border border-slate-700 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
                 >
-                  <Trash2 className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+                  {AI_PROVIDERS.map((provider) => (
+                    <option key={provider.id} value={provider.id}>
+                      {provider.name} ({provider.vendor})
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
@@ -224,7 +244,7 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
                 {selectedSpot && ` | 已選格: ${selectedSpot.roadName}`}
               </span>
               <span className="text-emerald-700 font-semibold text-[10px] bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
-                AI 在線中
+                {currentProviderInfo.name} 在線
               </span>
             </div>
 
@@ -278,7 +298,9 @@ export const AiCustomerServiceModal: React.FC<AiCustomerServiceModalProps> = ({
                       <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:0.2s]"></span>
                       <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:0.4s]"></span>
                     </span>
-                    <span className="text-slate-600 font-medium">Jack的停車位小幫手 檢索法規資料庫中...</span>
+                    <span className="text-slate-600 font-medium">
+                      [{currentProviderInfo.name}] 分析與回答中...
+                    </span>
                   </div>
                 </div>
               )}

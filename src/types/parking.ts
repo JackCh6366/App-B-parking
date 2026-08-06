@@ -1,4 +1,5 @@
-export type City = 'newtaipei' | 'taichung';
+export type City = string;
+export type CityId = string;
 
 export type SpotStatus = 'empty' | 'occupied' | 'maintenance' | 'unknown';
 
@@ -31,7 +32,7 @@ export interface CityInfo {
   zoom: number;
   description: string;
   apiEndpointDoc: string;
-  districts: string[]; // 全轄區 29 個行政區列表
+  districts: string[]; // 行政區列表
 }
 
 export interface FilterOptions {
@@ -47,4 +48,20 @@ export interface UserLocation {
   lng: number;
   addressName?: string;
   isCustom?: boolean;
+}
+
+export type AiProvider =
+  | 'gemini'
+  | 'nemotron-ultra'
+  | 'nemotron-super'
+  | 'nemotron-49b'
+  | 'nemotron-nano'
+  | 'gemma-4'
+  | 'gpt-oss';
+
+export interface AiProviderOption {
+  id: AiProvider;
+  name: string;
+  model: string;
+  vendor: 'Google' | 'NVIDIA' | 'OpenAI';
 }

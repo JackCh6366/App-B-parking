@@ -9,7 +9,7 @@ import { SpotDetailDrawer } from './components/SpotDetailDrawer';
 import { AiCustomerServiceModal } from './components/AiCustomerServiceModal';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { AlertCircle, RefreshCw } from 'lucide-react';
-import { City } from './types/parking';
+import { CITIES } from './config/cities.config';
 
 export default function App() {
   const {
@@ -35,11 +35,17 @@ export default function App() {
   } = useParkingData();
 
   // 各城市的即時可用車位數 (供 Header 頁籤動態計算 Badge)
-  const emptyCountByCity = useMemo<Record<City, number>>(() => {
-    return {
-      newtaipei: spots.filter((s) => s.city === 'newtaipei' && s.status === 'empty').length || 8,
-      taichung: spots.filter((s) => s.city === 'taichung' && s.status === 'empty').length || 7
-    };
+  const emptyCountByCity = useMemo<Record<string, number>>(() => {
+    const map: Record<string, number> = {};
+    Object.keys(CITIES).forEach(cId => {
+      map[cId] = 0;
+    });
+    spots.forEach((s) => {
+      if (s.status === 'empty') {
+        map[s.city] = (map[s.city] || 0) + 1;
+      }
+    });
+    return map;
   }, [spots]);
 
   // 重置搜尋篩選
@@ -88,7 +94,7 @@ export default function App() {
           </div>
           <button
             onClick={refreshData}
-            className="underline font-bold text-rose-700 hover:text-rose-900 flex items-center gap-1"
+            className="underline font-bold text-rose-700 hover:text-rose-900 flex items-center gap-1 cursor-pointer"
           >
             <RefreshCw className="w-3 h-3" /> 重試
           </button>

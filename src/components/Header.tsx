@@ -1,7 +1,7 @@
 import React from 'react';
 import { City, CityInfo } from '../types/parking';
-import { CITIES } from '../services/parkingService';
-import { RefreshCw, Navigation, Car, Clock, MapPin } from 'lucide-react';
+import { CITIES } from '../config/cities.config';
+import { RefreshCw, Navigation, Car, Clock } from 'lucide-react';
 
 interface HeaderProps {
   currentCity: City;
@@ -12,7 +12,7 @@ interface HeaderProps {
   autoRefresh: boolean;
   onToggleAutoRefresh: (val: boolean) => void;
   onRequestGPS: () => void;
-  emptyCountByCity: Record<City, number>;
+  emptyCountByCity: Record<string, number>;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* 城市切換 Tabs */}
             <div className="bg-slate-100 p-1 rounded-xl flex items-center border border-slate-200">
-              {(Object.keys(CITIES) as City[]).map((cityKey) => {
+              {Object.keys(CITIES).map((cityKey) => {
                 const info: CityInfo = CITIES[cityKey];
                 const isActive = currentCity === cityKey;
                 const count = emptyCountByCity[cityKey] || 0;
@@ -115,7 +115,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onChange={(e) => onToggleAutoRefresh(e.target.checked)}
                   className="rounded bg-white border-slate-300 text-blue-600 focus:ring-blue-500 w-3.5 h-3.5"
                 />
-                <span className="hidden lg:inline text-slate-500">60s 自動更新</span>
+                <span className="hidden lg:inline text-slate-500">30s 自動更新</span>
               </label>
 
               <div className="flex items-center gap-1 text-slate-500 border-l border-slate-200 pl-2">
@@ -131,4 +131,3 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
-

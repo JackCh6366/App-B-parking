@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { City, FilterOptions, ParkingSpot, UserLocation } from '../types/parking';
-import { CITIES, fetchParkingSpots } from '../services/parkingService';
+import { CITIES, CITIES_LIST, fetchParkingSpots } from '../services/parkingService';
 import { calculateDistanceMeters } from '../utils/distance';
 
+const defaultCityId = CITIES_LIST[0]?.id || 'newtaipei';
+const initialCity = CITIES[defaultCityId] || CITIES_LIST[0];
+
 export function useParkingData() {
-  const [city, setCity] = useState<City>('newtaipei');
+  const [city, setCity] = useState<City>(defaultCityId);
   const [spots, setSpots] = useState<ParkingSpot[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -14,9 +17,9 @@ export function useParkingData() {
 
   // 用戶當前位置資訊
   const [userLocation, setUserLocation] = useState<UserLocation>({
-    lat: CITIES['newtaipei'].center[0],
-    lng: CITIES['newtaipei'].center[1],
-    addressName: '新北市政府 (預設中心)',
+    lat: initialCity.center[0],
+    lng: initialCity.center[1],
+    addressName: `${initialCity.name}政府 (預設中心)`,
     isCustom: false
   });
 
@@ -33,7 +36,7 @@ export function useParkingData() {
   const handleCityChange = useCallback((newCity: City) => {
     setCity(newCity);
     setSelectedSpot(null);
-    const cityInfo = CITIES[newCity];
+    const cityInfo = CITIES[newCity] || CITIES_LIST[0];
     setUserLocation({
       lat: cityInfo.center[0],
       lng: cityInfo.center[1],
@@ -51,9 +54,9 @@ export function useParkingData() {
       const data = await fetchParkingSpots(city);
       setSpots(data);
       setLastUpdated(new Date().toLocaleTimeString('zh-TW', { hour12: false }));
-    } catch (err) {
+    } catch (err: any) {
       console.error('載入停車位資料失敗:', err);
-      setError('無法取得即時車位狀態，請稍後再試');
+      setError(err?.message || '無法取得即時車位狀態，請 5 分鐘後再試');
     } finally {
       if (!quiet) setIsLoading(false);
     }
@@ -97,9 +100,10 @@ export function useParkingData() {
     );
   }, []);
 
-  // 提取該城市全轄 29 個行政區列表 (結合 CityInfo 與動態車位資料)
+  // 提取該城市行政區列表
   const availableDistricts = useMemo(() => {
-    const set = new Set<string>(CITIES[city]?.districts || []);
+    const cityObj = CITIES[city] || CITIES_LIST[0];
+    const set = new Set<string>(cityObj?.districts || []);
     spots.forEach(spot => {
       if (spot.district) set.add(spot.district);
     });
@@ -172,7 +176,7 @@ export function useParkingData() {
 
   return {
     city,
-    cityInfo: CITIES[city],
+    cityInfo: CITIES[city] || CITIES_LIST[0],
     handleCityChange,
     spots,
     filteredSpots,
