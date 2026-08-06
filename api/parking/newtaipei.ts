@@ -2,7 +2,7 @@
 let cache: { timestamp: number; data: any } | null = null;
 const CACHE_TTL_MS = 45000; // 45 秒
 
-const NEWTAIPEI_API_URL = 'https://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000225-002';
+const NEWTAIPEI_API_URL = 'https://data.ntpc.gov.tw/api/datasets/54A507C4-C038-41B5-BF60-BBECB9D052C6/json?page=0&size=2000';
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'GET') {
@@ -24,7 +24,7 @@ export default async function handler(req: any, res: any) {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'JackParkingHelper/1.0',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) JackParkingHelper/1.0',
       },
       signal: controller.signal,
     });
@@ -37,7 +37,7 @@ export default async function handler(req: any, res: any) {
     }
 
     const json = await response.json();
-    const resultData = json?.result?.records || json?.result || json || [];
+    const resultData = Array.isArray(json) ? json : json?.result?.records || json?.result || [];
 
     // 更新快取
     cache = {
@@ -53,3 +53,4 @@ export default async function handler(req: any, res: any) {
     return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
   }
 }
+
