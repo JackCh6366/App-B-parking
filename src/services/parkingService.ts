@@ -69,10 +69,56 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
   if (!Array.isArray(rawData)) return [];
 
   return rawData.map((item, index) => {
+    if (item.dataType === 'offstreet') {
+      // 臺北市路外停車場 (有座標)
+      const avail = parseInt(item.availablecar, 10);
+      const total = parseInt(item.totalcar, 10) || 0;
+
+      let status: SpotStatus = 'empty';
+      let statusCode = 0;
+      if (isNaN(avail) || avail < 0) {
+        status = 'maintenance';
+        statusCode = 2;
+      } else if (avail === 0) {
+        status = 'occupied';
+        statusCode = 1;
+      }
+
+      const roadName = item.name || '臺北市路外停車場';
+      let district = item.area ? (item.area.endsWith('區') ? item.area : `${item.area}區`) : '';
+      if (!district) {
+        const extracted = extractTaipeiDistrict(item.address || roadName);
+        district = extracted.district;
+      }
+
+      const availDisplay = avail >= 0 ? `${avail}` : '未定';
+      const addressDesc = item.address
+        ? `${item.address} (剩餘車位: ${availDisplay}/${total > 0 ? total : '未知'})`
+        : `剩餘車位: ${availDisplay}/${total > 0 ? total : '未知'}`;
+
+      return {
+        id: item.id ? `TPE-PARK-${item.id}` : `TPE-PARK-${index}`,
+        city: 'taipei',
+        district,
+        roadName,
+        addressDesc,
+        lat: typeof item.lat === 'number' ? item.lat : null,
+        lng: typeof item.lng === 'number' ? item.lng : null,
+        status,
+        statusCode,
+        type: 'general',
+        typeLabel: '路外停車場',
+        feeInfo: item.payex || '依現場告示',
+        payTime: item.serviceTime || '24小時',
+        updatedAt: item.updateTime || new Date().toISOString(),
+        rawSourceData: item,
+      };
+    }
+
+    // 臺北市路邊停車格 (無座標，lat/lng 為 null)
     const avail = parseInt(item.roadSegAvail, 10);
     const total = parseInt(item.roadSegTotalValue, 10) || 0;
-    
-    // 狀態判斷：可用數 > 0 為 empty，等於 0 為 occupied，負數 (如 -99) 表示未量測/維護中
+
     let status: SpotStatus = 'empty';
     let statusCode = 0;
     if (isNaN(avail) || avail < 0) {
@@ -84,20 +130,25 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
     }
 
     const roadName = item.roadSegName || `路段 #${item.roadSegID || index}`;
-    const { district, center } = extractTaipeiDistrict(roadName);
+    const { district } = extractTaipeiDistrict(roadName);
 
-    // 依據 roadSegID 產生微幅 offset (約 ±300 公尺)，避免所有路段標記重疊於同點
-    const hash = String(item.roadSegID || index).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const offsetLat = ((hash % 97) - 48) * 0.0003;
-    const offsetLng = (((hash * 13) % 97) - 48) * 0.0003;
-    const lat = center[0] + offsetLat;
-    const lng = center[1] + offsetLng;
+    const carType = String(item.roadSegCarType || '1').toUpperCase();
+    let spotType: SpotType = 'general';
+    let typeLabel = '一般車格';
 
-    const isMotorcycle = item.roadSegCarType === '2' || item.roadSegCarType === 2;
-    let spotType: SpotType = isMotorcycle ? 'motorcycle' : 'general';
-    let typeLabel = isMotorcycle ? '機車格' : '一般車格';
-
-    if (roadName.includes('身障') || roadName.includes('身心障礙')) {
+    if (carType === '2' || carType === 'M') {
+      spotType = 'motorcycle';
+      typeLabel = '機車格';
+    } else if (carType === 'HM') {
+      spotType = 'motorcycle';
+      typeLabel = '重型機車格';
+    } else if (carType === 'T') {
+      spotType = 'loading';
+      typeLabel = '大客車格';
+    } else if (carType === 'CM') {
+      spotType = 'general';
+      typeLabel = '汽機車共用格';
+    } else if (roadName.includes('身障') || roadName.includes('身心障礙')) {
       spotType = 'disability';
       typeLabel = '身障專用格';
     } else if (roadName.includes('孕婦') || roadName.includes('親')) {
@@ -112,7 +163,7 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
     }
 
     const availDisplay = avail >= 0 ? `${avail}` : '未定';
-    const addressDesc = `目前剩餘空位: ${availDisplay} / 總格數: ${total > 0 ? total : '未知'} (路段代號: ${item.roadSegID})`;
+    const addressDesc = `目前剩餘空位: ${availDisplay} / 總格數: ${total > 0 ? total : '未知'} (路段代號: ${item.roadSegID || index})`;
 
     const startTime = item.roadSegtimeStart || '07:00';
     const endTime = item.roadSegtimeEnd || '20:00';
@@ -120,19 +171,18 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
 
     let updatedAt = new Date().toISOString();
     if (item.roadSegUpdatetime && typeof item.roadSegUpdatetime === 'string' && item.roadSegUpdatetime.length >= 15) {
-      // 格式： 20260818T111012 -> ISO Format
       const u = item.roadSegUpdatetime;
-      updatedAt = `${u.slice(0,4)}-${u.slice(4,6)}-${u.slice(6,8)}T${u.slice(9,11)}:${u.slice(11,13)}:${u.slice(13,15)}`;
+      updatedAt = `${u.slice(0, 4)}-${u.slice(4, 6)}-${u.slice(6, 8)}T${u.slice(9, 11)}:${u.slice(11, 13)}:${u.slice(13, 15)}`;
     }
 
     return {
-      id: item.roadSegID ? `TPE-${item.roadSegID}` : `TPE-${index}`,
+      id: item.roadSegID ? `TPE-ROAD-${item.roadSegID}` : `TPE-ROAD-${index}`,
       city: 'taipei',
       district,
       roadName,
       addressDesc,
-      lat,
-      lng,
+      lat: null,
+      lng: null,
       status,
       statusCode,
       type: spotType,
@@ -140,7 +190,7 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
       feeInfo: item.roadSegFee || '30元/小時',
       payTime,
       updatedAt,
-      rawSourceData: item
+      rawSourceData: item,
     };
   });
 }

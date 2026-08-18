@@ -41,7 +41,10 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
   };
 
   const handleNavigateGoogleMaps = () => {
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
+    let url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`臺北市${spot.district}${spot.roadName}`)}`;
+    if (spot.lat !== null && spot.lng !== null) {
+      url = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
+    }
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 

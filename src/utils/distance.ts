@@ -4,9 +4,12 @@
 export function calculateDistanceMeters(
   lat1: number,
   lon1: number,
-  lat2: number,
-  lon2: number
+  lat2: number | null | undefined,
+  lon2: number | null | undefined
 ): number {
+  if (lat2 === null || lon2 === null || lat2 === undefined || lon2 === undefined || isNaN(lat2) || isNaN(lon2)) {
+    return Infinity;
+  }
   const R = 6371000; // Radius of Earth in meters
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
@@ -24,7 +27,9 @@ export function calculateDistanceMeters(
   Format distance meters to user friendly text
  */
 export function formatDistance(meters?: number): string {
-  if (meters === undefined || isNaN(meters)) return '距離未知';
+  if (meters === undefined || meters === null || isNaN(meters) || meters === Infinity) {
+    return '無精確定位';
+  }
   if (meters < 1000) {
     return `${meters} 公尺`;
   }

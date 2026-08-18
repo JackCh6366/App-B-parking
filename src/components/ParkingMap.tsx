@@ -72,7 +72,7 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
 
   // 當選取的車格變更時自動飛向該標記
   useEffect(() => {
-    if (selectedSpot && mapInstanceRef.current) {
+    if (selectedSpot && mapInstanceRef.current && selectedSpot.lat !== null && selectedSpot.lng !== null) {
       mapInstanceRef.current.flyTo([selectedSpot.lat, selectedSpot.lng], 17, {
         duration: 1.2
       });
@@ -105,6 +105,7 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
     }>();
 
     sourceSpots.forEach(spot => {
+      if (spot.lat === null || spot.lng === null) return;
       const gridX = Math.floor(spot.lat / GRID_SIZE);
       const gridY = Math.floor(spot.lng / GRID_SIZE);
       const key = `${gridX}_${gridY}`;
@@ -236,6 +237,7 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
 
     // 2. 繪製每一個車格 Marker
     spots.forEach((spot) => {
+      if (spot.lat === null || spot.lng === null) return;
       const isSelected = selectedSpot?.id === spot.id;
       const isAvailable = spot.status === 'empty';
 

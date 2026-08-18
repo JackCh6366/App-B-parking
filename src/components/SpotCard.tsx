@@ -93,7 +93,13 @@ export const SpotCard: React.FC<SpotCardProps> = ({
         </div>
 
         {/* 距離標籤 */}
-        <div className="text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md shrink-0">
+        <div
+          className={`text-[11px] font-bold px-2 py-0.5 rounded-md shrink-0 border ${
+            spot.lat === null || spot.lng === null || spot.distanceMeters === Infinity
+              ? 'text-slate-500 bg-slate-100 border-slate-200'
+              : 'text-blue-700 bg-blue-50 border-blue-100'
+          }`}
+        >
           {formatDistance(spot.distanceMeters)}
         </div>
       </div>
@@ -130,16 +136,22 @@ export const SpotCard: React.FC<SpotCardProps> = ({
 
       {/* 底部對焦按鈕 */}
       <div className="mt-2 flex items-center justify-end">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onFocusOnMap(spot);
-          }}
-          className="text-xs bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 px-2.5 py-1 rounded-lg border border-slate-200 hover:border-blue-200 flex items-center gap-1 transition-colors font-medium"
-        >
-          <Navigation className="w-3 h-3 text-blue-600" />
-          <span>地圖定位</span>
-        </button>
+        {spot.lat !== null && spot.lng !== null ? (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onFocusOnMap(spot);
+            }}
+            className="text-xs bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 px-2.5 py-1 rounded-lg border border-slate-200 hover:border-blue-200 flex items-center gap-1 transition-colors font-medium"
+          >
+            <Navigation className="w-3 h-3 text-blue-600" />
+            <span>地圖定位</span>
+          </button>
+        ) : (
+          <span className="text-[11px] text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md border border-slate-100">
+            僅列表呈現
+          </span>
+        )}
       </div>
     </div>
   );

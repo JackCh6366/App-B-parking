@@ -11,8 +11,8 @@ export interface ParkingSpot {
   district: string; // 行政區，如：板橋區、西屯區
   roadName: string; // 路段名稱
   addressDesc?: string; // 門牌或顯著地標描述
-  lat: number;
-  lng: number;
+  lat: number | null;
+  lng: number | null;
   status: SpotStatus; // 狀態 (empty: 可停, occupied: 有車, maintenance: 故障)
   statusCode: number; // 原始數值 (0: 空位, 1: 有車, 2: 故障)
   type: SpotType; // 車格類型

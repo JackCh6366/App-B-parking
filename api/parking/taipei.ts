@@ -1,48 +1,169 @@
-// In-memory cache per serverless function instance (2 minutes TTL)
+import { XMLParser } from 'fast-xml-parser';
+
+// In-memory cache per serverless function instance (60 seconds TTL)
 let cache: { timestamp: number; data: any[] } | null = null;
-const CACHE_TTL_MS = 120000; // 2 分鐘 (120 秒)
+const CACHE_TTL_MS = 60000; // 60 秒
 
-const TAIPEI_API_URL = 'https://tcgbusfs.blob.core.windows.net/blobtcmsv/TCMSV_roadquery.xml';
+const TAIPEI_ROAD_XML_URL = 'https://tcgbusfs.blob.core.windows.net/blobtcmsv/TCMSV_roadquery.xml';
+const TAIPEI_PARK_DESC_URL = 'https://tcgbusfs.blob.core.windows.net/blobtcmsv/TCMSV_alldesc.json';
+const TAIPEI_PARK_AVAIL_URL = 'https://tcgbusfs.blob.core.windows.net/blobtcmsv/TCMSV_allavailable.json';
 
-function parseTaipeiXml(xml: string) {
-  const roads: any[] = [];
-  const roadRegex = /<ROAD>([\s\S]*?)<\/ROAD>/gi;
-  let match: RegExpExecArray | null;
+// TWD97 (TM2 121) 轉 WGS84 座標公式
+function twd97ToWgs84(xStr: any, yStr: any): { lat: number; lng: number } | null {
+  const x = parseFloat(xStr);
+  const y = parseFloat(yStr);
+  if (isNaN(x) || isNaN(y) || x <= 0 || y <= 0) return null;
 
-  const getTagValue = (str: string, tag: string) => {
-    const reg = new RegExp(`<${tag}>\\s*([\\s\\S]*?)\\s*<\\/${tag}>`, 'i');
-    const m = str.match(reg);
-    return m ? m[1].trim() : '';
-  };
+  const a = 6378137.0;
+  const b = 6356752.3142451;
+  const long0 = (121 * Math.PI) / 180;
+  const k0 = 0.9999;
+  const dx = 250000;
 
-  while ((match = roadRegex.exec(xml)) !== null) {
-    const block = match[1];
-    const roadSegID = getTagValue(block, 'roadSegID');
-    const roadSegName = getTagValue(block, 'roadSegName');
-    const roadSegAvail = getTagValue(block, 'roadSegAvail');
-    const roadSegTotalValue = getTagValue(block, 'roadSegTotalValue') || getTagValue(block, 'roadSegTotal');
-    const roadSegCarType = getTagValue(block, 'roadSegCarType');
-    const roadSegFee = getTagValue(block, 'roadSegFee');
-    const roadSegtimeStart = getTagValue(block, 'roadSegtimeStart') || getTagValue(block, 'roadSegTmStart');
-    const roadSegtimeEnd = getTagValue(block, 'roadSegtimeEnd') || getTagValue(block, 'roadSegTmEnd');
-    const roadSegUpdatetime = getTagValue(block, 'roadSegUpdatetime') || getTagValue(block, 'roadSegUpdateTm');
+  const e = Math.sqrt(1 - (b * b) / (a * a));
+  const e2 = (a * a - b * b) / (b * b);
 
-    if (roadSegID || roadSegName) {
-      roads.push({
-        roadSegID,
-        roadSegName,
-        roadSegAvail,
-        roadSegTotalValue,
-        roadSegCarType,
-        roadSegFee,
-        roadSegtimeStart,
-        roadSegtimeEnd,
-        roadSegUpdatetime
-      });
+  const xOffset = x - dx;
+  const M = y / k0;
+  const mu = M / (a * (1 - Math.pow(e, 2) / 4 - (3 * Math.pow(e, 4)) / 64 - (5 * Math.pow(e, 6)) / 256));
+
+  const e1 = (1 - Math.sqrt(1 - Math.pow(e, 2))) / (1 + Math.sqrt(1 - Math.pow(e, 2)));
+
+  const phi1 =
+    mu +
+    ((3 * e1) / 2 - (27 * Math.pow(e1, 3)) / 32) * Math.sin(2 * mu) +
+    ((21 * Math.pow(e1, 2)) / 16 - (55 * Math.pow(e1, 4)) / 32) * Math.sin(4 * mu) +
+    ((151 * Math.pow(e1, 3)) / 96) * Math.sin(6 * mu);
+
+  const N1 = a / Math.sqrt(1 - Math.pow(e, 2) * Math.pow(Math.sin(phi1), 2));
+  const T1 = Math.pow(Math.tan(phi1), 2);
+  const C1 = e2 * Math.pow(Math.cos(phi1), 2);
+  const R1 = (a * (1 - Math.pow(e, 2))) / Math.pow(1 - Math.pow(e, 2) * Math.pow(Math.sin(phi1), 2), 1.5);
+  const D = xOffset / (N1 * k0);
+
+  let lat =
+    phi1 -
+    ((N1 * Math.tan(phi1)) / R1) *
+      (Math.pow(D, 2) / 2 -
+        (5 + 3 * T1 + 10 * C1 - 4 * Math.pow(C1, 2) - 9 * e2) * (Math.pow(D, 4) / 24) +
+        (61 + 90 * T1 + 298 * C1 + 45 * Math.pow(T1, 2) - 252 * e2 - 3 * Math.pow(C1, 2)) * (Math.pow(D, 6) / 720));
+
+  let lng =
+    long0 +
+    (D -
+      (1 + 2 * T1 + C1) * (Math.pow(D, 3) / 6) +
+      (5 - 2 * C1 + 28 * T1 - 3 * Math.pow(C1, 2) + 8 * e2 + 24 * Math.pow(T1, 2)) * (Math.pow(D, 5) / 120)) /
+      Math.cos(phi1);
+
+  lat = (lat * 180) / Math.PI;
+  lng = (lng * 180) / Math.PI;
+
+  return { lat: Number(lat.toFixed(6)), lng: Number(lng.toFixed(6)) };
+}
+
+// 解析路邊 XML
+function parseRoadXml(xmlText: string): any[] {
+  const parser = new XMLParser({
+    ignoreAttributes: true,
+    trimValues: true,
+  });
+
+  try {
+    const parsedObj = parser.parse(xmlText);
+    const roadQuery = parsedObj?.DATA || parsedObj?.TCMSV?.roadquery || parsedObj?.roadquery || parsedObj;
+    let roadList = roadQuery?.ROAD || roadQuery?.road || [];
+
+    if (!Array.isArray(roadList)) {
+      roadList = [roadList];
+    }
+
+    return roadList.map((item: any) => ({
+      dataType: 'roadside',
+      roadSegID: String(item?.roadSegID || item?.roadSegId || ''),
+      roadSegName: String(item?.roadSegName || ''),
+      roadSegAvail: String(item?.roadSegAvail ?? '-99'),
+      roadSegTotalValue: String(item?.roadSegTotalValue || item?.roadSegTotal || '0'),
+      roadSegCarType: String(item?.roadSegCarType || '1'),
+      roadSegFee: String(item?.roadSegFee || ''),
+      roadSegtimeStart: String(item?.roadSegtimeStart || item?.roadSegTmStart || ''),
+      roadSegtimeEnd: String(item?.roadSegtimeEnd || item?.roadSegTmEnd || ''),
+      roadSegUpdatetime: String(item?.roadSegUpdatetime || item?.roadSegUpdateTm || ''),
+    }));
+  } catch (e) {
+    console.error('Failed to parse road XML:', e);
+    return [];
+  }
+}
+
+// 解析路外 JSON (靜態 + 動態合併)
+function parseParkJson(descJson: any, availJson: any): any[] {
+  const descList = descJson?.data?.park || [];
+  const availList = availJson?.data?.park || [];
+
+  // 以 id 建立動態車位對照 Map
+  const availMap = new Map<string, any>();
+  if (Array.isArray(availList)) {
+    for (const item of availList) {
+      if (item?.id) {
+        availMap.set(String(item.id), item);
+      }
     }
   }
 
-  return roads;
+  if (!Array.isArray(descList)) return [];
+
+  const combinedParks: any[] = [];
+
+  for (const park of descList) {
+    if (!park || !park.id) continue;
+    const parkId = String(park.id);
+    const availItem = availMap.get(parkId);
+
+    // 座標解析：優先用 EntrancecoordInfo (WGS84)，次之轉換 tw97
+    let lat: number | null = null;
+    let lng: number | null = null;
+
+    const entranceInfo = park?.EntranceCoord?.EntrancecoordInfo;
+    if (Array.isArray(entranceInfo) && entranceInfo.length > 0) {
+      const x = parseFloat(entranceInfo[0]?.Xcod);
+      const y = parseFloat(entranceInfo[0]?.Ycod);
+      if (!isNaN(x) && !isNaN(y) && x > 0 && y > 0) {
+        lat = x;
+        lng = y;
+      }
+    }
+
+    if (lat === null || lng === null) {
+      const conv = twd97ToWgs84(park.tw97x, park.tw97y);
+      if (conv) {
+        lat = conv.lat;
+        lng = conv.lng;
+      }
+    }
+
+    combinedParks.push({
+      dataType: 'offstreet',
+      id: parkId,
+      name: String(park.name || '臺北市路外停車場'),
+      area: String(park.area || ''),
+      address: String(park.address || ''),
+      lat,
+      lng,
+      payex: String(park.payex || park.FareInfo?.WorkingDay || '依現場告示'),
+      serviceTime: String(park.serviceTime || '24小時'),
+      totalcar: parseInt(park.totalcar, 10) || 0,
+      totalmotor: parseInt(park.totalmotor, 10) || 0,
+      // 動態即時資訊 (若無則預設 -99 表示數據未定/維護中)
+      availablecar: availItem ? (parseInt(availItem.availablecar, 10) ?? -99) : -99,
+      availablemotor: availItem ? (parseInt(availItem.availablemotor, 10) ?? -99) : -99,
+      availablebus: availItem ? (parseInt(availItem.availablebus, 10) ?? -99) : -99,
+      availablehandicap: availItem ? (parseInt(availItem.availablehandicap, 10) ?? -99) : -99,
+      availablepregnancy: availItem ? (parseInt(availItem.availablepregnancy, 10) ?? -99) : -99,
+      updateTime: availItem?.ChargeStationInfo?.UpdateTime || new Date().toISOString(),
+    });
+  }
+
+  return combinedParks;
 }
 
 export default async function handler(req: any, res: any) {
@@ -50,7 +171,7 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  // 1. 檢查 2 分鐘記憶體快取
+  // 1. 檢查 60 秒記憶體快取
   if (cache && Date.now() - cache.timestamp < CACHE_TTL_MS) {
     res.setHeader('X-Cache', 'HIT');
     return res.status(200).json(cache.data);
@@ -61,33 +182,45 @@ export default async function handler(req: any, res: any) {
   const timeoutId = setTimeout(() => controller.abort(), 8000);
 
   try {
-    const response = await fetch(TAIPEI_API_URL, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/xml, text/xml, */*',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) JackParkingHelper/1.0',
-      },
-      signal: controller.signal,
-    });
+    const [roadRes, parkDescRes, parkAvailRes] = await Promise.all([
+      fetch(TAIPEI_ROAD_XML_URL, { signal: controller.signal }),
+      fetch(TAIPEI_PARK_DESC_URL, { signal: controller.signal }),
+      fetch(TAIPEI_PARK_AVAIL_URL, { signal: controller.signal }),
+    ]);
 
     clearTimeout(timeoutId);
 
-    if (!response.ok) {
-      console.error(`Taipei Open Data HTTP error: ${response.status}`);
-      return res.status(502).json({ error: '無法取得臺北市即時車位資料，請 5 分鐘後再試' });
+    let roadData: any[] = [];
+    if (roadRes.ok) {
+      const xmlText = await roadRes.text();
+      roadData = parseRoadXml(xmlText);
+    } else {
+      console.warn(`Taipei Road XML fetch warning status: ${roadRes.status}`);
     }
 
-    const xmlText = await response.text();
-    const resultData = parseTaipeiXml(xmlText);
+    let parkData: any[] = [];
+    if (parkDescRes.ok) {
+      const descJson = await parkDescRes.json();
+      const availJson = parkAvailRes.ok ? await parkAvailRes.json() : null;
+      parkData = parseParkJson(descJson, availJson);
+    } else {
+      console.warn(`Taipei Park Desc JSON fetch warning status: ${parkDescRes.status}`);
+    }
+
+    const combinedData = [...roadData, ...parkData];
+
+    if (combinedData.length === 0) {
+      return res.status(502).json({ error: '無法取得臺北市即時車位資料，請 5 分鐘後再試' });
+    }
 
     // 更新快取
     cache = {
       timestamp: Date.now(),
-      data: resultData,
+      data: combinedData,
     };
 
     res.setHeader('X-Cache', 'MISS');
-    return res.status(200).json(resultData);
+    return res.status(200).json(combinedData);
   } catch (err: any) {
     clearTimeout(timeoutId);
     console.error('Taipei Open Data Fetch Error:', err?.message || err);
