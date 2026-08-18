@@ -22,6 +22,14 @@ export interface ParkingSpot {
   updatedAt: string; // 資料最後更新時間
   distanceMeters?: number; // 距離使用者公尺數 (計算產生)
   rawSourceData?: Record<string, any>; // 預留原廠 Open API 回傳資料
+  sensorDetail?: {
+    dataSource: 'geomagnetic' | 'estimate' | 'none';
+    emptyCount?: number;
+    occupiedCount?: number;
+    offlineCount?: number;
+    totalSensors?: number;
+    totalSpaces?: number;
+  };
 }
 
 export interface CityInfo {

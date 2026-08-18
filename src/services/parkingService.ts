@@ -151,21 +151,93 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
     }
 
     // 臺北市路邊停車格 (無座標，lat/lng 為 null)
-    const avail = parseInt(item.roadSegAvail, 10);
     const total = parseInt(item.roadSegTotalValue, 10) || 0;
-
-    let status: SpotStatus = 'empty';
-    let statusCode = 0;
-    if (isNaN(avail) || avail < 0) {
-      status = 'maintenance';
-      statusCode = 2;
-    } else if (avail === 0) {
-      status = 'occupied';
-      statusCode = 1;
-    }
-
+    const rawAvail = parseInt(item.roadSegAvail, 10);
     const roadName = item.roadSegName || `路段 #${item.roadSegID || index}`;
     const { district } = extractTaipeiDistrict(roadName);
+
+    // 解析 cellStatusList 節點 (若存在實體地磁感測器)
+    let hasCells = false;
+    let emptyCount = 0;   // cellStatus === '0'
+    let occupiedCount = 0; // cellStatus === '1'
+    let offlineCount = 0;  // cellStatus === '2'
+    let totalSensors = 0;
+
+    if (item.cellStatusList && item.cellStatusList.cell) {
+      const cells = Array.isArray(item.cellStatusList.cell)
+        ? item.cellStatusList.cell
+        : [item.cellStatusList.cell];
+      if (cells.length > 0) {
+        hasCells = true;
+        totalSensors = cells.length;
+        cells.forEach((c: any) => {
+          const st = String(c.cellStatus);
+          if (st === '0') emptyCount++;
+          else if (st === '1') occupiedCount++;
+          else if (st === '2') offlineCount++;
+        });
+      }
+    }
+
+    let status: SpotStatus = 'unknown';
+    let statusCode = 3;
+    let addressDesc = '';
+    let sensorDetail: ParkingSpot['sensorDetail'];
+
+    if (hasCells) {
+      // 1. 地磁感測器即時直算 (最高可信度)
+      sensorDetail = {
+        dataSource: 'geomagnetic',
+        emptyCount,
+        occupiedCount,
+        offlineCount,
+        totalSensors,
+        totalSpaces: total,
+      };
+
+      if (emptyCount > 0) {
+        status = 'empty';
+        statusCode = 0;
+      } else if (occupiedCount > 0) {
+        status = 'occupied';
+        statusCode = 1;
+      } else {
+        status = 'unknown';
+        statusCode = 3;
+      }
+
+      const offlineText = offlineCount > 0 ? ` | 訊號離線: ${offlineCount} 格` : '';
+      addressDesc = `即時空位: ${emptyCount} 格 | 有車: ${occupiedCount} 格${offlineText} | 總格數: ${total > 0 ? total : totalSensors} 格 (地磁覆蓋 ${totalSensors} 格)`;
+
+    } else if (!isNaN(rawAvail) && rawAvail >= 0) {
+      // 2. 官方頂層概估值 (次要可信度)
+      sensorDetail = {
+        dataSource: 'estimate',
+        emptyCount: rawAvail,
+        totalSpaces: total,
+      };
+
+      if (rawAvail > 0) {
+        status = 'empty';
+        statusCode = 0;
+      } else {
+        status = 'occupied';
+        statusCode = 1;
+      }
+
+      addressDesc = `剩餘空位: ${rawAvail} 格 (官方概估值) | 總格數: ${total > 0 ? total : '未知'}`;
+
+    } else {
+      // 3. 無即時動態/未感測路段 (rawAvail === -99)
+      sensorDetail = {
+        dataSource: 'none',
+        totalSpaces: total,
+      };
+
+      status = 'unknown';
+      statusCode = 3;
+      addressDesc = `無即時動態資訊 (請依現場標示為準) | 總格數: ${total > 0 ? total : '未知'}`;
+    }
 
     const carType = String(item.roadSegCarType || '1').toUpperCase();
     let spotType: SpotType = 'general';
@@ -197,9 +269,6 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
       typeLabel = '裝卸貨專用';
     }
 
-    const availDisplay = avail >= 0 ? `${avail}` : '未定';
-    const addressDesc = `目前剩餘空位: ${availDisplay} / 總格數: ${total > 0 ? total : '未知'} (路段代號: ${item.roadSegID || index})`;
-
     const startTime = item.roadSegtimeStart || '07:00';
     const endTime = item.roadSegtimeEnd || '20:00';
     const payTime = `${startTime}-${endTime}`;
@@ -225,6 +294,7 @@ function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
       feeInfo: item.roadSegFee || '30元/小時',
       payTime,
       updatedAt,
+      sensorDetail,
       rawSourceData: item,
     };
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ParkingSpot } from '../types/parking';
 import { formatDistance, formatTime } from '../utils/distance';
-import { MapPin, Zap, Accessibility, Baby, Truck, Car, Navigation, DollarSign, Clock } from 'lucide-react';
+import { Zap, Accessibility, Baby, Truck, Car, Navigation, DollarSign, Clock } from 'lucide-react';
 
 interface SpotCardProps {
   spot: ParkingSpot;
@@ -16,8 +16,6 @@ export const SpotCard: React.FC<SpotCardProps> = ({
   onSelect,
   onFocusOnMap
 }) => {
-  const isAvailable = spot.status === 'empty';
-
   // 取得類型 Badge 圖示與色彩
   const getTypeBadge = () => {
     switch (spot.type) {
@@ -54,6 +52,37 @@ export const SpotCard: React.FC<SpotCardProps> = ({
     }
   };
 
+  const getStatusBadge = () => {
+    switch (spot.status) {
+      case 'empty':
+        return {
+          bg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+          dot: 'bg-emerald-500 animate-pulse',
+          text: '目前空閒'
+        };
+      case 'occupied':
+        return {
+          bg: 'bg-rose-50 text-rose-700 border-rose-200',
+          dot: 'bg-rose-500',
+          text: '使用中'
+        };
+      case 'maintenance':
+        return {
+          bg: 'bg-amber-50 text-amber-700 border-amber-200',
+          dot: 'bg-amber-500',
+          text: '維護中'
+        };
+      case 'unknown':
+      default:
+        return {
+          bg: 'bg-slate-100 text-slate-600 border-slate-200',
+          dot: 'bg-slate-400',
+          text: '無即時資訊'
+        };
+    }
+  };
+
+  const statusBadge = getStatusBadge();
   const badge = getTypeBadge();
 
   return (
@@ -68,21 +97,9 @@ export const SpotCard: React.FC<SpotCardProps> = ({
       <div className="flex items-start justify-between gap-2 mb-1.5">
         <div className="flex items-center gap-1.5 flex-wrap">
           {/* 狀態標籤 */}
-          <span
-            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold border ${
-              isAvailable
-                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                : spot.status === 'occupied'
-                ? 'bg-slate-100 text-slate-500 border-slate-200'
-                : 'bg-amber-50 text-amber-700 border-amber-200'
-            }`}
-          >
-            <span
-              className={`w-1.5 h-1.5 rounded-full ${
-                isAvailable ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'
-              }`}
-            />
-            {isAvailable ? '目前空閒' : spot.status === 'occupied' ? '使用中' : '維護中'}
+          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold border ${statusBadge.bg}`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${statusBadge.dot}`} />
+            {statusBadge.text}
           </span>
 
           {/* 車格類型標籤 */}
@@ -90,6 +107,23 @@ export const SpotCard: React.FC<SpotCardProps> = ({
             {badge.icon}
             <span>{badge.label}</span>
           </span>
+
+          {/* 資料來源強度標籤 */}
+          {spot.sensorDetail?.dataSource === 'geomagnetic' && (
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+              地磁即時
+            </span>
+          )}
+          {spot.sensorDetail?.dataSource === 'estimate' && (
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+              官方概估
+            </span>
+          )}
+          {spot.sensorDetail?.dataSource === 'none' && (
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-semibold bg-slate-100 text-slate-500 border border-slate-200">
+              無動態
+            </span>
+          )}
         </div>
 
         {/* 距離標籤 */}
@@ -116,7 +150,7 @@ export const SpotCard: React.FC<SpotCardProps> = ({
 
       {/* 詳細地址地標描述 */}
       {spot.addressDesc && (
-        <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+        <p className="text-xs text-slate-600 mt-1 leading-relaxed bg-slate-50 p-2 rounded-lg border border-slate-100">
           {spot.addressDesc}
         </p>
       )}
@@ -156,4 +190,3 @@ export const SpotCard: React.FC<SpotCardProps> = ({
     </div>
   );
 };
-

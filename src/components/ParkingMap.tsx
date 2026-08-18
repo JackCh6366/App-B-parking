@@ -292,12 +292,17 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
         onSelectSpot(spot);
       });
 
+      let statusText = '🟢 即時可停車';
+      if (spot.status === 'occupied') statusText = '🔴 已被佔用';
+      else if (spot.status === 'maintenance') statusText = '🟠 車格維護中';
+      else if (spot.status === 'unknown') statusText = '⚪ 無即時資訊 (依現場為準)';
+
       // Hover 簡易浮動提示
       marker.bindTooltip(
         `
         <div class="p-1 font-sans text-xs font-semibold">
           <div class="text-slate-900">[${spot.district}] ${spot.roadName}</div>
-          <div class="text-emerald-700 font-bold mt-0.5">${isAvailable ? '🟢 即時可停車' : '🔴 已被佔用'} - ${spot.typeLabel}</div>
+          <div class="font-bold mt-0.5">${statusText} - ${spot.typeLabel}</div>
         </div>
       `,
         { direction: 'top', offset: [0, -10] }
