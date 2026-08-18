@@ -1,5 +1,6 @@
 import { City, ParkingSpot, SpotStatus, SpotType } from '../types/parking';
 import { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS, TAIPEI_DISTRICTS } from '../config/cities.config';
+import { TAICHUNG_SECTION_DISTRICT_MAP } from '../config/taichungDistrictsMap';
 
 export { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS, TAIPEI_DISTRICTS };
 
@@ -18,6 +19,68 @@ const TAIPEI_DISTRICT_CENTERS: Record<string, [number, number]> = {
   '北投區': [25.1321, 121.4987],
 };
 
+const TAIPEI_KEYWORD_MAP: Record<string, string> = {
+  // 士林區
+  '前港': '士林區', '後港': '士林區', '社子': '士林區', '劍潭': '士林區', '基河': '士林區',
+  '天母': '士林區', '至善': '士林區', '德行': '士林區', '忠誠': '士林區', '通河': '士林區',
+  '芝山': '士林區', '福港': '士林區', '大南': '士林區', '文林': '士林區', '大興': '士林區',
+  '承德路四段': '士林區', '承德路五段': '士林區', '延平北路五段': '士林區', '延平北路六段': '士林區',
+  '延平北路七段': '士林區', '延平北路八段': '士林區', '延平北路九段': '士林區', '中正路': '士林區',
+
+  // 中山區
+  '中山北路一段': '中山區', '中山北路二段': '中山區', '中山北路三段': '中山區',
+  '松江': '中山區', '林森': '中山區', '吉林': '中山區', '建國北路': '中山區',
+  '新生北路': '中山區', '北安': '中山區', '明水': '中山區', '敬業': '中山區', '濱江': '中山區',
+
+  // 大安區
+  '敦化': '大安區', '仁愛路三段': '大安區', '仁愛路四段': '大安區',
+  '信義路三段': '大安區', '信義路四段': '大安區', '和平東路一段': '大安區', '和平東路二段': '大安區',
+  '復興南路': '大安區', '瑞安': '大安區', '建國南路': '大安區', '新生南路': '大安區', '永康': '大安區',
+
+  // 信義區
+  '市府': '信義區', '松高': '信義區', '松壽': '信義區', '松仁': '信義區', '松智': '信義區',
+  '松廉': '信義區', '莊敬': '信義區', '忠孝東路四段': '大安區', '忠孝東路五段': '信義區',
+  '基隆路一段': '信義區', '基隆路二段': '信義區', '吳興': '信義區', '松山路': '信義區',
+
+  // 松山區
+  '民生東路三段': '中山區', '民生東路四段': '松山區', '民生東路五段': '松山區',
+  '南京東路三段': '中山區', '南京東路四段': '松山區', '南京東路五段': '松山區',
+  '光復北路': '松山區', '八德路三段': '松山區', '八德路四段': '松山區',
+  '三民': '松山區', '富錦': '松山區', '延壽': '松山區', '慶城': '松山區',
+
+  // 中正區
+  '重慶南路': '中正區', '愛國': '中正區', '羅斯福路一段': '中正區', '羅斯福路二段': '中正區',
+  '羅斯福路三段': '中正區', '博愛': '中正區', '桃源': '中正區', '延平南路': '中正區',
+  '南海': '中正區', '汀州路': '中正區', '濟南': '中正區', '青島': '中正區',
+
+  // 大同區
+  '重慶北路': '大同區', '延平北路一段': '大同區', '延平北路二段': '大同區',
+  '延平北路三段': '大同區', '延平北路四段': '大同區', '承德路一段': '大同區',
+  '承德路二段': '大同區', '承德路三段': '大同區', '南京西路': '大同區',
+  '民生西路': '大同區', '迪化': '大同區', '太原': '大同區', '長安西路': '大同區',
+
+  // 萬華區
+  '西園': '萬華區', '和平西路': '萬華區', '廣州': '萬華區', '萬大': '萬華區',
+  '康定': '萬華區', '昆明': '萬華區', '漢中': '萬華區', '中華路': '萬華區', '桂林': '萬華區',
+
+  // 文山區
+  '木柵': '文山區', '景美': '文山區', '興隆': '文山區', '指南': '文山區',
+  '政大': '文山區', '辛亥路四段': '文山區', '辛亥路五段': '文山區', '辛亥路六段': '文山區',
+  '羅斯福路五段': '文山區', '羅斯福路六段': '文山區', '萬芳': '文山區',
+
+  // 內湖區
+  '瑞光': '內湖區', '洲子': '內湖區', '成功路': '內湖區', '民權東路六段': '內湖區',
+  '行善': '內湖區', '舊宗': '內湖區', '康寧': '內湖區', '東湖': '內湖區', '金莊': '內湖區', '環山': '內湖區',
+
+  // 南港區
+  '忠孝東路六段': '南港區', '忠孝東路七段': '南港區', '研究院': '南港區',
+  '重陽路': '南港區', '三重路': '南港區', '經貿': '南港區', '園區': '南港區', '新風': '南港區',
+
+  // 北投區
+  '石牌': '北投區', '中央北路': '北投區', '光明路': '北投區', '新北投': '北投區',
+  '磺港': '北投區', '大業': '北投區', '立農': '北投區', '西安街': '北投區', '東華街': '北投區', '溫泉': '北投區',
+};
+
 function extractTaipeiDistrict(roadName: string): { district: string; center: [number, number] } {
   for (const dist of Object.keys(TAIPEI_DISTRICT_CENTERS)) {
     const key = dist.replace('區', '');
@@ -26,43 +89,15 @@ function extractTaipeiDistrict(roadName: string): { district: string; center: [n
     }
   }
 
-  // 根據常見路名推導行政區
-  if (roadName.includes('敦化') || roadName.includes('仁愛') || roadName.includes('和平') || roadName.includes('復興南')) {
-    return { district: '大安區', center: TAIPEI_DISTRICT_CENTERS['大安區'] };
-  }
-  if (roadName.includes('忠孝東') || roadName.includes('基隆路')) {
-    return { district: '信義區', center: TAIPEI_DISTRICT_CENTERS['信義區'] };
-  }
-  if (roadName.includes('重慶') || roadName.includes('愛國') || roadName.includes('羅斯福')) {
-    return { district: '中正區', center: TAIPEI_DISTRICT_CENTERS['中正區'] };
-  }
-  if (roadName.includes('民權東') || roadName.includes('南京東') || roadName.includes('民生東')) {
-    return { district: '松山區', center: TAIPEI_DISTRICT_CENTERS['松山區'] };
-  }
-  if (roadName.includes('重慶北') || roadName.includes('延平北') || roadName.includes('承德路一段') || roadName.includes('承德路二段')) {
-    return { district: '大同區', center: TAIPEI_DISTRICT_CENTERS['大同區'] };
-  }
-  if (roadName.includes('西園') || roadName.includes('和平西') || roadName.includes('廣州')) {
-    return { district: '萬華區', center: TAIPEI_DISTRICT_CENTERS['萬華區'] };
-  }
-  if (roadName.includes('木柵') || roadName.includes('景美') || roadName.includes('興隆')) {
-    return { district: '文山區', center: TAIPEI_DISTRICT_CENTERS['文山區'] };
-  }
-  if (roadName.includes('瑞光') || roadName.includes('洲子') || roadName.includes('成功路') || roadName.includes('民權東路六段')) {
-    return { district: '內湖區', center: TAIPEI_DISTRICT_CENTERS['內湖區'] };
-  }
-  if (roadName.includes('忠孝東路六段') || roadName.includes('忠孝東路七段') || roadName.includes('研究院')) {
-    return { district: '南港區', center: TAIPEI_DISTRICT_CENTERS['南港區'] };
-  }
-  if (roadName.includes('天母') || roadName.includes('文林') || roadName.includes('承德路四段') || roadName.includes('承德路五段')) {
-    return { district: '士林區', center: TAIPEI_DISTRICT_CENTERS['士林區'] };
-  }
-  if (roadName.includes('石牌') || roadName.includes('中央北') || roadName.includes('光明')) {
-    return { district: '北投區', center: TAIPEI_DISTRICT_CENTERS['北投區'] };
+  // 根據擴充關鍵字詞典推導行政區
+  for (const [kw, district] of Object.entries(TAIPEI_KEYWORD_MAP)) {
+    if (roadName.includes(kw)) {
+      return { district, center: TAIPEI_DISTRICT_CENTERS[district] || TAIPEI_DISTRICT_CENTERS['中山區'] };
+    }
   }
 
-  // 預設為 中山區
-  return { district: '中山區', center: TAIPEI_DISTRICT_CENTERS['中山區'] };
+  // 辨識不出來一律標記為「其他區」，避免靜默兜底至任何具體行政區
+  return { district: '其他區', center: TAIPEI_DISTRICT_CENTERS['中山區'] };
 }
 
 function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
@@ -326,11 +361,13 @@ function adaptTaichungData(rawData: any[]): ParkingSpot[] {
     }
 
     const id = item.Section_ID && item.PS_ID ? `TCC-${item.Section_ID}-${item.PS_ID}` : (item.PS_ID || item.SpaceID || item.ID || `TCC-${index}`);
+    const sectionId = String(item.Section_ID || '');
+    const district = item.District || item.Area || TAICHUNG_SECTION_DISTRICT_MAP[sectionId] || '其他區';
 
     return {
       id,
       city: 'taichung',
-      district: item.District || item.Area || '臺中市',
+      district,
       roadName: item.RoadName || item.Address || (item.Section_ID ? `路段 #${item.Section_ID}` : '路段名稱'),
       addressDesc: item.Address || item.addressDesc || (item.Section_ID ? `車格 #${item.PS_ID || ''}` : ''),
       lat: parseFloat(item.Lat || item.Latitude || item.lat) || 24.1627,
