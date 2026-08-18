@@ -23,12 +23,21 @@ export interface ParkingSpot {
   distanceMeters?: number; // 距離使用者公尺數 (計算產生)
   rawSourceData?: Record<string, any>; // 預留原廠 Open API 回傳資料
   sensorDetail?: {
-    dataSource: 'geomagnetic' | 'estimate' | 'none';
+    dataSource: 'geomagnetic' | 'estimate' | 'realtime_sensor' | 'none';
     emptyCount?: number;
     occupiedCount?: number;
     offlineCount?: number;
     totalSensors?: number;
     totalSpaces?: number;
+    isApproximate?: boolean;
+    riskNote?: string;
+    cellList?: Array<{
+      cellId: string;
+      status: SpotStatus;
+      statusCode: number;
+      lat?: number | null;
+      lng?: number | null;
+    }>;
   };
 }
 

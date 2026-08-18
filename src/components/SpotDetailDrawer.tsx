@@ -115,13 +115,19 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
             </div>
           )}
 
-          {/* 若地磁即時資料存在，呈現拆解統計網格 */}
-          {spot.sensorDetail && spot.sensorDetail.dataSource === 'geomagnetic' && (
-            <div className="bg-blue-50/60 border border-blue-200/80 p-3.5 rounded-xl">
-              <div className="text-xs font-bold text-blue-900 mb-2 flex items-center gap-1.5">
-                <Info className="w-4 h-4 text-blue-600" />
-                <span>實體地磁感測器明細 (動態掃描)</span>
+          {/* 若即時/地磁感測資料存在，呈現拆解統計網格與車格明細 */}
+          {spot.sensorDetail && (spot.sensorDetail.dataSource === 'geomagnetic' || spot.sensorDetail.dataSource === 'realtime_sensor') && (
+            <div className="bg-blue-50/60 border border-blue-200/80 p-3.5 rounded-xl space-y-3">
+              <div className="text-xs font-bold text-blue-900 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <Info className="w-4 h-4 text-blue-600" />
+                  <span>實體感測器明細 ({spot.sensorDetail.dataSource === 'geomagnetic' ? '地磁動態' : '即時動態'})</span>
+                </div>
+                {spot.sensorDetail.totalSpaces && (
+                  <span className="text-[11px] font-normal text-blue-700 font-mono">共 {spot.sensorDetail.totalSpaces} 格</span>
+                )}
               </div>
+
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
                 <div className="bg-white p-2 rounded-lg border border-blue-100 shadow-2xs">
                   <span className="text-slate-500 block text-[11px]">即時空位</span>
@@ -132,10 +138,50 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
                   <span className="text-rose-600 font-bold text-base">{spot.sensorDetail.occupiedCount ?? 0}</span>
                 </div>
                 <div className="bg-white p-2 rounded-lg border border-blue-100 shadow-2xs">
-                  <span className="text-slate-500 block text-[11px]">訊號離線</span>
+                  <span className="text-slate-500 block text-[11px]">維護/離線</span>
                   <span className="text-slate-600 font-bold text-base">{spot.sensorDetail.offlineCount ?? 0}</span>
                 </div>
               </div>
+
+              {/* 風險/轉角提示語 */}
+              {spot.sensorDetail.riskNote && (
+                <div className="text-[11px] text-amber-800 bg-amber-50 border border-amber-200/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                  <Info className="w-3.5 h-3.5 shrink-0 text-amber-600" />
+                  <span>提示：{spot.sensorDetail.riskNote}</span>
+                </div>
+              )}
+
+              {/* 車格獨立狀態明細網格 */}
+              {spot.sensorDetail.cellList && spot.sensorDetail.cellList.length > 0 && (
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex items-center justify-between text-[11px] text-slate-600">
+                    <span className="font-semibold">個別車格即時狀態：</span>
+                    <span className="text-slate-400 font-normal">綠:空位 / 紅:有車 / 黃:維護</span>
+                  </div>
+                  <div className="grid grid-cols-5 sm:grid-cols-6 gap-1.5 max-h-44 overflow-y-auto p-2 bg-white rounded-lg border border-blue-100 shadow-2xs">
+                    {spot.sensorDetail.cellList.map((cell, idx) => {
+                      const isFree = cell.status === 'empty';
+                      const isMaint = cell.status === 'maintenance';
+                      return (
+                        <div
+                          key={idx}
+                          className={`flex flex-col items-center justify-center p-1.5 rounded-md border text-[11px] font-mono transition-colors ${
+                            isFree
+                              ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                              : isMaint
+                              ? 'bg-amber-50 border-amber-200 text-amber-800'
+                              : 'bg-rose-50 border-rose-200 text-rose-800'
+                          }`}
+                          title={`車格 #${cell.cellId} - ${isFree ? '空位' : isMaint ? '維護中' : '有車'}`}
+                        >
+                          <span className={`w-2 h-2 rounded-full mb-1 ${isFree ? 'bg-emerald-500 animate-pulse' : isMaint ? 'bg-amber-500' : 'bg-rose-500'}`} />
+                          <span className="truncate w-full text-center text-[10px]">{cell.cellId}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

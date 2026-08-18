@@ -1,6 +1,7 @@
 import { City, ParkingSpot, SpotStatus, SpotType } from '../types/parking';
 import { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS, TAIPEI_DISTRICTS } from '../config/cities.config';
 import { TAICHUNG_SECTION_DISTRICT_MAP } from '../config/taichungDistrictsMap';
+import { TAICHUNG_SECTION_MAP } from '../config/taichungSectionMap';
 
 export { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS, TAIPEI_DISTRICTS };
 
@@ -358,100 +359,235 @@ const NTP_AREA_CODE_MAP: Record<string, string> = {
 
 function adaptNewTaipeiData(rawData: any[]): ParkingSpot[] {
   if (!Array.isArray(rawData)) return [];
-  return rawData.map((item, index) => {
-    // 新北市 cellstatus: 'N' (空位/無車), 'Y' (有車/Occupied)
-    // parkingstatus: '2' (空位/無車), '1' (有車/Occupied)
-    const isFree = item.cellstatus === 'N' || item.parkingstatus === '2' || item.parkingstatus === 2 || item.is_free === '1' || item.status === '0' || item.status === 0 || item.STATUS === '0' || item.STATUS === 0;
 
-    let spotType: SpotType = 'general';
-    let typeLabel = '一般車格';
-    const nameStr = item.name || item.type_label || '';
-    if (nameStr.includes('身心障礙') || nameStr.includes('身障')) {
-      spotType = 'disability';
-      typeLabel = '身障專用格';
-    } else if (nameStr.includes('孕婦') || nameStr.includes('親') || nameStr.includes('接送')) {
-      spotType = 'maternity';
-      typeLabel = '孕婦親子格';
-    } else if (nameStr.includes('充') || nameStr.includes('綠')) {
-      spotType = 'charging';
-      typeLabel = '綠能充電格';
-    } else if (nameStr.includes('卸貨') || nameStr.includes('貨')) {
-      spotType = 'loading';
-      typeLabel = '裝卸貨專用';
-    }
-
+  const grouped = new Map<string, any[]>();
+  for (const item of rawData) {
+    if (!item) continue;
     const district = item.district || item.area_name || item.AREA_NAME || NTP_AREA_CODE_MAP[item.areacode] || '新北市';
-    const payTime = item.pay_time || (item.day && item.hour ? `${item.day} ${item.hour}` : '08:00-20:00');
-    const feeInfo = item.fee || item.paycash || item.pay || '20元/小時';
+    const roadName = item.roadname || item.road_name || item.ROAD_NAME || item.address || '路段名稱';
+    const groupKey = `${district}__${roadName}`;
+    const existing = grouped.get(groupKey) || [];
+    existing.push(item);
+    grouped.set(groupKey, existing);
+  }
 
-    return {
-      id: item.cellid ? `NTP-${item.cellid}` : (item.id || item.ps_id || item.ID || `NTP-${index}`),
+  const result: ParkingSpot[] = [];
+
+  grouped.forEach((items, groupKey) => {
+    const [district, roadName] = groupKey.split('__');
+    let emptyCount = 0;
+    let occupiedCount = 0;
+    let offlineCount = 0;
+
+    let latSum = 0;
+    let lngSum = 0;
+    let validCoordCount = 0;
+
+    const cellList: Array<{
+      cellId: string;
+      status: SpotStatus;
+      statusCode: number;
+      lat?: number | null;
+      lng?: number | null;
+    }> = [];
+
+    const firstItem = items[0] || {};
+    const payTime = firstItem.pay_time || (firstItem.day && firstItem.hour ? `${firstItem.day} ${firstItem.hour}` : '08:00-20:00');
+    const feeInfo = firstItem.fee || firstItem.paycash || firstItem.pay || '20元/小時';
+
+    items.forEach((item, idx) => {
+      const isFree = item.cellstatus === 'N' || item.parkingstatus === '2' || item.parkingstatus === 2 || item.is_free === '1' || item.status === '0' || item.status === 0 || item.STATUS === '0' || item.STATUS === 0;
+      const status: SpotStatus = isFree ? 'empty' : 'occupied';
+      const statusCode = isFree ? 0 : 1;
+
+      if (isFree) emptyCount++;
+      else occupiedCount++;
+
+      const lat = parseFloat(item.latitude || item.lat || item.LATITUDE);
+      const lng = parseFloat(item.longitude || item.lng || item.LONGITUDE);
+
+      if (!isNaN(lat) && !isNaN(lng) && lat >= 21.8 && lat <= 25.5 && lng >= 119.5 && lng <= 122.5) {
+        latSum += lat;
+        lngSum += lng;
+        validCoordCount++;
+      }
+
+      cellList.push({
+        cellId: String(item.cellid || item.id || idx),
+        status,
+        statusCode,
+        lat: !isNaN(lat) ? lat : null,
+        lng: !isNaN(lng) ? lng : null,
+      });
+    });
+
+    const totalSpaces = items.length;
+    const roadStatus: SpotStatus = emptyCount > 0 ? 'empty' : 'occupied';
+    const roadStatusCode = emptyCount > 0 ? 0 : 1;
+
+    const avgLat = validCoordCount > 0 ? Number((latSum / validCoordCount).toFixed(6)) : 25.0118;
+    const avgLng = validCoordCount > 0 ? Number((lngSum / validCoordCount).toFixed(6)) : 121.4658;
+
+    const addressDesc = `即時空位: ${emptyCount} 格 | 有車: ${occupiedCount} 格 | 總格數: ${totalSpaces} 格 (即時動態感測)`;
+
+    result.push({
+      id: `NTP-ROAD-${district}-${roadName}`,
       city: 'newtaipei',
       district,
-      roadName: item.roadname || item.road_name || item.ROAD_NAME || item.address || '路段名稱',
-      addressDesc: item.address || item.ADDRESS || item.roadname || '',
-      lat: parseFloat(item.latitude || item.lat || item.LATITUDE) || 25.0118,
-      lng: parseFloat(item.longitude || item.lng || item.LONGITUDE) || 121.4658,
-      status: isFree ? 'empty' : 'occupied',
-      statusCode: isFree ? 0 : 1,
-      type: spotType,
-      typeLabel,
+      roadName,
+      addressDesc,
+      lat: avgLat,
+      lng: avgLng,
+      status: roadStatus,
+      statusCode: roadStatusCode,
+      type: 'general',
+      typeLabel: '一般車格',
       feeInfo,
       payTime,
-      updatedAt: item.update_time || new Date().toISOString(),
-      rawSourceData: item
-    };
+      updatedAt: firstItem.update_time || new Date().toISOString(),
+      sensorDetail: {
+        dataSource: 'realtime_sensor',
+        emptyCount,
+        occupiedCount,
+        offlineCount,
+        totalSensors: totalSpaces,
+        totalSpaces,
+        cellList,
+      },
+      rawSourceData: items,
+    });
   });
+
+  return result;
 }
 
 function adaptTaichungData(rawData: any[]): ParkingSpot[] {
   if (!Array.isArray(rawData)) return [];
-  return rawData.map((item, index) => {
-    // 臺中市定義: 0=空、1=有車、2=故障
-    const statusCode = Number(item.status ?? item.Status ?? 0);
-    let status: SpotStatus = 'empty';
-    if (statusCode === 1) status = 'occupied';
-    else if (statusCode === 2) status = 'maintenance';
 
-    const spotTypeRaw = String(item.PS_type ?? item.Type ?? '0');
-    let spotType: SpotType = 'general';
-    let typeLabel = '一般車格';
-    if (spotTypeRaw === '1' || spotTypeRaw.includes('身障') || spotTypeRaw === 'disability') {
-      spotType = 'disability';
-      typeLabel = '身障專用格';
-    } else if (spotTypeRaw === '4' || spotTypeRaw.includes('孕婦') || spotTypeRaw.includes('親') || spotTypeRaw === 'maternity') {
-      spotType = 'maternity';
-      typeLabel = '孕婦親子格';
-    } else if (spotTypeRaw === '3' || spotTypeRaw.includes('充') || spotTypeRaw.includes('綠') || spotTypeRaw === 'charging') {
-      spotType = 'charging';
-      typeLabel = '綠能充電格';
-    } else if (spotTypeRaw === '2' || spotTypeRaw.includes('貨') || spotTypeRaw === 'loading') {
-      spotType = 'loading';
-      typeLabel = '裝卸貨專用';
+  const grouped = new Map<string, any[]>();
+  for (const item of rawData) {
+    if (!item) continue;
+    const secId = String(item.Section_ID || item.section_id || '000');
+    const existing = grouped.get(secId) || [];
+    existing.push(item);
+    grouped.set(secId, existing);
+  }
+
+  const result: ParkingSpot[] = [];
+
+  grouped.forEach((items, secId) => {
+    const secInfo = TAICHUNG_SECTION_MAP[secId];
+    const rawRoadName = secInfo?.roadName || (secId !== '000' ? `路段 #${secId}` : '路段名稱');
+    const district = secInfo?.district || TAICHUNG_SECTION_DISTRICT_MAP[secId] || '其他區';
+    const isApproximate = secInfo?.isApproximate || false;
+    const riskNote = secInfo?.riskNote || undefined;
+
+    const roadName = isApproximate && !rawRoadName.startsWith('約 ') ? `約 ${rawRoadName}` : rawRoadName;
+
+    let emptyCount = 0;
+    let occupiedCount = 0;
+    let offlineCount = 0;
+
+    let latSum = 0;
+    let lngSum = 0;
+    let validCoordCount = 0;
+
+    const cellList: Array<{
+      cellId: string;
+      status: SpotStatus;
+      statusCode: number;
+      lat?: number | null;
+      lng?: number | null;
+    }> = [];
+
+    const firstItem = items[0] || {};
+    const payTime = firstItem.PayTime || '08:00-18:00';
+    const feeInfo = firstItem.Fee || '20元/小時';
+
+    items.forEach((item, idx) => {
+      const statusCode = Number(item.status ?? item.Status ?? 0);
+      let status: SpotStatus = 'empty';
+      if (statusCode === 1) {
+        status = 'occupied';
+        occupiedCount++;
+      } else if (statusCode === 2) {
+        status = 'maintenance';
+        offlineCount++;
+      } else {
+        status = 'empty';
+        emptyCount++;
+      }
+
+      const lat = parseFloat(item.Lat || item.Latitude || item.lat);
+      const lng = parseFloat(item.Lng || item.Longitude || item.lng);
+
+      if (!isNaN(lat) && !isNaN(lng) && lat >= 21.8 && lat <= 25.5 && lng >= 119.5 && lng <= 122.5) {
+        latSum += lat;
+        lngSum += lng;
+        validCoordCount++;
+      }
+
+      cellList.push({
+        cellId: String(item.PS_ID || idx),
+        status,
+        statusCode,
+        lat: !isNaN(lat) ? lat : null,
+        lng: !isNaN(lng) ? lng : null,
+      });
+    });
+
+    const totalSpaces = items.length;
+    let roadStatus: SpotStatus = 'empty';
+    let roadStatusCode = 0;
+
+    if (emptyCount > 0) {
+      roadStatus = 'empty';
+      roadStatusCode = 0;
+    } else if (occupiedCount > 0) {
+      roadStatus = 'occupied';
+      roadStatusCode = 1;
+    } else {
+      roadStatus = 'maintenance';
+      roadStatusCode = 2;
     }
 
-    const id = item.Section_ID && item.PS_ID ? `TCC-${item.Section_ID}-${item.PS_ID}` : (item.PS_ID || item.SpaceID || item.ID || `TCC-${index}`);
-    const sectionId = String(item.Section_ID || '');
-    const district = item.District || item.Area || TAICHUNG_SECTION_DISTRICT_MAP[sectionId] || '其他區';
+    const avgLat = validCoordCount > 0 ? Number((latSum / validCoordCount).toFixed(6)) : 24.1627;
+    const avgLng = validCoordCount > 0 ? Number((lngSum / validCoordCount).toFixed(6)) : 120.6471;
 
-    return {
-      id,
+    const offlineText = offlineCount > 0 ? ` | 維護中: ${offlineCount} 格` : '';
+    const addressDesc = `即時空位: ${emptyCount} 格 | 有車: ${occupiedCount} 格${offlineText} | 總格數: ${totalSpaces} 格 (即時動態感測)`;
+
+    result.push({
+      id: `TCC-ROAD-${secId}`,
       city: 'taichung',
       district,
-      roadName: item.RoadName || item.Address || (item.Section_ID ? `路段 #${item.Section_ID}` : '路段名稱'),
-      addressDesc: item.Address || item.addressDesc || (item.Section_ID ? `車格 #${item.PS_ID || ''}` : ''),
-      lat: parseFloat(item.Lat || item.Latitude || item.lat) || 24.1627,
-      lng: parseFloat(item.Lng || item.Longitude || item.lng) || 120.6471,
-      status,
-      statusCode,
-      type: spotType,
-      typeLabel,
-      feeInfo: item.Fee || '20元/小時',
-      payTime: item.PayTime || '08:00-18:00',
-      updatedAt: item.UpdateTime || new Date().toISOString(),
-      rawSourceData: item
-    };
+      roadName,
+      addressDesc,
+      lat: avgLat,
+      lng: avgLng,
+      status: roadStatus,
+      statusCode: roadStatusCode,
+      type: 'general',
+      typeLabel: '一般車格',
+      feeInfo,
+      payTime,
+      updatedAt: firstItem.UpdateTime || new Date().toISOString(),
+      sensorDetail: {
+        dataSource: 'realtime_sensor',
+        emptyCount,
+        occupiedCount,
+        offlineCount,
+        totalSensors: totalSpaces,
+        totalSpaces,
+        isApproximate,
+        riskNote,
+        cellList,
+      },
+      rawSourceData: items,
+    });
   });
+
+  return result;
 }
 
 export const CITY_DATA_ADAPTERS: Record<string, (data: any[]) => ParkingSpot[]> = {
@@ -459,4 +595,3 @@ export const CITY_DATA_ADAPTERS: Record<string, (data: any[]) => ParkingSpot[]> 
   newtaipei: adaptNewTaipeiData,
   taichung: adaptTaichungData,
 };
-

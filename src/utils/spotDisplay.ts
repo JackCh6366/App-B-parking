@@ -63,6 +63,12 @@ export function getSpotDisplayInfo(spot: ParkingSpot): SpotDisplayInfo {
           text: '地磁即時'
         };
         break;
+      case 'realtime_sensor':
+        dataSourceBadge = {
+          bg: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+          text: '即時感測'
+        };
+        break;
       case 'estimate':
         dataSourceBadge = {
           bg: 'bg-amber-50 text-amber-700 border-amber-200',

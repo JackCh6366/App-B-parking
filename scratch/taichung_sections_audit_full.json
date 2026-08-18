@@ -1,0 +1,5024 @@
+[
+  {
+    "sectionId": "0434704",
+    "spotCount": 24,
+    "centroid": [
+      24.14330683333333,
+      120.6804355
+    ],
+    "status": "SUCCESS",
+    "roadName": "三民路二段",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "成功路",
+    "secondDistanceMeter": 26.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0434705",
+    "spotCount": 25,
+    "centroid": [
+      24.141567,
+      120.67863468000003
+    ],
+    "status": "SUCCESS",
+    "roadName": "三民路二段",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "中山路",
+    "secondDistanceMeter": 19.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0440500",
+    "spotCount": 2,
+    "centroid": [
+      24.1375015,
+      120.6837765
+    ],
+    "status": "SUCCESS",
+    "roadName": "中山路",
+    "nearestDistanceMeter": 2.7,
+    "secondCandidateRoad": "建國路125巷",
+    "secondDistanceMeter": 45.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0440501",
+    "spotCount": 44,
+    "centroid": [
+      24.138927840909094,
+      120.68188381818182
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "中山路",
+    "nearestDistanceMeter": 3.9,
+    "secondCandidateRoad": "臺灣大道一段141巷",
+    "secondDistanceMeter": 8.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「中山路」(3.9m), 次路名「臺灣大道一段141巷」(8.9m)"
+  },
+  {
+    "sectionId": "0450000",
+    "spotCount": 6,
+    "centroid": [
+      24.13665833333333,
+      120.68290033333334
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "民權路14巷",
+    "nearestDistanceMeter": 3.5,
+    "secondCandidateRoad": "民族路",
+    "secondDistanceMeter": 8.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「民權路14巷」(3.5m), 次路名「民族路」(8.5m)"
+  },
+  {
+    "sectionId": "0450001",
+    "spotCount": 36,
+    "centroid": [
+      24.138288916666664,
+      120.68106858333334
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "民族路",
+    "nearestDistanceMeter": 2.9,
+    "secondCandidateRoad": "民權路80巷",
+    "secondDistanceMeter": 6.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「民族路」(2.9m), 次路名「民權路80巷」(6.3m)"
+  },
+  {
+    "sectionId": "0450301",
+    "spotCount": 15,
+    "centroid": [
+      24.138449599999998,
+      120.68346533333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "綠川西街",
+    "nearestDistanceMeter": 4.8,
+    "secondCandidateRoad": "綠川東街",
+    "secondDistanceMeter": 34.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0450401",
+    "spotCount": 31,
+    "centroid": [
+      24.137844870967736,
+      120.68335638709675
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "綠川東街",
+    "nearestDistanceMeter": 4,
+    "secondCandidateRoad": "中山路",
+    "secondDistanceMeter": 10.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「綠川東街」(4.0m), 次路名「中山路」(10.3m)"
+  },
+  {
+    "sectionId": "0453602",
+    "spotCount": 16,
+    "centroid": [
+      24.139125437500002,
+      120.67849631250002
+    ],
+    "status": "SUCCESS",
+    "roadName": "民權路",
+    "nearestDistanceMeter": 2.2,
+    "secondCandidateRoad": "平等街",
+    "secondDistanceMeter": 23,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0456802",
+    "spotCount": 18,
+    "centroid": [
+      24.141250333333332,
+      120.68086316666667
+    ],
+    "status": "SUCCESS",
+    "roadName": "臺灣大道一段",
+    "nearestDistanceMeter": 2.8,
+    "secondCandidateRoad": "臺灣大道一段253巷",
+    "secondDistanceMeter": 19.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0456901",
+    "spotCount": 27,
+    "centroid": [
+      24.14169281481481,
+      120.68227759259261
+    ],
+    "status": "SUCCESS",
+    "roadName": "市府路",
+    "nearestDistanceMeter": 2.4,
+    "secondCandidateRoad": "成功路",
+    "secondDistanceMeter": 26.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0456902",
+    "spotCount": 41,
+    "centroid": [
+      24.139802731707316,
+      120.6803202195122
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "市府路",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "自由路二段35巷",
+    "secondDistanceMeter": 4.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「市府路」(3.0m), 次路名「自由路二段35巷」(4.6m)"
+  },
+  {
+    "sectionId": "0459401",
+    "spotCount": 6,
+    "centroid": [
+      24.146375000000003,
+      120.68125916666668
+    ],
+    "status": "SUCCESS",
+    "roadName": "福音街",
+    "nearestDistanceMeter": 0.9,
+    "secondCandidateRoad": "公園路34巷",
+    "secondDistanceMeter": 24.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0460101",
+    "spotCount": 40,
+    "centroid": [
+      24.141058575,
+      120.68412440000004
+    ],
+    "status": "SUCCESS",
+    "roadName": "光復路",
+    "nearestDistanceMeter": 4.3,
+    "secondCandidateRoad": "成功路128巷",
+    "secondDistanceMeter": 41.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0463400",
+    "spotCount": 1,
+    "centroid": [
+      24.139008,
+      120.68487
+    ],
+    "status": "SUCCESS",
+    "roadName": "成功路",
+    "nearestDistanceMeter": 8.2,
+    "secondCandidateRoad": "綠川東街",
+    "secondDistanceMeter": 23.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0463401",
+    "spotCount": 33,
+    "centroid": [
+      24.14053393939394,
+      120.68316796969697
+    ],
+    "status": "SUCCESS",
+    "roadName": "成功路",
+    "nearestDistanceMeter": 4.4,
+    "secondCandidateRoad": "臺灣大道一段148巷",
+    "secondDistanceMeter": 22.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0463805",
+    "spotCount": 12,
+    "centroid": [
+      24.141227166666667,
+      120.68335766666667
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "自由路二段",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "自由路二段70巷",
+    "secondDistanceMeter": 0.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「自由路二段」(0.4m), 次路名「自由路二段70巷」(0.7m)"
+  },
+  {
+    "sectionId": "0463806",
+    "spotCount": 14,
+    "centroid": [
+      24.13892721428571,
+      120.68094571428571
+    ],
+    "status": "SUCCESS",
+    "roadName": "自由路二段",
+    "nearestDistanceMeter": 4.5,
+    "secondCandidateRoad": "自由路二段35巷",
+    "secondDistanceMeter": 31.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0490104",
+    "spotCount": 7,
+    "centroid": [
+      24.142087142857143,
+      120.68594171428572
+    ],
+    "status": "SUCCESS",
+    "roadName": "雙十路一段",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "公園東路",
+    "secondDistanceMeter": 60.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0523801",
+    "spotCount": 19,
+    "centroid": [
+      24.158991578947365,
+      120.6885893157895
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "健行路",
+    "nearestDistanceMeter": 1.4,
+    "secondCandidateRoad": "健行路86巷",
+    "secondDistanceMeter": 3.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「健行路」(1.4m), 次路名「健行路86巷」(3.4m)"
+  },
+  {
+    "sectionId": "0523802",
+    "spotCount": 27,
+    "centroid": [
+      24.159075592592586,
+      120.68369825925926
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "健行路",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "大義街",
+    "secondDistanceMeter": 2.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「健行路」(1.3m), 次路名「大義街」(2.6m)"
+  },
+  {
+    "sectionId": "0523803",
+    "spotCount": 15,
+    "centroid": [
+      24.159150799999995,
+      120.6788132
+    ],
+    "status": "SUCCESS",
+    "roadName": "健行路",
+    "nearestDistanceMeter": 0.6,
+    "secondCandidateRoad": "大德街",
+    "secondDistanceMeter": 10.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0523804",
+    "spotCount": 30,
+    "centroid": [
+      24.159214899999995,
+      120.67360303333334
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "健行路",
+    "nearestDistanceMeter": 1.2,
+    "secondCandidateRoad": "篤行路",
+    "secondDistanceMeter": 4.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「健行路」(1.2m), 次路名「篤行路」(4.1m)"
+  },
+  {
+    "sectionId": "0523805",
+    "spotCount": 38,
+    "centroid": [
+      24.159203315789462,
+      120.66841434210524
+    ],
+    "status": "SUCCESS",
+    "roadName": "健行路",
+    "nearestDistanceMeter": 1,
+    "secondCandidateRoad": "忠太東路",
+    "secondDistanceMeter": 35,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0523806",
+    "spotCount": 39,
+    "centroid": [
+      24.15868612820513,
+      120.66482697435897
+    ],
+    "status": "SUCCESS",
+    "roadName": "健行路",
+    "nearestDistanceMeter": 6,
+    "secondCandidateRoad": "健行路964巷",
+    "secondDistanceMeter": 67.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0524101",
+    "spotCount": 33,
+    "centroid": [
+      24.156717212121215,
+      120.68535715151513
+    ],
+    "status": "SUCCESS",
+    "roadName": "崇德路一段",
+    "nearestDistanceMeter": 2.7,
+    "secondCandidateRoad": "崇德路一段80巷",
+    "secondDistanceMeter": 14.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0524102",
+    "spotCount": 26,
+    "centroid": [
+      24.161126,
+      120.6850688076923
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "崇德路一段",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "崇德路一段256巷",
+    "secondDistanceMeter": 5.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「崇德路一段」(3.7m), 次路名「崇德路一段256巷」(5.7m)"
+  },
+  {
+    "sectionId": "0524103",
+    "spotCount": 28,
+    "centroid": [
+      24.165792392857146,
+      120.68507064285714
+    ],
+    "status": "SUCCESS",
+    "roadName": "崇德路一段",
+    "nearestDistanceMeter": 4.2,
+    "secondCandidateRoad": "崇興路二段",
+    "secondDistanceMeter": 22.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0534502",
+    "spotCount": 25,
+    "centroid": [
+      24.163040000000002,
+      120.68325499999997
+    ],
+    "status": "SUCCESS",
+    "roadName": "進化北路",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "衛道路210巷",
+    "secondDistanceMeter": 18.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0534503",
+    "spotCount": 48,
+    "centroid": [
+      24.16316360416667,
+      120.67887816666662
+    ],
+    "status": "SUCCESS",
+    "roadName": "進化北路",
+    "nearestDistanceMeter": 3.9,
+    "secondCandidateRoad": "衛道二街",
+    "secondDistanceMeter": 52.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0534701",
+    "spotCount": 41,
+    "centroid": [
+      24.157066658536582,
+      120.68895317073171
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "三民路三段",
+    "nearestDistanceMeter": 4.7,
+    "secondCandidateRoad": "興進路",
+    "secondDistanceMeter": 5.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「三民路三段」(4.7m), 次路名「興進路」(5.5m)"
+  },
+  {
+    "sectionId": "0534702",
+    "spotCount": 10,
+    "centroid": [
+      24.1531776,
+      120.6855406
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "三民路三段",
+    "nearestDistanceMeter": 5.4,
+    "secondCandidateRoad": "三民路三段201巷",
+    "secondDistanceMeter": 6.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「三民路三段」(5.4m), 次路名「三民路三段201巷」(6.7m)"
+  },
+  {
+    "sectionId": "0534703",
+    "spotCount": 20,
+    "centroid": [
+      24.147250200000002,
+      120.68300904999994
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "三民路三段",
+    "nearestDistanceMeter": 2.2,
+    "secondCandidateRoad": "三民路三段89巷",
+    "secondDistanceMeter": 5.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「三民路三段」(2.2m), 次路名「三民路三段89巷」(5.5m)"
+  },
+  {
+    "sectionId": "0536701",
+    "spotCount": 37,
+    "centroid": [
+      24.15760429729731,
+      120.66879681081085
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "博館路",
+    "nearestDistanceMeter": 36.5,
+    "secondCandidateRoad": "育德路",
+    "secondDistanceMeter": 38.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「博館路」(36.5m), 次路名「育德路」(38.4m)"
+  },
+  {
+    "sectionId": "0536712",
+    "spotCount": 6,
+    "centroid": [
+      24.155631666666668,
+      120.6665815
+    ],
+    "status": "SUCCESS",
+    "roadName": "博館路",
+    "nearestDistanceMeter": 1.6,
+    "secondCandidateRoad": "博館路91巷",
+    "secondDistanceMeter": 13.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0540401",
+    "spotCount": 22,
+    "centroid": [
+      24.153763909090912,
+      120.67728195454544
+    ],
+    "status": "SUCCESS",
+    "roadName": "中清路一段",
+    "nearestDistanceMeter": 4.7,
+    "secondCandidateRoad": "文武街",
+    "secondDistanceMeter": 17.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0540402",
+    "spotCount": 12,
+    "centroid": [
+      24.157381,
+      120.67632591666667
+    ],
+    "status": "SUCCESS",
+    "roadName": "中清路一段",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "育德路",
+    "secondDistanceMeter": 13.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0540403",
+    "spotCount": 19,
+    "centroid": [
+      24.161036210526312,
+      120.67519910526318
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "中清路一段",
+    "nearestDistanceMeter": 7.1,
+    "secondCandidateRoad": "中清路一段348巷",
+    "secondDistanceMeter": 7.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「中清路一段」(7.1m), 次路名「中清路一段348巷」(7.4m)"
+  },
+  {
+    "sectionId": "0540404",
+    "spotCount": 28,
+    "centroid": [
+      24.165398392857146,
+      120.67379585714286
+    ],
+    "status": "SUCCESS",
+    "roadName": "中清路一段",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "太原北路",
+    "secondDistanceMeter": 27.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0540405",
+    "spotCount": 47,
+    "centroid": [
+      24.170021702127663,
+      120.67228202127659
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "中清路一段",
+    "nearestDistanceMeter": 4.8,
+    "secondCandidateRoad": "天津路二段",
+    "secondDistanceMeter": 9.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「中清路一段」(4.8m), 次路名「天津路二段」(9.9m)"
+  },
+  {
+    "sectionId": "0540601",
+    "spotCount": 30,
+    "centroid": [
+      24.150707466666674,
+      120.68151480000003
+    ],
+    "status": "SUCCESS",
+    "roadName": "中華路二段",
+    "nearestDistanceMeter": 1.6,
+    "secondCandidateRoad": "中華路二段175巷",
+    "secondDistanceMeter": 13.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0543701",
+    "spotCount": 10,
+    "centroid": [
+      24.1542958,
+      120.6850378
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權路",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "錦新街",
+    "secondDistanceMeter": 56.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0543702",
+    "spotCount": 15,
+    "centroid": [
+      24.152625600000004,
+      120.68078413333335
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權路",
+    "nearestDistanceMeter": 5.5,
+    "secondCandidateRoad": "五權路352巷",
+    "secondDistanceMeter": 27,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0543703",
+    "spotCount": 14,
+    "centroid": [
+      24.151793285714284,
+      120.67869357142858
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "五權路",
+    "nearestDistanceMeter": 6.2,
+    "secondCandidateRoad": "五權路315巷",
+    "secondDistanceMeter": 11.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「五權路」(6.2m), 次路名「五權路315巷」(11.3m)"
+  },
+  {
+    "sectionId": "0543714",
+    "spotCount": 29,
+    "centroid": [
+      24.150329689655177,
+      120.67618610344826
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "五權路",
+    "nearestDistanceMeter": 2.7,
+    "secondCandidateRoad": "英士路",
+    "secondDistanceMeter": 5.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「五權路」(2.7m), 次路名「英士路」(5.1m)"
+  },
+  {
+    "sectionId": "0544131",
+    "spotCount": 53,
+    "centroid": [
+      24.173555339622638,
+      120.67547696226418
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心路四段",
+    "nearestDistanceMeter": 2.1,
+    "secondCandidateRoad": "青島東街",
+    "secondDistanceMeter": 41.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0544132",
+    "spotCount": 9,
+    "centroid": [
+      24.173508777777776,
+      120.66942055555556
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "文心路三段",
+    "nearestDistanceMeter": 8.9,
+    "secondCandidateRoad": "北平二街",
+    "secondDistanceMeter": 9.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「文心路三段」(8.9m), 次路名「北平二街」(9.7m)"
+  },
+  {
+    "sectionId": "0544401",
+    "spotCount": 15,
+    "centroid": [
+      24.147709133333333,
+      120.68515593333336
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "太平路",
+    "nearestDistanceMeter": 2.1,
+    "secondCandidateRoad": "太平路31巷",
+    "secondDistanceMeter": 8.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「太平路」(2.1m), 次路名「太平路31巷」(8.8m)"
+  },
+  {
+    "sectionId": "0544402",
+    "spotCount": 18,
+    "centroid": [
+      24.148829,
+      120.68190522222224
+    ],
+    "status": "SUCCESS",
+    "roadName": "太平路",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "大誠街",
+    "secondDistanceMeter": 24.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0550201",
+    "spotCount": 33,
+    "centroid": [
+      24.167044969696967,
+      120.68231936363638
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢口路四段",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "漢口路四段260巷",
+    "secondDistanceMeter": 33.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0550202",
+    "spotCount": 17,
+    "centroid": [
+      24.16695147058823,
+      120.67471688235297
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢口路四段",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "山西路二段",
+    "secondDistanceMeter": 46.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0550203",
+    "spotCount": 15,
+    "centroid": [
+      24.1668542,
+      120.67085553333332
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢口路三段",
+    "nearestDistanceMeter": 3.3,
+    "secondCandidateRoad": "太原六街",
+    "secondDistanceMeter": 30,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0553413",
+    "spotCount": 12,
+    "centroid": [
+      24.16024025,
+      120.69190208333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "梅亭東街",
+    "secondDistanceMeter": 14.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0554303",
+    "spotCount": 1,
+    "centroid": [
+      24.171502,
+      120.675511
+    ],
+    "status": "SUCCESS",
+    "roadName": "北平路二段",
+    "nearestDistanceMeter": 3.1,
+    "secondCandidateRoad": "青島東街",
+    "secondDistanceMeter": 34,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0557002",
+    "spotCount": 73,
+    "centroid": [
+      24.146736863013697,
+      120.68338056164383
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "三民路三段52巷",
+    "nearestDistanceMeter": 9.6,
+    "secondCandidateRoad": "太平路75巷",
+    "secondDistanceMeter": 18.2,
+    "riskNote": "路口轉角交叉疑慮: 主路名「三民路三段52巷」(9.6m), 次路名「太平路75巷」(18.2m)"
+  },
+  {
+    "sectionId": "0563301",
+    "spotCount": 2,
+    "centroid": [
+      24.161595,
+      120.6682555
+    ],
+    "status": "SUCCESS",
+    "roadName": "德化街",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "忠太東路",
+    "secondDistanceMeter": 19.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0570001",
+    "spotCount": 21,
+    "centroid": [
+      24.152028333333334,
+      120.68748633333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "育才北路",
+    "nearestDistanceMeter": 1.9,
+    "secondCandidateRoad": "雙十路二段1巷",
+    "secondDistanceMeter": 39.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0570102",
+    "spotCount": 26,
+    "centroid": [
+      24.161415884615387,
+      120.68095149999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "學士路",
+    "nearestDistanceMeter": 1.9,
+    "secondCandidateRoad": "德化街",
+    "secondDistanceMeter": 22.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0571001",
+    "spotCount": 12,
+    "centroid": [
+      24.159017583333338,
+      120.69250816666666
+    ],
+    "status": "SUCCESS",
+    "roadName": "育強街",
+    "nearestDistanceMeter": 1.2,
+    "secondCandidateRoad": "雙十路二段100巷",
+    "secondDistanceMeter": 27.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0573501",
+    "spotCount": 79,
+    "centroid": [
+      24.157396924050634,
+      120.67816520253164
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "育德路",
+    "nearestDistanceMeter": 12.3,
+    "secondCandidateRoad": "育德路48巷",
+    "secondDistanceMeter": 17,
+    "riskNote": "路口轉角交叉疑慮: 主路名「育德路」(12.3m), 次路名「育德路48巷」(17.0m)"
+  },
+  {
+    "sectionId": "0576701",
+    "spotCount": 4,
+    "centroid": [
+      24.15443475,
+      120.68656175000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "錦南街",
+    "nearestDistanceMeter": 6.9,
+    "secondCandidateRoad": "錦新街90巷",
+    "secondDistanceMeter": 20.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0576811",
+    "spotCount": 9,
+    "centroid": [
+      24.155648333333332,
+      120.66591911111112
+    ],
+    "status": "SUCCESS",
+    "roadName": "館前路",
+    "nearestDistanceMeter": 1.7,
+    "secondCandidateRoad": "博館路",
+    "secondDistanceMeter": 39.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0580801",
+    "spotCount": 3,
+    "centroid": [
+      24.16842733333333,
+      120.68325
+    ],
+    "status": "SUCCESS",
+    "roadName": "青島路三段",
+    "nearestDistanceMeter": 3.3,
+    "secondCandidateRoad": "河北路二段",
+    "secondDistanceMeter": 30.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0580809",
+    "spotCount": 1,
+    "centroid": [
+      24.173368,
+      120.674006
+    ],
+    "status": "SUCCESS",
+    "roadName": "青島路一段",
+    "nearestDistanceMeter": 0.2,
+    "secondCandidateRoad": "青島一街",
+    "secondDistanceMeter": 44.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0586901",
+    "spotCount": 26,
+    "centroid": [
+      24.16285784615385,
+      120.67308626923078
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明路",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "華信街501巷",
+    "secondDistanceMeter": 24.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0586902",
+    "spotCount": 20,
+    "centroid": [
+      24.1628996,
+      120.66932485
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "忠明路",
+    "nearestDistanceMeter": 3.5,
+    "secondCandidateRoad": "華興街",
+    "secondDistanceMeter": 11.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「忠明路」(3.5m), 次路名「華興街」(11.7m)"
+  },
+  {
+    "sectionId": "0586903",
+    "spotCount": 35,
+    "centroid": [
+      24.16277905714286,
+      120.66571557142856
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明路",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "忠明二街",
+    "secondDistanceMeter": 26.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0586914",
+    "spotCount": 15,
+    "centroid": [
+      24.161814600000003,
+      120.66354393333332
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "忠明路",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "忠明路151巷",
+    "secondDistanceMeter": 3.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「忠明路」(0.5m), 次路名「忠明路151巷」(3.5m)"
+  },
+  {
+    "sectionId": "0590101",
+    "spotCount": 37,
+    "centroid": [
+      24.155134864864856,
+      120.68977232432432
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "雙十路二段",
+    "nearestDistanceMeter": 1.8,
+    "secondCandidateRoad": "雙十路二段75巷",
+    "secondDistanceMeter": 10.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「雙十路二段」(1.8m), 次路名「雙十路二段75巷」(10.5m)"
+  },
+  {
+    "sectionId": "0590102",
+    "spotCount": 81,
+    "centroid": [
+      24.150316148148146,
+      120.6877988271605
+    ],
+    "status": "SUCCESS",
+    "roadName": "雙十路二段",
+    "nearestDistanceMeter": 2.6,
+    "secondCandidateRoad": "電台街",
+    "secondDistanceMeter": 85.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0590103",
+    "spotCount": 28,
+    "centroid": [
+      24.144675785714295,
+      120.68617239285716
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "雙十路一段",
+    "nearestDistanceMeter": 8.3,
+    "secondCandidateRoad": "福仁街",
+    "secondDistanceMeter": 9.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「雙十路一段」(8.3m), 次路名「福仁街」(9.8m)"
+  },
+  {
+    "sectionId": "0590402",
+    "spotCount": 16,
+    "centroid": [
+      24.155698687500003,
+      120.67212837499999
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "英才路",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "華中街",
+    "secondDistanceMeter": 4.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「英才路」(3.2m), 次路名「華中街」(4.4m)"
+  },
+  {
+    "sectionId": "0590413",
+    "spotCount": 4,
+    "centroid": [
+      24.15418275,
+      120.66793125
+    ],
+    "status": "SUCCESS",
+    "roadName": "英才路",
+    "nearestDistanceMeter": 2.5,
+    "secondCandidateRoad": "博館一街",
+    "secondDistanceMeter": 19.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0593801",
+    "spotCount": 30,
+    "centroid": [
+      24.15771763333333,
+      120.68354379999995
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "美德街",
+    "nearestDistanceMeter": 7.2,
+    "secondCandidateRoad": "大義街",
+    "secondDistanceMeter": 12.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「美德街」(7.2m), 次路名「大義街」(12.3m)"
+  },
+  {
+    "sectionId": "0623807",
+    "spotCount": 12,
+    "centroid": [
+      24.1569475,
+      120.66346166666666
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "健行路",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "健行路1021巷",
+    "secondDistanceMeter": 4.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「健行路」(0.4m), 次路名「健行路1021巷」(4.3m)"
+  },
+  {
+    "sectionId": "0633511",
+    "spotCount": 21,
+    "centroid": [
+      24.153565238095233,
+      120.6532179047619
+    ],
+    "status": "SUCCESS",
+    "roadName": "大業路",
+    "nearestDistanceMeter": 2.6,
+    "secondCandidateRoad": "東興路三段",
+    "secondDistanceMeter": 19.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0634706",
+    "spotCount": 48,
+    "centroid": [
+      24.13798020833332,
+      120.67493833333333
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "三民路一段",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "四維街",
+    "secondDistanceMeter": 9.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「三民路一段」(0.5m), 次路名「四維街」(9.4m)"
+  },
+  {
+    "sectionId": "0634717",
+    "spotCount": 61,
+    "centroid": [
+      24.133996229508195,
+      120.67082655737705
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "三民路一段",
+    "nearestDistanceMeter": 0,
+    "secondCandidateRoad": "三民路一段127巷",
+    "secondDistanceMeter": 7.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「三民路一段」(0.0m), 次路名「三民路一段127巷」(7.8m)"
+  },
+  {
+    "sectionId": "0635215",
+    "spotCount": 23,
+    "centroid": [
+      24.146013043478256,
+      120.64984652173912
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大墩路",
+    "nearestDistanceMeter": 2.2,
+    "secondCandidateRoad": "大墩九街",
+    "secondDistanceMeter": 10.2,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大墩路」(2.2m), 次路名「大墩九街」(10.2m)"
+  },
+  {
+    "sectionId": "0636712",
+    "spotCount": 42,
+    "centroid": [
+      24.156895714285707,
+      120.66484238095236
+    ],
+    "status": "SUCCESS",
+    "roadName": "博館路",
+    "nearestDistanceMeter": 1.9,
+    "secondCandidateRoad": "健行路1021巷",
+    "secondDistanceMeter": 38.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0638901",
+    "spotCount": 4,
+    "centroid": [
+      24.1556875,
+      120.6647725
+    ],
+    "status": "SUCCESS",
+    "roadName": "博館三街",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "中興街",
+    "secondDistanceMeter": 27.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0640001",
+    "spotCount": 26,
+    "centroid": [
+      24.150855384615394,
+      120.66660846153849
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "公益路",
+    "nearestDistanceMeter": 0.1,
+    "secondCandidateRoad": "模範街",
+    "secondDistanceMeter": 1.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「公益路」(0.1m), 次路名「模範街」(1.9m)"
+  },
+  {
+    "sectionId": "0640002",
+    "spotCount": 20,
+    "centroid": [
+      24.150841500000002,
+      120.66057000000004
+    ],
+    "status": "SUCCESS",
+    "roadName": "公益路",
+    "nearestDistanceMeter": 0.7,
+    "secondCandidateRoad": "公正路156巷",
+    "secondDistanceMeter": 31.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0640013",
+    "spotCount": 23,
+    "centroid": [
+      24.150876391304347,
+      120.6548628695652
+    ],
+    "status": "SUCCESS",
+    "roadName": "公益路",
+    "nearestDistanceMeter": 2,
+    "secondCandidateRoad": "精誠路",
+    "secondDistanceMeter": 25.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0640100",
+    "spotCount": 24,
+    "centroid": [
+      24.1478975,
+      120.66432666666668
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "公益路155巷",
+    "nearestDistanceMeter": 2.8,
+    "secondCandidateRoad": "向上北路",
+    "secondDistanceMeter": 3.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「公益路155巷」(2.8m), 次路名「向上北路」(3.3m)"
+  },
+  {
+    "sectionId": "0640101",
+    "spotCount": 32,
+    "centroid": [
+      24.149940000000004,
+      120.66420281250002
+    ],
+    "status": "SUCCESS",
+    "roadName": "公益路155巷",
+    "nearestDistanceMeter": 9.6,
+    "secondCandidateRoad": "公益路",
+    "secondDistanceMeter": 101.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0643202",
+    "spotCount": 5,
+    "centroid": [
+      24.139626000000003,
+      120.66011800000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西五街",
+    "nearestDistanceMeter": 7.3,
+    "secondCandidateRoad": "五權一街",
+    "secondDistanceMeter": 39.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0643401",
+    "spotCount": 223,
+    "centroid": [
+      24.13578466367714,
+      120.66281964125554
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "草悟道自行車道",
+    "nearestDistanceMeter": 10.3,
+    "secondCandidateRoad": "五權西四街",
+    "secondDistanceMeter": 17.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「草悟道自行車道」(10.3m), 次路名「五權西四街」(17.4m)"
+  },
+  {
+    "sectionId": "0643501",
+    "spotCount": 25,
+    "centroid": [
+      24.1401368,
+      120.66440799999997
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西路一段",
+    "nearestDistanceMeter": 0.8,
+    "secondCandidateRoad": "草悟道自行車道",
+    "secondDistanceMeter": 13.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0643502",
+    "spotCount": 46,
+    "centroid": [
+      24.14011978260869,
+      120.65975347826087
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西路一段",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "中美街",
+    "secondDistanceMeter": 44.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0643705",
+    "spotCount": 23,
+    "centroid": [
+      24.146259999999998,
+      120.67206956521741
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "五權路",
+    "nearestDistanceMeter": 4.8,
+    "secondCandidateRoad": "民族路",
+    "secondDistanceMeter": 9.2,
+    "riskNote": "路口轉角交叉疑慮: 主路名「五權路」(4.8m), 次路名「民族路」(9.2m)"
+  },
+  {
+    "sectionId": "0643706",
+    "spotCount": 71,
+    "centroid": [
+      24.14297126760563,
+      120.66864549295778
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權路",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "梅川西路一段",
+    "secondDistanceMeter": 40.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0643707",
+    "spotCount": 46,
+    "centroid": [
+      24.13645260869565,
+      120.6659113043478
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "公舘路",
+    "nearestDistanceMeter": 10.8,
+    "secondCandidateRoad": "五權路",
+    "secondDistanceMeter": 15.2,
+    "riskNote": "路口轉角交叉疑慮: 主路名「公舘路」(10.8m), 次路名「五權路」(15.2m)"
+  },
+  {
+    "sectionId": "0643714",
+    "spotCount": 8,
+    "centroid": [
+      24.14863625,
+      120.67451249999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權路",
+    "nearestDistanceMeter": 2.5,
+    "secondCandidateRoad": "西屯路一段",
+    "secondDistanceMeter": 43.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0644302",
+    "spotCount": 13,
+    "centroid": [
+      24.149050769230765,
+      120.66366153846154
+    ],
+    "status": "SUCCESS",
+    "roadName": "公正路",
+    "nearestDistanceMeter": 3.6,
+    "secondCandidateRoad": "中興街128巷",
+    "secondDistanceMeter": 53.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0646502",
+    "spotCount": 5,
+    "centroid": [
+      24.13596,
+      120.66345000000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權六街",
+    "nearestDistanceMeter": 5.7,
+    "secondCandidateRoad": "五權西三街",
+    "secondDistanceMeter": 37.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0646701",
+    "spotCount": 2,
+    "centroid": [
+      24.155895,
+      120.664615
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "中興街",
+    "nearestDistanceMeter": 1.7,
+    "secondCandidateRoad": "博館三街",
+    "secondDistanceMeter": 11.2,
+    "riskNote": "路口轉角交叉疑慮: 主路名「中興街」(1.7m), 次路名「博館三街」(11.2m)"
+  },
+  {
+    "sectionId": "0646702",
+    "spotCount": 90,
+    "centroid": [
+      24.152741666666664,
+      120.66325977777787
+    ],
+    "status": "SUCCESS",
+    "roadName": "館前路",
+    "nearestDistanceMeter": 17.2,
+    "secondCandidateRoad": "中興街",
+    "secondDistanceMeter": 33.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0646703",
+    "spotCount": 27,
+    "centroid": [
+      24.149957037037034,
+      120.66299962962961
+    ],
+    "status": "SUCCESS",
+    "roadName": "中興街",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "中興七巷",
+    "secondDistanceMeter": 20.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0647702",
+    "spotCount": 7,
+    "centroid": [
+      24.15394714285714,
+      120.66031285714287
+    ],
+    "status": "SUCCESS",
+    "roadName": "中美街",
+    "nearestDistanceMeter": 4.7,
+    "secondCandidateRoad": "美村路一段52巷",
+    "secondDistanceMeter": 31.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0653903",
+    "spotCount": 1,
+    "centroid": [
+      24.1413,
+      120.67118
+    ],
+    "status": "SUCCESS",
+    "roadName": "四維街",
+    "nearestDistanceMeter": 6.7,
+    "secondCandidateRoad": "金山路",
+    "secondDistanceMeter": 19.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0654005",
+    "spotCount": 61,
+    "centroid": [
+      24.144317704918013,
+      120.66433737704921
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "民生路",
+    "nearestDistanceMeter": 0.7,
+    "secondCandidateRoad": "向上路一段79巷",
+    "secondDistanceMeter": 3.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「民生路」(0.7m), 次路名「向上路一段79巷」(3.7m)"
+  },
+  {
+    "sectionId": "0660211",
+    "spotCount": 21,
+    "centroid": [
+      24.144949047619058,
+      120.65067714285712
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上南路一段",
+    "nearestDistanceMeter": 0.8,
+    "secondCandidateRoad": "大進街",
+    "secondDistanceMeter": 63.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0660301",
+    "spotCount": 10,
+    "centroid": [
+      24.146701999999998,
+      120.667174
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路一段",
+    "nearestDistanceMeter": 0,
+    "secondCandidateRoad": "向上路一段29巷",
+    "secondDistanceMeter": 19.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0660302",
+    "spotCount": 25,
+    "centroid": [
+      24.14668879999999,
+      120.66432839999999
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "向上路一段",
+    "nearestDistanceMeter": 0.6,
+    "secondCandidateRoad": "向上路一段79巷",
+    "secondDistanceMeter": 2.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「向上路一段」(0.6m), 次路名「向上路一段79巷」(2.5m)"
+  },
+  {
+    "sectionId": "0660303",
+    "spotCount": 5,
+    "centroid": [
+      24.146718,
+      120.660586
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路一段",
+    "nearestDistanceMeter": 1.7,
+    "secondCandidateRoad": "昇平街96巷",
+    "secondDistanceMeter": 28.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0660304",
+    "spotCount": 26,
+    "centroid": [
+      24.146705769230774,
+      120.65527615384616
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路一段",
+    "nearestDistanceMeter": 0.1,
+    "secondCandidateRoad": "精誠路",
+    "secondDistanceMeter": 14.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0660315",
+    "spotCount": 3,
+    "centroid": [
+      24.146749999999997,
+      120.65152
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路一段",
+    "nearestDistanceMeter": 1.4,
+    "secondCandidateRoad": "大進街",
+    "secondDistanceMeter": 22,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0660501",
+    "spotCount": 24,
+    "centroid": [
+      24.145523333333326,
+      120.66440625000003
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "昇平街",
+    "nearestDistanceMeter": 1.4,
+    "secondCandidateRoad": "向上路一段79巷",
+    "secondDistanceMeter": 10.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「昇平街」(1.4m), 次路名「向上路一段79巷」(10.7m)"
+  },
+  {
+    "sectionId": "0660801",
+    "spotCount": 45,
+    "centroid": [
+      24.14530777777777,
+      120.66652555555564
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路一段33巷",
+    "nearestDistanceMeter": 9.9,
+    "secondCandidateRoad": "向上路一段29巷",
+    "secondDistanceMeter": 101.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0661001",
+    "spotCount": 9,
+    "centroid": [
+      24.147825555555553,
+      120.66474777777778
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "草悟道自行車道",
+    "nearestDistanceMeter": 43,
+    "secondCandidateRoad": "公益路155巷",
+    "secondDistanceMeter": 45.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「草悟道自行車道」(43.0m), 次路名「公益路155巷」(45.3m)"
+  },
+  {
+    "sectionId": "0664501",
+    "spotCount": 124,
+    "centroid": [
+      24.141409354838732,
+      120.65888911290327
+    ],
+    "status": "SUCCESS",
+    "roadName": "華美街",
+    "nearestDistanceMeter": 5.7,
+    "secondCandidateRoad": "存中街",
+    "secondDistanceMeter": 16.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0676811",
+    "spotCount": 21,
+    "centroid": [
+      24.155558095238092,
+      120.66518142857142
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "館前路",
+    "nearestDistanceMeter": 5.9,
+    "secondCandidateRoad": "博館三街",
+    "secondDistanceMeter": 13.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「館前路」(5.9m), 次路名「博館三街」(13.4m)"
+  },
+  {
+    "sectionId": "0680101",
+    "spotCount": 25,
+    "centroid": [
+      24.1347344,
+      120.67407760000002
+    ],
+    "status": "SUCCESS",
+    "roadName": "林森路",
+    "nearestDistanceMeter": 2.7,
+    "secondCandidateRoad": "府後街",
+    "secondDistanceMeter": 32.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0680102",
+    "spotCount": 19,
+    "centroid": [
+      24.13733842105263,
+      120.67107736842105
+    ],
+    "status": "SUCCESS",
+    "roadName": "林森路",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "樂群街",
+    "secondDistanceMeter": 29.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0680103",
+    "spotCount": 19,
+    "centroid": [
+      24.139746842105268,
+      120.66829473684213
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "林森路",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "五廊街",
+    "secondDistanceMeter": 5.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「林森路」(0.5m), 次路名「五廊街」(5.3m)"
+  },
+  {
+    "sectionId": "0685001",
+    "spotCount": 7,
+    "centroid": [
+      24.145495714285715,
+      120.66475714285716
+    ],
+    "status": "SUCCESS",
+    "roadName": "昇平街",
+    "nearestDistanceMeter": 4,
+    "secondCandidateRoad": "草悟道自行車道",
+    "secondDistanceMeter": 41.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0686714",
+    "spotCount": 3,
+    "centroid": [
+      24.148653333333332,
+      120.65297
+    ],
+    "status": "SUCCESS",
+    "roadName": "東興路三段",
+    "nearestDistanceMeter": 5.1,
+    "secondCandidateRoad": "大墩十一街",
+    "secondDistanceMeter": 21.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0686715",
+    "spotCount": 6,
+    "centroid": [
+      24.145911666666663,
+      120.65293500000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "東興路三段",
+    "nearestDistanceMeter": 8.1,
+    "secondCandidateRoad": "東興路三段11巷",
+    "secondDistanceMeter": 52.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0686801",
+    "spotCount": 55,
+    "centroid": [
+      24.153267636363637,
+      120.65769072727272
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "公益路174巷",
+    "nearestDistanceMeter": 24.3,
+    "secondCandidateRoad": "忠明南路",
+    "secondDistanceMeter": 24.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「公益路174巷」(24.3m), 次路名「忠明南路」(24.9m)"
+  },
+  {
+    "sectionId": "0686802",
+    "spotCount": 41,
+    "centroid": [
+      24.14846731707317,
+      120.65726341463414
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明南路",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "大忠街",
+    "secondDistanceMeter": 50.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0686803",
+    "spotCount": 64,
+    "centroid": [
+      24.1439378125,
+      120.65730125000005
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明南路",
+    "nearestDistanceMeter": 3.1,
+    "secondCandidateRoad": "民生路",
+    "secondDistanceMeter": 42.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0686814",
+    "spotCount": 37,
+    "centroid": [
+      24.136414324324328,
+      120.65729378378374
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明南路",
+    "nearestDistanceMeter": 4.1,
+    "secondCandidateRoad": "五權五街",
+    "secondDistanceMeter": 15.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0686905",
+    "spotCount": 22,
+    "centroid": [
+      24.15830772727273,
+      120.66039318181816
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明路",
+    "nearestDistanceMeter": 1.6,
+    "secondCandidateRoad": "博館三街",
+    "secondDistanceMeter": 24.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0686914",
+    "spotCount": 17,
+    "centroid": [
+      24.16047117647059,
+      120.66203235294115
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明路",
+    "nearestDistanceMeter": 6.7,
+    "secondCandidateRoad": "忠明路74巷1弄",
+    "secondDistanceMeter": 37.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0690404",
+    "spotCount": 19,
+    "centroid": [
+      24.15187894736842,
+      120.66565315789471
+    ],
+    "status": "SUCCESS",
+    "roadName": "英才路",
+    "nearestDistanceMeter": 2.5,
+    "secondCandidateRoad": "英才路470巷",
+    "secondDistanceMeter": 35.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0690405",
+    "spotCount": 29,
+    "centroid": [
+      24.148208620689648,
+      120.66519448275864
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "草悟道自行車道",
+    "nearestDistanceMeter": 1.8,
+    "secondCandidateRoad": "英才路",
+    "secondDistanceMeter": 10,
+    "riskNote": "路口轉角交叉疑慮: 主路名「草悟道自行車道」(1.8m), 次路名「英才路」(10.0m)"
+  },
+  {
+    "sectionId": "0690406",
+    "spotCount": 46,
+    "centroid": [
+      24.14457260869566,
+      120.66530065217391
+    ],
+    "status": "SUCCESS",
+    "roadName": "英才路",
+    "nearestDistanceMeter": 0.1,
+    "secondCandidateRoad": "草悟道自行車道",
+    "secondDistanceMeter": 13.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0696701",
+    "spotCount": 15,
+    "centroid": [
+      24.152665333333335,
+      120.66165933333335
+    ],
+    "status": "SUCCESS",
+    "roadName": "美村路一段",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "忠誠街",
+    "secondDistanceMeter": 14.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0696702",
+    "spotCount": 16,
+    "centroid": [
+      24.149036874999997,
+      120.66165687500003
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "公正路",
+    "nearestDistanceMeter": 1.8,
+    "secondCandidateRoad": "美村路一段",
+    "secondDistanceMeter": 2.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「公正路」(1.8m), 次路名「美村路一段」(2.9m)"
+  },
+  {
+    "sectionId": "0696703",
+    "spotCount": 35,
+    "centroid": [
+      24.142540285714286,
+      120.6617577142857
+    ],
+    "status": "SUCCESS",
+    "roadName": "美村路一段",
+    "nearestDistanceMeter": 5.9,
+    "secondCandidateRoad": "福人街",
+    "secondDistanceMeter": 45.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0696704",
+    "spotCount": 35,
+    "centroid": [
+      24.135982571428567,
+      120.66165885714288
+    ],
+    "status": "SUCCESS",
+    "roadName": "美村路一段",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "五權六街",
+    "secondDistanceMeter": 14.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0831801",
+    "spotCount": 1,
+    "centroid": [
+      24.1369,
+      120.68726
+    ],
+    "status": "SUCCESS",
+    "roadName": "大智北一街",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "大智北路",
+    "secondDistanceMeter": 46,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0832001",
+    "spotCount": 9,
+    "centroid": [
+      24.139776666666666,
+      120.68765888888892
+    ],
+    "status": "SUCCESS",
+    "roadName": "大智北路",
+    "nearestDistanceMeter": 13,
+    "secondCandidateRoad": "南京路",
+    "secondDistanceMeter": 38.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0837002",
+    "spotCount": 31,
+    "centroid": [
+      24.14130451612903,
+      120.68916935483868
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興路五段",
+    "nearestDistanceMeter": 2.9,
+    "secondCandidateRoad": "公園東路",
+    "secondDistanceMeter": 19.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0837003",
+    "spotCount": 14,
+    "centroid": [
+      24.135142857142856,
+      120.68470357142857
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興路四段",
+    "nearestDistanceMeter": 1.7,
+    "secondCandidateRoad": "復興路四段73巷",
+    "secondDistanceMeter": 12.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0853502",
+    "spotCount": 50,
+    "centroid": [
+      24.12671220000001,
+      120.68439419999999
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "台中路",
+    "nearestDistanceMeter": 10.6,
+    "secondCandidateRoad": "台中路376巷",
+    "secondDistanceMeter": 16.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「台中路」(10.6m), 次路名「台中路376巷」(16.6m)"
+  },
+  {
+    "sectionId": "0853503",
+    "spotCount": 44,
+    "centroid": [
+      24.132767727272732,
+      120.68373931818182
+    ],
+    "status": "SUCCESS",
+    "roadName": "台中路",
+    "nearestDistanceMeter": 4.1,
+    "secondCandidateRoad": "台中路127巷",
+    "secondDistanceMeter": 22.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0863803",
+    "spotCount": 21,
+    "centroid": [
+      24.142768571428565,
+      120.69093142857145
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "自由路三段",
+    "nearestDistanceMeter": 3.8,
+    "secondCandidateRoad": "富台東街",
+    "secondDistanceMeter": 13.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「自由路三段」(3.8m), 次路名「富台東街」(13.1m)"
+  },
+  {
+    "sectionId": "0863804",
+    "spotCount": 22,
+    "centroid": [
+      24.142975454545457,
+      120.68811545454543
+    ],
+    "status": "SUCCESS",
+    "roadName": "自由路三段",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "練武路",
+    "secondDistanceMeter": 39.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0864301",
+    "spotCount": 1,
+    "centroid": [
+      24.1356,
+      120.69498
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "樂業一路135巷",
+    "nearestDistanceMeter": 9.3,
+    "secondCandidateRoad": "樂業南路",
+    "secondDistanceMeter": 9.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「樂業一路135巷」(9.3m), 次路名「樂業南路」(9.7m)"
+  },
+  {
+    "sectionId": "0864501",
+    "spotCount": 5,
+    "centroid": [
+      24.138844,
+      120.698444
+    ],
+    "status": "SUCCESS",
+    "roadName": "樂業路",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "育英路",
+    "secondDistanceMeter": 37.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0865201",
+    "spotCount": 20,
+    "centroid": [
+      24.137908,
+      120.69353900000002
+    ],
+    "status": "SUCCESS",
+    "roadName": "樂業路58巷",
+    "nearestDistanceMeter": 6.6,
+    "secondCandidateRoad": "進德路",
+    "secondDistanceMeter": 83.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0874501",
+    "spotCount": 2,
+    "centroid": [
+      24.145395,
+      120.69928
+    ],
+    "status": "SUCCESS",
+    "roadName": "旱溪西路一段523巷",
+    "nearestDistanceMeter": 9.8,
+    "secondCandidateRoad": "旱溪西路一段",
+    "secondDistanceMeter": 28.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0893502",
+    "spotCount": 38,
+    "centroid": [
+      24.13526526315789,
+      120.69593947368416
+    ],
+    "status": "SUCCESS",
+    "roadName": "建成路",
+    "nearestDistanceMeter": 27.2,
+    "secondCandidateRoad": "樂業二路",
+    "secondDistanceMeter": 39.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0897401",
+    "spotCount": 15,
+    "centroid": [
+      24.139998666666667,
+      120.69150933333334
+    ],
+    "status": "SUCCESS",
+    "roadName": "南京路",
+    "nearestDistanceMeter": 5.1,
+    "secondCandidateRoad": "新民街",
+    "secondDistanceMeter": 31.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0902301",
+    "spotCount": 5,
+    "centroid": [
+      24.115384,
+      120.65802799999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "大慶街一段130巷",
+    "nearestDistanceMeter": 4.2,
+    "secondCandidateRoad": "德富路",
+    "secondDistanceMeter": 40.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0923903",
+    "spotCount": 46,
+    "centroid": [
+      24.122785217391307,
+      120.67935521739133
+    ],
+    "status": "SUCCESS",
+    "roadName": "國光路",
+    "nearestDistanceMeter": 4.5,
+    "secondCandidateRoad": "南門路",
+    "secondDistanceMeter": 48.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0923904",
+    "spotCount": 29,
+    "centroid": [
+      24.12939689655172,
+      120.67785172413792
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "國光路",
+    "nearestDistanceMeter": 3.4,
+    "secondCandidateRoad": "信義南街",
+    "secondDistanceMeter": 4.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「國光路」(3.4m), 次路名「信義南街」(4.4m)"
+  },
+  {
+    "sectionId": "0934717",
+    "spotCount": 3,
+    "centroid": [
+      24.128176666666665,
+      120.66716666666666
+    ],
+    "status": "SUCCESS",
+    "roadName": "三民路一段",
+    "nearestDistanceMeter": 0.7,
+    "secondCandidateRoad": "復興路三段",
+    "secondDistanceMeter": 31.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0937004",
+    "spotCount": 52,
+    "centroid": [
+      24.133146730769234,
+      120.67989173076923
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興路三段",
+    "nearestDistanceMeter": 3.3,
+    "secondCandidateRoad": "合作街",
+    "secondDistanceMeter": 15.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0937005",
+    "spotCount": 46,
+    "centroid": [
+      24.12959152173913,
+      120.67142847826084
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興路三段",
+    "nearestDistanceMeter": 2.3,
+    "secondCandidateRoad": "新華街",
+    "secondDistanceMeter": 55.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0937006",
+    "spotCount": 36,
+    "centroid": [
+      24.126830277777778,
+      120.66593111111115
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "復興路二段",
+    "nearestDistanceMeter": 17.5,
+    "secondCandidateRoad": "福平街",
+    "secondDistanceMeter": 18.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「復興路二段」(17.5m), 次路名「福平街」(18.4m)"
+  },
+  {
+    "sectionId": "0937007",
+    "spotCount": 33,
+    "centroid": [
+      24.12307212121212,
+      120.66256969696968
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興路二段",
+    "nearestDistanceMeter": 1.1,
+    "secondCandidateRoad": "復興路二段106巷",
+    "secondDistanceMeter": 18.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0937008",
+    "spotCount": 25,
+    "centroid": [
+      24.118514800000007,
+      120.6590756
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興路二段",
+    "nearestDistanceMeter": 3.9,
+    "secondCandidateRoad": "南平路",
+    "secondDistanceMeter": 20.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0937009",
+    "spotCount": 48,
+    "centroid": [
+      24.113312500000006,
+      120.65291604166664
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興路一段",
+    "nearestDistanceMeter": 0.1,
+    "secondCandidateRoad": "復興路一段152巷",
+    "secondDistanceMeter": 26.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0943601",
+    "spotCount": 8,
+    "centroid": [
+      24.120919999999998,
+      120.67000499999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權南路",
+    "nearestDistanceMeter": 0.3,
+    "secondCandidateRoad": "五權南路368巷",
+    "secondDistanceMeter": 14.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0943602",
+    "spotCount": 20,
+    "centroid": [
+      24.124226999999998,
+      120.67001450000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權南路",
+    "nearestDistanceMeter": 1.6,
+    "secondCandidateRoad": "永東街",
+    "secondDistanceMeter": 29.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0945001",
+    "spotCount": 52,
+    "centroid": [
+      24.111764230769232,
+      120.65880096153845
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心南路",
+    "nearestDistanceMeter": 3.8,
+    "secondCandidateRoad": "高工二街",
+    "secondDistanceMeter": 24.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0945002",
+    "spotCount": 95,
+    "centroid": [
+      24.118953578947373,
+      120.65175315789476
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心南路",
+    "nearestDistanceMeter": 7.8,
+    "secondCandidateRoad": "德祥街",
+    "secondDistanceMeter": 28,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0986805",
+    "spotCount": 52,
+    "centroid": [
+      24.124295,
+      120.66012365384616
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "忠明南路",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "忠明南路730巷",
+    "secondDistanceMeter": 7.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「忠明南路」(1.5m), 次路名「忠明南路730巷」(7.4m)"
+  },
+  {
+    "sectionId": "0986806",
+    "spotCount": 78,
+    "centroid": [
+      24.119137692307664,
+      120.66607628205129
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明南路",
+    "nearestDistanceMeter": 0.8,
+    "secondCandidateRoad": "忠明園道自行車道",
+    "secondDistanceMeter": 18.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0986807",
+    "spotCount": 30,
+    "centroid": [
+      24.119072666666675,
+      120.68173533333332
+    ],
+    "status": "SUCCESS",
+    "roadName": "忠明南路",
+    "nearestDistanceMeter": 4.1,
+    "secondCandidateRoad": "忠明南路1261巷",
+    "secondDistanceMeter": 16.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0986814",
+    "spotCount": 39,
+    "centroid": [
+      24.132261794871795,
+      120.65732256410257
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "忠明南路",
+    "nearestDistanceMeter": 3.4,
+    "secondCandidateRoad": "忠明南路506巷",
+    "secondDistanceMeter": 10.2,
+    "riskNote": "路口轉角交叉疑慮: 主路名「忠明南路」(3.4m), 次路名「忠明南路506巷」(10.2m)"
+  },
+  {
+    "sectionId": "0996602",
+    "spotCount": 2,
+    "centroid": [
+      24.115070000000003,
+      120.66683499999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "美村南路",
+    "nearestDistanceMeter": 1.7,
+    "secondCandidateRoad": "美村南路108巷",
+    "secondDistanceMeter": 25.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "0997638",
+    "spotCount": 4,
+    "centroid": [
+      24.11488,
+      120.669235
+    ],
+    "status": "SUCCESS",
+    "roadName": "高工路",
+    "nearestDistanceMeter": 21.9,
+    "secondCandidateRoad": "車道",
+    "secondDistanceMeter": 32.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "1423501",
+    "spotCount": 15,
+    "centroid": [
+      24.111442200000003,
+      120.59485626666668
+    ],
+    "status": "SUCCESS",
+    "roadName": "健行北路",
+    "nearestDistanceMeter": 1.9,
+    "secondCandidateRoad": "健行路",
+    "secondDistanceMeter": 58.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "1433301",
+    "spotCount": 15,
+    "centroid": [
+      24.108227266666667,
+      120.59546726666666
+    ],
+    "status": "SUCCESS",
+    "roadName": "三榮十三路",
+    "nearestDistanceMeter": 6.9,
+    "secondCandidateRoad": "三榮路二段",
+    "secondDistanceMeter": 62,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "1433401",
+    "spotCount": 54,
+    "centroid": [
+      24.106969759259258,
+      120.60420459259257
+    ],
+    "status": "SUCCESS",
+    "roadName": "三榮七路",
+    "nearestDistanceMeter": 21.3,
+    "secondCandidateRoad": "三榮路一段",
+    "secondDistanceMeter": 37.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "1458101",
+    "spotCount": 30,
+    "centroid": [
+      24.1081122,
+      120.59724826666668
+    ],
+    "status": "SUCCESS",
+    "roadName": "榮和路",
+    "nearestDistanceMeter": 2.8,
+    "secondCandidateRoad": "三榮路二段",
+    "secondDistanceMeter": 34.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "3705201",
+    "spotCount": 47,
+    "centroid": [
+      24.114920425531913,
+      120.67570468085107
+    ],
+    "status": "SUCCESS",
+    "roadName": "大明路",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "永隆路",
+    "secondDistanceMeter": 49.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "3748801",
+    "spotCount": 10,
+    "centroid": [
+      24.110151000000002,
+      120.691987
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "新光路",
+    "nearestDistanceMeter": 3.8,
+    "secondCandidateRoad": "益民路一段62巷",
+    "secondDistanceMeter": 11.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「新光路」(3.8m), 次路名「益民路一段62巷」(11.9m)"
+  },
+  {
+    "sectionId": "3748902",
+    "spotCount": 5,
+    "centroid": [
+      24.104562,
+      120.684828
+    ],
+    "status": "SUCCESS",
+    "roadName": "新芳路",
+    "nearestDistanceMeter": 3.9,
+    "secondCandidateRoad": "新芳路166巷",
+    "secondDistanceMeter": 25,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "3767501",
+    "spotCount": 21,
+    "centroid": [
+      24.104209047619047,
+      120.6787385714286
+    ],
+    "status": "SUCCESS",
+    "roadName": "德芳路二段",
+    "nearestDistanceMeter": 1.1,
+    "secondCandidateRoad": "德芳路二段47巷",
+    "secondDistanceMeter": 67.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "3767502",
+    "spotCount": 5,
+    "centroid": [
+      24.105120000000003,
+      120.68229000000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "德芳路一段",
+    "nearestDistanceMeter": 0.7,
+    "secondCandidateRoad": "德芳南路",
+    "secondDistanceMeter": 46.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "3767601",
+    "spotCount": 34,
+    "centroid": [
+      24.10297794117647,
+      120.68592382352942
+    ],
+    "status": "SUCCESS",
+    "roadName": "德芳南路",
+    "nearestDistanceMeter": 1.4,
+    "secondCandidateRoad": "大里路",
+    "secondDistanceMeter": 41.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "3768601",
+    "spotCount": 8,
+    "centroid": [
+      24.10431375,
+      120.6842825
+    ],
+    "status": "SUCCESS",
+    "roadName": "德芳南三街",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "新芳路",
+    "secondDistanceMeter": 52.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "3785801",
+    "spotCount": 3,
+    "centroid": [
+      24.109939999999998,
+      120.69048
+    ],
+    "status": "SUCCESS",
+    "roadName": "東榮路一段",
+    "nearestDistanceMeter": 4.4,
+    "secondCandidateRoad": "新明路",
+    "secondDistanceMeter": 42.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "4542701",
+    "spotCount": 5,
+    "centroid": [
+      24.136088,
+      120.71559199999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "新平路二段",
+    "nearestDistanceMeter": 2.6,
+    "secondCandidateRoad": "祥順路一段",
+    "secondDistanceMeter": 13.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "4547201",
+    "spotCount": 3,
+    "centroid": [
+      24.15926,
+      120.70739666666667
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "新興路",
+    "nearestDistanceMeter": 4.6,
+    "secondCandidateRoad": "新光國小旁人行道",
+    "secondDistanceMeter": 7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「新興路」(4.6m), 次路名「新光國小旁人行道」(7.0m)"
+  },
+  {
+    "sectionId": "4556002",
+    "spotCount": 53,
+    "centroid": [
+      24.147171698113205,
+      120.71206358490566
+    ],
+    "status": "SUCCESS",
+    "roadName": "市民大道一段",
+    "nearestDistanceMeter": 3.9,
+    "secondCandidateRoad": "十智街",
+    "secondDistanceMeter": 47.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "4556003",
+    "spotCount": 20,
+    "centroid": [
+      24.150346000000006,
+      120.71130250000002
+    ],
+    "status": "SUCCESS",
+    "roadName": "市民大道一段",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "中山路四段28巷15弄",
+    "secondDistanceMeter": 25.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5401402",
+    "spotCount": 1,
+    "centroid": [
+      24.163838,
+      120.695334
+    ],
+    "status": "SUCCESS",
+    "roadName": "三光巷",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "三光巷16弄",
+    "secondDistanceMeter": 15.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5424001",
+    "spotCount": 34,
+    "centroid": [
+      24.197871970588245,
+      120.68157773529413
+    ],
+    "status": "SUCCESS",
+    "roadName": "崇德十九路",
+    "nearestDistanceMeter": 0.6,
+    "secondCandidateRoad": "洲際一街",
+    "secondDistanceMeter": 34.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5424104",
+    "spotCount": 27,
+    "centroid": [
+      24.16900196296296,
+      120.68523255555556
+    ],
+    "status": "SUCCESS",
+    "roadName": "崇德路二段",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "天津路三段",
+    "secondDistanceMeter": 51,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5424105",
+    "spotCount": 34,
+    "centroid": [
+      24.175208617647066,
+      120.68570208823527
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "崇德路二段",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "崇德路二段268巷",
+    "secondDistanceMeter": 13.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「崇德路二段」(3.7m), 次路名「崇德路二段268巷」(13.3m)"
+  },
+  {
+    "sectionId": "5424106",
+    "spotCount": 48,
+    "centroid": [
+      24.17926391666667,
+      120.68595027083332
+    ],
+    "status": "SUCCESS",
+    "roadName": "崇德路二段",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "崇德五路",
+    "secondDistanceMeter": 18.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5424107",
+    "spotCount": 75,
+    "centroid": [
+      24.184963053333338,
+      120.68621660000002
+    ],
+    "status": "SUCCESS",
+    "roadName": "崇德路三段",
+    "nearestDistanceMeter": 3.8,
+    "secondCandidateRoad": "山西路三段",
+    "secondDistanceMeter": 55.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5424108",
+    "spotCount": 47,
+    "centroid": [
+      24.19122223404255,
+      120.68638965957447
+    ],
+    "status": "SUCCESS",
+    "roadName": "崇德路三段",
+    "nearestDistanceMeter": 4.9,
+    "secondCandidateRoad": "崇仁街",
+    "secondDistanceMeter": 58.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5424109",
+    "spotCount": 26,
+    "centroid": [
+      24.195875076923077,
+      120.68649703846157
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "崇德路三段",
+    "nearestDistanceMeter": 4.5,
+    "secondCandidateRoad": "崇德十七路",
+    "secondDistanceMeter": 11.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「崇德路三段」(4.5m), 次路名「崇德十七路」(11.9m)"
+  },
+  {
+    "sectionId": "5432101",
+    "spotCount": 49,
+    "centroid": [
+      24.189094469387758,
+      120.70733461224492
+    ],
+    "status": "SUCCESS",
+    "roadName": "敦富七街",
+    "nearestDistanceMeter": 8.7,
+    "secondCandidateRoad": "敦富路",
+    "secondDistanceMeter": 23,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5436301",
+    "spotCount": 2,
+    "centroid": [
+      24.174624,
+      120.698995
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路大成巷",
+    "nearestDistanceMeter": 2.7,
+    "secondCandidateRoad": "北屯路",
+    "secondDistanceMeter": 19.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5440406",
+    "spotCount": 82,
+    "centroid": [
+      24.18003763414634,
+      120.66750552439024
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "中清路二段",
+    "nearestDistanceMeter": 15.6,
+    "secondCandidateRoad": "雷中街",
+    "secondDistanceMeter": 23.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「中清路二段」(15.6m), 次路名「雷中街」(23.5m)"
+  },
+  {
+    "sectionId": "5440417",
+    "spotCount": 37,
+    "centroid": [
+      24.18877608108108,
+      120.66229213513516
+    ],
+    "status": "SUCCESS",
+    "roadName": "中清路二段",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "后庄路",
+    "secondDistanceMeter": 30,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5444131",
+    "spotCount": 69,
+    "centroid": [
+      24.171812782608708,
+      120.68809543478257
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心路四段",
+    "nearestDistanceMeter": 0.8,
+    "secondCandidateRoad": "人行道",
+    "secondDistanceMeter": 13,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5447103",
+    "spotCount": 3,
+    "centroid": [
+      24.169788333333333,
+      120.67956299999999
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "天津路三段",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "梅川東路四段",
+    "secondDistanceMeter": 12.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「天津路三段」(3.0m), 次路名「梅川東路四段」(12.6m)"
+  },
+  {
+    "sectionId": "5448101",
+    "spotCount": 2,
+    "centroid": [
+      24.170939,
+      120.68044649999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "文昌東三街",
+    "nearestDistanceMeter": 1.9,
+    "secondCandidateRoad": "北平路三段",
+    "secondDistanceMeter": 25.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5449001",
+    "spotCount": 7,
+    "centroid": [
+      24.196618285714287,
+      120.68383828571427
+    ],
+    "status": "SUCCESS",
+    "roadName": "長生巷3弄",
+    "nearestDistanceMeter": 26,
+    "secondCandidateRoad": "昌平路二段156巷",
+    "secondDistanceMeter": 62.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5450201",
+    "spotCount": 9,
+    "centroid": [
+      24.166955777777773,
+      120.6908218888889
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢口路五段",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "青島路四段",
+    "secondDistanceMeter": 41.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5453301",
+    "spotCount": 2,
+    "centroid": [
+      24.197080999999997,
+      120.683375
+    ],
+    "status": "SUCCESS",
+    "roadName": "昌平路二段156巷",
+    "nearestDistanceMeter": 6.4,
+    "secondCandidateRoad": "四平路",
+    "secondDistanceMeter": 22.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5453400",
+    "spotCount": 76,
+    "centroid": [
+      24.184160828947363,
+      120.70222207894733
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路",
+    "nearestDistanceMeter": 2.3,
+    "secondCandidateRoad": "臺中綠空廊道",
+    "secondDistanceMeter": 27.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5453401",
+    "spotCount": 54,
+    "centroid": [
+      24.16759788888889,
+      120.69591198148146
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路",
+    "nearestDistanceMeter": 3.8,
+    "secondCandidateRoad": "北屯路291巷",
+    "secondDistanceMeter": 35.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5453402",
+    "spotCount": 25,
+    "centroid": [
+      24.163635920000004,
+      120.69344567999998
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路",
+    "nearestDistanceMeter": 3.6,
+    "secondCandidateRoad": "舊街一巷",
+    "secondDistanceMeter": 41.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5453413",
+    "spotCount": 4,
+    "centroid": [
+      24.161554000000002,
+      120.69246825
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "衛道路",
+    "secondDistanceMeter": 20.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5453801",
+    "spotCount": 66,
+    "centroid": [
+      24.197272242424248,
+      120.68300265151514
+    ],
+    "status": "SUCCESS",
+    "roadName": "四平路",
+    "nearestDistanceMeter": 19.5,
+    "secondCandidateRoad": "昌平路二段156巷",
+    "secondDistanceMeter": 35.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5454304",
+    "spotCount": 3,
+    "centroid": [
+      24.171110666666664,
+      120.68092233333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "北平路三段",
+    "nearestDistanceMeter": 4.5,
+    "secondCandidateRoad": "文昌東三街",
+    "secondDistanceMeter": 45.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5456301",
+    "spotCount": 2,
+    "centroid": [
+      24.167551000000003,
+      120.6966285
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路212巷",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "九龍街",
+    "secondDistanceMeter": 29.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5464002",
+    "spotCount": 4,
+    "centroid": [
+      24.18900575,
+      120.66720225
+    ],
+    "status": "SUCCESS",
+    "roadName": "后庄七街",
+    "nearestDistanceMeter": 31.4,
+    "secondCandidateRoad": "敦化路450巷82弄",
+    "secondDistanceMeter": 52.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5465901",
+    "spotCount": 6,
+    "centroid": [
+      24.192342333333333,
+      120.66665333333333
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "后庄北路",
+    "nearestDistanceMeter": 39,
+    "secondCandidateRoad": "后庄北路240巷",
+    "secondDistanceMeter": 40.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「后庄北路」(39.0m), 次路名「后庄北路240巷」(40.1m)"
+  },
+  {
+    "sectionId": "5465911",
+    "spotCount": 6,
+    "centroid": [
+      24.193836166666667,
+      120.660801
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "同榮路",
+    "nearestDistanceMeter": 3.2,
+    "secondCandidateRoad": "中清路二段1226巷30弄",
+    "secondDistanceMeter": 4.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「同榮路」(3.2m), 次路名「中清路二段1226巷30弄」(4.8m)"
+  },
+  {
+    "sectionId": "5480902",
+    "spotCount": 5,
+    "centroid": [
+      24.1700384,
+      120.70833
+    ],
+    "status": "SUCCESS",
+    "roadName": "東山路一段156-11巷",
+    "nearestDistanceMeter": 3.8,
+    "secondCandidateRoad": "東山路一段",
+    "secondDistanceMeter": 28.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5483903",
+    "spotCount": 66,
+    "centroid": [
+      24.179883272727274,
+      120.70218849999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "東光路",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "軍福十九路",
+    "secondDistanceMeter": 25.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5484101",
+    "spotCount": 2,
+    "centroid": [
+      24.178183500000003,
+      120.6845715
+    ],
+    "status": "SUCCESS",
+    "roadName": "河北二街",
+    "nearestDistanceMeter": 3.4,
+    "secondCandidateRoad": "河北東街",
+    "secondDistanceMeter": 57.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "5486601",
+    "spotCount": 2,
+    "centroid": [
+      24.182072,
+      120.6828125
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "松竹北二街",
+    "nearestDistanceMeter": 2.2,
+    "secondCandidateRoad": "松竹路三段",
+    "secondDistanceMeter": 9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「松竹北二街」(2.2m), 次路名「松竹路三段」(9.0m)"
+  },
+  {
+    "sectionId": "5495611",
+    "spotCount": 51,
+    "centroid": [
+      24.19936388235295,
+      120.68196580392159
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "洲際路",
+    "nearestDistanceMeter": 9.1,
+    "secondCandidateRoad": "洲際一街",
+    "secondDistanceMeter": 13.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「洲際路」(9.1m), 次路名「洲際一街」(13.3m)"
+  },
+  {
+    "sectionId": "5497500",
+    "spotCount": 17,
+    "centroid": [
+      24.178472411764712,
+      120.70142282352944
+    ],
+    "status": "SUCCESS",
+    "roadName": "北屯路426之8巷",
+    "nearestDistanceMeter": 3.7,
+    "secondCandidateRoad": "南興三路",
+    "secondDistanceMeter": 26.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6342101",
+    "spotCount": 10,
+    "centroid": [
+      24.2093748,
+      120.7043408
+    ],
+    "status": "SUCCESS",
+    "roadName": "中山路二段237巷",
+    "nearestDistanceMeter": 0.3,
+    "secondCandidateRoad": "中山路二段241巷",
+    "secondDistanceMeter": 60.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6356303",
+    "spotCount": 2,
+    "centroid": [
+      24.2124575,
+      120.7106345
+    ],
+    "status": "SUCCESS",
+    "roadName": "福潭路",
+    "nearestDistanceMeter": 7.9,
+    "secondCandidateRoad": "福潭路550巷",
+    "secondDistanceMeter": 62.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6400803",
+    "spotCount": 5,
+    "centroid": [
+      24.180461399999995,
+      120.663443
+    ],
+    "status": "SUCCESS",
+    "roadName": "順平三街",
+    "nearestDistanceMeter": 5.9,
+    "secondCandidateRoad": "順平路",
+    "secondDistanceMeter": 38,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6403001",
+    "spotCount": 6,
+    "centroid": [
+      24.171559833333333,
+      120.63828983333333
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "臺灣大道三段686巷",
+    "nearestDistanceMeter": 11.3,
+    "secondCandidateRoad": "上安路173巷",
+    "secondDistanceMeter": 11.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「臺灣大道三段686巷」(11.3m), 次路名「上安路173巷」(11.5m)"
+  },
+  {
+    "sectionId": "6403801",
+    "spotCount": 1,
+    "centroid": [
+      24.184645,
+      120.622481
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "福科路340巷",
+    "nearestDistanceMeter": 4.5,
+    "secondCandidateRoad": "福泰街",
+    "secondDistanceMeter": 7.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「福科路340巷」(4.5m), 次路名「福泰街」(7.7m)"
+  },
+  {
+    "sectionId": "6420201",
+    "spotCount": 14,
+    "centroid": [
+      24.177175285714288,
+      120.65034999999999
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "凱旋一街",
+    "nearestDistanceMeter": 5.8,
+    "secondCandidateRoad": "逢大路",
+    "secondDistanceMeter": 8.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「凱旋一街」(5.8m), 次路名「逢大路」(8.6m)"
+  },
+  {
+    "sectionId": "6423601",
+    "spotCount": 97,
+    "centroid": [
+      24.177093350515463,
+      120.6419231443299
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "逢甲路",
+    "nearestDistanceMeter": 32.1,
+    "secondCandidateRoad": "西屯路二段293巷",
+    "secondDistanceMeter": 36.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「逢甲路」(32.1m), 次路名「西屯路二段293巷」(36.7m)"
+  },
+  {
+    "sectionId": "6426501",
+    "spotCount": 3,
+    "centroid": [
+      24.171448666666663,
+      120.64678299999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "寶慶街50巷",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "西屯路二段",
+    "secondDistanceMeter": 30.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6430101",
+    "spotCount": 18,
+    "centroid": [
+      24.159247166666667,
+      120.6490326111111
+    ],
+    "status": "SUCCESS",
+    "roadName": "大恩街",
+    "nearestDistanceMeter": 16.1,
+    "secondCandidateRoad": "大墩十九街",
+    "secondDistanceMeter": 64.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6430402",
+    "spotCount": 20,
+    "centroid": [
+      24.156486500000003,
+      120.65258529999998
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大隆路",
+    "nearestDistanceMeter": 0.7,
+    "secondCandidateRoad": "大進街",
+    "secondDistanceMeter": 7.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大隆路」(0.7m), 次路名「大進街」(7.4m)"
+  },
+  {
+    "sectionId": "6430403",
+    "spotCount": 39,
+    "centroid": [
+      24.15846282051282,
+      120.64897725641026
+    ],
+    "status": "SUCCESS",
+    "roadName": "大隆路",
+    "nearestDistanceMeter": 0.8,
+    "secondCandidateRoad": "大恩街",
+    "secondDistanceMeter": 25.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6430801",
+    "spotCount": 38,
+    "centroid": [
+      24.165087,
+      120.63659894736843
+    ],
+    "status": "SUCCESS",
+    "roadName": "朝富路",
+    "nearestDistanceMeter": 3.3,
+    "secondCandidateRoad": "朝馬七街",
+    "secondDistanceMeter": 40,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6430802",
+    "spotCount": 33,
+    "centroid": [
+      24.162595575757575,
+      120.635325030303
+    ],
+    "status": "SUCCESS",
+    "roadName": "朝富路",
+    "nearestDistanceMeter": 18.1,
+    "secondCandidateRoad": "龍門路",
+    "secondDistanceMeter": 42.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6431201",
+    "spotCount": 38,
+    "centroid": [
+      24.169431263157893,
+      120.6347790526316
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "朝貴路",
+    "nearestDistanceMeter": 8,
+    "secondCandidateRoad": "朝馬路",
+    "secondDistanceMeter": 13.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「朝貴路」(8.0m), 次路名「朝馬路」(13.8m)"
+  },
+  {
+    "sectionId": "6432201",
+    "spotCount": 29,
+    "centroid": [
+      24.18652851724138,
+      120.65171737931037
+    ],
+    "status": "SUCCESS",
+    "roadName": "凱旋路",
+    "nearestDistanceMeter": 6,
+    "secondCandidateRoad": "運動步道",
+    "secondDistanceMeter": 103,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6432331",
+    "spotCount": 23,
+    "centroid": [
+      24.17984452173913,
+      120.65289799999998
+    ],
+    "status": "SUCCESS",
+    "roadName": "凱旋三街",
+    "nearestDistanceMeter": 5.7,
+    "secondCandidateRoad": "凱旋五街",
+    "secondDistanceMeter": 53.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6432351",
+    "spotCount": 23,
+    "centroid": [
+      24.180355869565222,
+      120.65289656521738
+    ],
+    "status": "SUCCESS",
+    "roadName": "凱旋五街",
+    "nearestDistanceMeter": 3.3,
+    "secondCandidateRoad": "凱旋三街",
+    "secondDistanceMeter": 51.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6433201",
+    "spotCount": 4,
+    "centroid": [
+      24.16940875,
+      120.644464
+    ],
+    "status": "SUCCESS",
+    "roadName": "智惠街",
+    "nearestDistanceMeter": 4.2,
+    "secondCandidateRoad": "上石路",
+    "secondDistanceMeter": 31.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6434302",
+    "spotCount": 28,
+    "centroid": [
+      24.15888839285714,
+      120.64268375000002
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "惠中路一段",
+    "nearestDistanceMeter": 0.9,
+    "secondCandidateRoad": "市政北一路",
+    "secondDistanceMeter": 4.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「惠中路一段」(0.9m), 次路名「市政北一路」(4.6m)"
+  },
+  {
+    "sectionId": "6434307",
+    "spotCount": 29,
+    "centroid": [
+      24.16665565517242,
+      117.32073437931032
+    ],
+    "status": "NO_ROAD_NAME",
+    "roadName": "",
+    "nearestDistanceMeter": 308469.8,
+    "secondCandidateRoad": "工業東三路",
+    "riskNote": "距離最近道路仍超出一範圍 (308469.8m)"
+  },
+  {
+    "sectionId": "6434313",
+    "spotCount": 13,
+    "centroid": [
+      24.155513230769227,
+      120.64083099999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "惠中路二段",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "市政南二路",
+    "secondDistanceMeter": 22.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6434801",
+    "spotCount": 25,
+    "centroid": [
+      24.16259216,
+      120.63928007999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "惠民路",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "市政北二路",
+    "secondDistanceMeter": 28.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6434901",
+    "spotCount": 42,
+    "centroid": [
+      24.171396690476193,
+      120.63971254761906
+    ],
+    "status": "SUCCESS",
+    "roadName": "上安路",
+    "nearestDistanceMeter": 2,
+    "secondCandidateRoad": "上安路101巷",
+    "secondDistanceMeter": 14.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6435201",
+    "spotCount": 31,
+    "centroid": [
+      24.158887741935484,
+      120.65187964516127
+    ],
+    "status": "SUCCESS",
+    "roadName": "大墩路",
+    "nearestDistanceMeter": 4.6,
+    "secondCandidateRoad": "大安西街",
+    "secondDistanceMeter": 32.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6435212",
+    "spotCount": 19,
+    "centroid": [
+      24.15650336842105,
+      120.65031415789474
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大墩路",
+    "nearestDistanceMeter": 4,
+    "secondCandidateRoad": "大墩十八街",
+    "secondDistanceMeter": 7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大墩路」(4.0m), 次路名「大墩十八街」(7.0m)"
+  },
+  {
+    "sectionId": "6435702",
+    "spotCount": 4,
+    "centroid": [
+      24.169089500000002,
+      120.64447499999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "上石路",
+    "nearestDistanceMeter": 6.3,
+    "secondCandidateRoad": "上石路75巷",
+    "secondDistanceMeter": 28.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6440417",
+    "spotCount": 16,
+    "centroid": [
+      24.194517937500002,
+      120.65872750000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "中清路二段",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "中清路二段1296巷",
+    "secondDistanceMeter": 64.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6444132",
+    "spotCount": 75,
+    "centroid": [
+      24.170464653333333,
+      120.65972427999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "停車場徑",
+    "nearestDistanceMeter": 17.5,
+    "secondCandidateRoad": "淳正無礙通道",
+    "secondDistanceMeter": 27.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6444133",
+    "spotCount": 3,
+    "centroid": [
+      24.155935,
+      120.64693733333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心路二段",
+    "nearestDistanceMeter": 1,
+    "secondCandidateRoad": "大墩十七街",
+    "secondDistanceMeter": 29.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6450204",
+    "spotCount": 33,
+    "centroid": [
+      24.16615275757576,
+      120.66371842424243
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "漢口路二段",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "寧漢三街",
+    "secondDistanceMeter": 3.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「漢口路二段」(1.5m), 次路名「寧漢三街」(3.3m)"
+  },
+  {
+    "sectionId": "6450205",
+    "spotCount": 17,
+    "centroid": [
+      24.164834235294112,
+      120.66109276470588
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢口路二段",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "大信街",
+    "secondDistanceMeter": 44.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6450206",
+    "spotCount": 16,
+    "centroid": [
+      24.163734562500004,
+      120.6589434375
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢口路二段",
+    "nearestDistanceMeter": 4.3,
+    "secondCandidateRoad": "大有街",
+    "secondDistanceMeter": 14.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6450207",
+    "spotCount": 6,
+    "centroid": [
+      24.160182833333334,
+      120.6583725
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大有二街",
+    "nearestDistanceMeter": 16.9,
+    "secondCandidateRoad": "大有東街",
+    "secondDistanceMeter": 18.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大有二街」(16.9m), 次路名「大有東街」(18.6m)"
+  },
+  {
+    "sectionId": "6450802",
+    "spotCount": 9,
+    "centroid": [
+      24.16622933333333,
+      120.66286655555554
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "寧夏東七街",
+    "nearestDistanceMeter": 3.5,
+    "secondCandidateRoad": "寧夏路96巷",
+    "secondDistanceMeter": 3.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「寧夏東七街」(3.5m), 次路名「寧夏路96巷」(3.7m)"
+  },
+  {
+    "sectionId": "6451002",
+    "spotCount": 62,
+    "centroid": [
+      24.185145677419357,
+      120.64298333870966
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢翔路",
+    "nearestDistanceMeter": 1.1,
+    "secondCandidateRoad": "烈美街",
+    "secondDistanceMeter": 56.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6451203",
+    "spotCount": 3,
+    "centroid": [
+      24.18630466666667,
+      120.616963
+    ],
+    "status": "SUCCESS",
+    "roadName": "福康路119巷",
+    "nearestDistanceMeter": 4.1,
+    "secondCandidateRoad": "福科路476巷",
+    "secondDistanceMeter": 29.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6451403",
+    "spotCount": 54,
+    "centroid": [
+      24.186513148148148,
+      120.6024525185185
+    ],
+    "status": "SUCCESS",
+    "roadName": "福順路",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "東大路一段",
+    "secondDistanceMeter": 144.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6451901",
+    "spotCount": 68,
+    "centroid": [
+      24.18662311764705,
+      120.64618044117648
+    ],
+    "status": "SUCCESS",
+    "roadName": "漢翔東路",
+    "nearestDistanceMeter": 0.3,
+    "secondCandidateRoad": "往福星籃球場路徑",
+    "secondDistanceMeter": 13.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6452801",
+    "spotCount": 2,
+    "centroid": [
+      24.183473,
+      120.61939
+    ],
+    "status": "SUCCESS",
+    "roadName": "福順路295巷",
+    "nearestDistanceMeter": 4.4,
+    "secondCandidateRoad": "福雅路50巷",
+    "secondDistanceMeter": 22.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6453201",
+    "spotCount": 4,
+    "centroid": [
+      24.18332425,
+      120.622734
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "福祥街",
+    "nearestDistanceMeter": 6,
+    "secondCandidateRoad": "福祥街8巷",
+    "secondDistanceMeter": 6.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「福祥街」(6.0m), 次路名「福祥街8巷」(6.1m)"
+  },
+  {
+    "sectionId": "6457101",
+    "spotCount": 26,
+    "centroid": [
+      24.157796692307688,
+      120.64466442307695
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "市政北一路",
+    "nearestDistanceMeter": 4.1,
+    "secondCandidateRoad": "惠文路",
+    "secondDistanceMeter": 5.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「市政北一路」(4.1m), 次路名「惠文路」(5.9m)"
+  },
+  {
+    "sectionId": "6457102",
+    "spotCount": 49,
+    "centroid": [
+      24.160094285714287,
+      120.64059197959183
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政北一路",
+    "nearestDistanceMeter": 5.7,
+    "secondCandidateRoad": "惠中七街",
+    "secondDistanceMeter": 28.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457201",
+    "spotCount": 50,
+    "centroid": [
+      24.165999340000003,
+      120.63934474000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政北七路",
+    "nearestDistanceMeter": 3.1,
+    "secondCandidateRoad": "河南路三段",
+    "secondDistanceMeter": 36.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457301",
+    "spotCount": 33,
+    "centroid": [
+      24.16121224242424,
+      120.64111718181817
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政北二路",
+    "nearestDistanceMeter": 2.6,
+    "secondCandidateRoad": "惠來路二段",
+    "secondDistanceMeter": 45.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457401",
+    "spotCount": 10,
+    "centroid": [
+      24.1591393,
+      120.64650200000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政北三路",
+    "nearestDistanceMeter": 5.9,
+    "secondCandidateRoad": "文心路二段",
+    "secondDistanceMeter": 59,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457402",
+    "spotCount": 40,
+    "centroid": [
+      24.161482375,
+      120.64233904999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政北三路",
+    "nearestDistanceMeter": 1.2,
+    "secondCandidateRoad": "惠中六街",
+    "secondDistanceMeter": 19.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457501",
+    "spotCount": 14,
+    "centroid": [
+      24.161568999999997,
+      120.6434532142857
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "市政北五路",
+    "nearestDistanceMeter": 6.4,
+    "secondCandidateRoad": "惠中一街",
+    "secondDistanceMeter": 12,
+    "riskNote": "路口轉角交叉疑慮: 主路名「市政北五路」(6.4m), 次路名「惠中一街」(12.0m)"
+  },
+  {
+    "sectionId": "6457601",
+    "spotCount": 17,
+    "centroid": [
+      24.164758411764705,
+      120.63959000000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政北六路",
+    "nearestDistanceMeter": 3.1,
+    "secondCandidateRoad": "河南路三段",
+    "secondDistanceMeter": 44.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457701",
+    "spotCount": 37,
+    "centroid": [
+      24.156546810810813,
+      120.64376140540541
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政路",
+    "nearestDistanceMeter": 5,
+    "secondCandidateRoad": "惠文路",
+    "secondDistanceMeter": 16.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457702",
+    "spotCount": 50,
+    "centroid": [
+      24.158825520000004,
+      120.63916788
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政路",
+    "nearestDistanceMeter": 5.5,
+    "secondCandidateRoad": "惠來路一段",
+    "secondDistanceMeter": 21.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6457703",
+    "spotCount": 33,
+    "centroid": [
+      24.161619939393944,
+      120.63217106060605
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "市政路",
+    "nearestDistanceMeter": 9.6,
+    "secondCandidateRoad": "朝貴路",
+    "secondDistanceMeter": 19.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「市政路」(9.6m), 次路名「朝貴路」(19.5m)"
+  },
+  {
+    "sectionId": "6457901",
+    "spotCount": 24,
+    "centroid": [
+      24.18626608333334,
+      120.643276125
+    ],
+    "status": "NO_ROAD_NAME",
+    "roadName": "",
+    "nearestDistanceMeter": 109.5,
+    "secondCandidateRoad": "福星北路82巷",
+    "secondDistanceMeter": 113.6,
+    "riskNote": "距離最近道路仍超出一範圍 (109.5m)"
+  },
+  {
+    "sectionId": "6458001",
+    "spotCount": 33,
+    "centroid": [
+      24.17288281818181,
+      120.6488533333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "寶慶街50巷",
+    "nearestDistanceMeter": 11.7,
+    "secondCandidateRoad": "福星路",
+    "secondDistanceMeter": 36.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6458003",
+    "spotCount": 22,
+    "centroid": [
+      24.182276272727275,
+      120.64181636363637
+    ],
+    "status": "SUCCESS",
+    "roadName": "福星路",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "西安街47巷",
+    "secondDistanceMeter": 33.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6458701",
+    "spotCount": 18,
+    "centroid": [
+      24.179192055555557,
+      120.63608066666666
+    ],
+    "status": "SUCCESS",
+    "roadName": "福科路",
+    "nearestDistanceMeter": 0.9,
+    "secondCandidateRoad": "福科二路",
+    "secondDistanceMeter": 21.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6458702",
+    "spotCount": 181,
+    "centroid": [
+      24.1857418121547,
+      120.6147122872928
+    ],
+    "status": "SUCCESS",
+    "roadName": "福林路60巷",
+    "nearestDistanceMeter": 6.8,
+    "secondCandidateRoad": "福科路569巷",
+    "secondDistanceMeter": 26,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6459301",
+    "spotCount": 77,
+    "centroid": [
+      24.18881896103896,
+      120.61048766233766
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "玉門路",
+    "nearestDistanceMeter": 1.1,
+    "secondCandidateRoad": "玉門路370巷16弄",
+    "secondDistanceMeter": 7.2,
+    "riskNote": "路口轉角交叉疑慮: 主路名「玉門路」(1.1m), 次路名「玉門路370巷16弄」(7.2m)"
+  },
+  {
+    "sectionId": "6460406",
+    "spotCount": 2,
+    "centroid": [
+      24.170288,
+      120.6403575
+    ],
+    "status": "SUCCESS",
+    "roadName": "上仁街",
+    "nearestDistanceMeter": 30.6,
+    "secondCandidateRoad": "上安路",
+    "secondDistanceMeter": 56.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6464703",
+    "spotCount": 72,
+    "centroid": [
+      24.190010555555563,
+      120.61330513888892
+    ],
+    "status": "SUCCESS",
+    "roadName": "西屯路三段",
+    "nearestDistanceMeter": 3.9,
+    "secondCandidateRoad": "玉門路370巷",
+    "secondDistanceMeter": 39.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6464704",
+    "spotCount": 3,
+    "centroid": [
+      24.188298000000003,
+      120.61751766666667
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "西屯路三段",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "西屯路三段宏恩一巷",
+    "secondDistanceMeter": 4.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「西屯路三段」(1.5m), 次路名「西屯路三段宏恩一巷」(4.3m)"
+  },
+  {
+    "sectionId": "6464705",
+    "spotCount": 5,
+    "centroid": [
+      24.170152599999998,
+      120.6476414
+    ],
+    "status": "SUCCESS",
+    "roadName": "西屯路二段",
+    "nearestDistanceMeter": 7.2,
+    "secondCandidateRoad": "弘孝路",
+    "secondDistanceMeter": 51.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6465301",
+    "spotCount": 4,
+    "centroid": [
+      24.17726975,
+      120.64010425
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "西屯路二段297之8巷",
+    "nearestDistanceMeter": 5.2,
+    "secondCandidateRoad": "西屯路二段297之8巷12弄",
+    "secondDistanceMeter": 6.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「西屯路二段297之8巷」(5.2m), 次路名「西屯路二段297之8巷12弄」(6.1m)"
+  },
+  {
+    "sectionId": "6465401",
+    "spotCount": 3,
+    "centroid": [
+      24.16703933333333,
+      120.65209799999998
+    ],
+    "status": "SUCCESS",
+    "roadName": "西屯路二段126巷",
+    "nearestDistanceMeter": 1,
+    "secondCandidateRoad": "洛陽路118巷",
+    "secondDistanceMeter": 29,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6465411",
+    "spotCount": 9,
+    "centroid": [
+      24.167954333333334,
+      120.65014933333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "西屯路二段180巷",
+    "nearestDistanceMeter": 6.2,
+    "secondCandidateRoad": "西屯路二段208巷10弄",
+    "secondDistanceMeter": 43.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6465601",
+    "spotCount": 115,
+    "centroid": [
+      24.191556878260876,
+      120.6466883652174
+    ],
+    "status": "SUCCESS",
+    "roadName": "僑大路",
+    "nearestDistanceMeter": 8.1,
+    "secondCandidateRoad": "廣福路",
+    "secondDistanceMeter": 67.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6465801",
+    "spotCount": 24,
+    "centroid": [
+      24.192040958333337,
+      120.651938625
+    ],
+    "status": "SUCCESS",
+    "roadName": "僑大八街",
+    "nearestDistanceMeter": 0.4,
+    "secondCandidateRoad": "休憩步道",
+    "secondDistanceMeter": 21.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6466803",
+    "spotCount": 34,
+    "centroid": [
+      24.184348499999995,
+      120.63968094117645
+    ],
+    "status": "SUCCESS",
+    "roadName": "黎明路三段",
+    "nearestDistanceMeter": 6.2,
+    "secondCandidateRoad": "上墩東街",
+    "secondDistanceMeter": 63.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6466804",
+    "spotCount": 19,
+    "centroid": [
+      24.177284526315788,
+      120.63743421052631
+    ],
+    "status": "SUCCESS",
+    "roadName": "黎明路三段",
+    "nearestDistanceMeter": 0.7,
+    "secondCandidateRoad": "逢明街",
+    "secondDistanceMeter": 35.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6466805",
+    "spotCount": 15,
+    "centroid": [
+      24.174548866666665,
+      120.63744213333332
+    ],
+    "status": "SUCCESS",
+    "roadName": "黎明路三段",
+    "nearestDistanceMeter": 0.2,
+    "secondCandidateRoad": "光明路",
+    "secondDistanceMeter": 32.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6466806",
+    "spotCount": 49,
+    "centroid": [
+      24.16615532653062,
+      120.63504134693878
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "黎明路二段",
+    "nearestDistanceMeter": 3.6,
+    "secondCandidateRoad": "朝馬五街",
+    "secondDistanceMeter": 4.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「黎明路二段」(3.6m), 次路名「朝馬五街」(4.1m)"
+  },
+  {
+    "sectionId": "6466817",
+    "spotCount": 26,
+    "centroid": [
+      24.16011015384616,
+      120.63384896153849
+    ],
+    "status": "SUCCESS",
+    "roadName": "黎明路二段",
+    "nearestDistanceMeter": 4,
+    "secondCandidateRoad": "馬龍潭路",
+    "secondDistanceMeter": 70.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6467002",
+    "spotCount": 44,
+    "centroid": [
+      24.183780045454547,
+      120.64147343181817
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "西苑路",
+    "nearestDistanceMeter": 4.5,
+    "secondCandidateRoad": "西苑二街",
+    "secondDistanceMeter": 11.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「西苑路」(4.5m), 次路名「西苑二街」(11.3m)"
+  },
+  {
+    "sectionId": "6469911",
+    "spotCount": 4,
+    "centroid": [
+      24.1829455,
+      120.6411755
+    ],
+    "status": "SUCCESS",
+    "roadName": "西苑一街",
+    "nearestDistanceMeter": 6.7,
+    "secondCandidateRoad": "西苑路",
+    "secondDistanceMeter": 27.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6480001",
+    "spotCount": 26,
+    "centroid": [
+      24.16454803846154,
+      120.65470692307693
+    ],
+    "status": "SUCCESS",
+    "roadName": "青海路一段",
+    "nearestDistanceMeter": 1.4,
+    "secondCandidateRoad": "重慶路",
+    "secondDistanceMeter": 52.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6480002",
+    "spotCount": 41,
+    "centroid": [
+      24.16697851219513,
+      120.64990807317068
+    ],
+    "status": "SUCCESS",
+    "roadName": "青海路二段",
+    "nearestDistanceMeter": 4.3,
+    "secondCandidateRoad": "西屯路二段",
+    "secondDistanceMeter": 40,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6480003",
+    "spotCount": 25,
+    "centroid": [
+      24.169370920000002,
+      120.64646403999997
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "青海路二段",
+    "nearestDistanceMeter": 1.9,
+    "secondCandidateRoad": "青海路二段193巷",
+    "secondDistanceMeter": 7.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「青海路二段」(1.9m), 次路名「青海路二段193巷」(7.5m)"
+  },
+  {
+    "sectionId": "6480004",
+    "spotCount": 17,
+    "centroid": [
+      24.172634764705876,
+      120.64248141176473
+    ],
+    "status": "SUCCESS",
+    "roadName": "青海路二段",
+    "nearestDistanceMeter": 1.6,
+    "secondCandidateRoad": "湳仔巷",
+    "secondDistanceMeter": 36.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6480005",
+    "spotCount": 32,
+    "centroid": [
+      24.174996562500002,
+      120.6388868125
+    ],
+    "status": "SUCCESS",
+    "roadName": "青海路二段",
+    "nearestDistanceMeter": 4.9,
+    "secondCandidateRoad": "逢明街29巷",
+    "secondDistanceMeter": 71.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6480402",
+    "spotCount": 115,
+    "centroid": [
+      24.189435686956514,
+      120.60538882608697
+    ],
+    "status": "SUCCESS",
+    "roadName": "東大路一段",
+    "nearestDistanceMeter": 27,
+    "secondCandidateRoad": "福壽橋",
+    "secondDistanceMeter": 40.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6484001",
+    "spotCount": 13,
+    "centroid": [
+      24.16221953846154,
+      120.6578626923077
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "忠義街",
+    "nearestDistanceMeter": 8.2,
+    "secondCandidateRoad": "大弘街",
+    "secondDistanceMeter": 8.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「忠義街」(8.2m), 次路名「大弘街」(8.8m)"
+  },
+  {
+    "sectionId": "6486701",
+    "spotCount": 24,
+    "centroid": [
+      24.157357708333333,
+      120.65481675000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "東興路三段",
+    "nearestDistanceMeter": 6.8,
+    "secondCandidateRoad": "精誠路50巷",
+    "secondDistanceMeter": 43.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6487201",
+    "spotCount": 44,
+    "centroid": [
+      24.169072068181823,
+      120.66237090909094
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "寧夏東一街",
+    "nearestDistanceMeter": 5,
+    "secondCandidateRoad": "河南路一段",
+    "secondDistanceMeter": 10.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「寧夏東一街」(5.0m), 次路名「河南路一段」(10.8m)"
+  },
+  {
+    "sectionId": "6487203",
+    "spotCount": 8,
+    "centroid": [
+      24.175128374999996,
+      120.649299
+    ],
+    "status": "SUCCESS",
+    "roadName": "河南路二段",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "福上巷",
+    "secondDistanceMeter": 30.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6487204",
+    "spotCount": 23,
+    "centroid": [
+      24.172958217391308,
+      120.64621369565218
+    ],
+    "status": "SUCCESS",
+    "roadName": "河南路二段",
+    "nearestDistanceMeter": 0.2,
+    "secondCandidateRoad": "崇義街",
+    "secondDistanceMeter": 22.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6487205",
+    "spotCount": 14,
+    "centroid": [
+      24.16986892857143,
+      120.64277107142857
+    ],
+    "status": "SUCCESS",
+    "roadName": "河南路二段",
+    "nearestDistanceMeter": 0.6,
+    "secondCandidateRoad": "上安路",
+    "secondDistanceMeter": 62.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6487207",
+    "spotCount": 15,
+    "centroid": [
+      24.164777866666668,
+      120.63898573333334
+    ],
+    "status": "SUCCESS",
+    "roadName": "河南路三段",
+    "nearestDistanceMeter": 0.8,
+    "secondCandidateRoad": "市政北六路",
+    "secondDistanceMeter": 27.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6487208",
+    "spotCount": 60,
+    "centroid": [
+      24.156295983333333,
+      120.63640401666666
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "河南路四段",
+    "nearestDistanceMeter": 4.2,
+    "secondCandidateRoad": "惠文七街",
+    "secondDistanceMeter": 13.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「河南路四段」(4.2m), 次路名「惠文七街」(13.1m)"
+  },
+  {
+    "sectionId": "6739901",
+    "spotCount": 14,
+    "centroid": [
+      24.307053071428577,
+      120.71947764285713
+    ],
+    "status": "SUCCESS",
+    "roadName": "復興街",
+    "nearestDistanceMeter": 0.3,
+    "secondCandidateRoad": "文明路",
+    "secondDistanceMeter": 19.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "6763401",
+    "spotCount": 31,
+    "centroid": [
+      24.30499703225806,
+      120.71764100000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "成功路",
+    "nearestDistanceMeter": 4.2,
+    "secondCandidateRoad": "成功路528巷",
+    "secondDistanceMeter": 41.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "8544201",
+    "spotCount": 46,
+    "centroid": [
+      24.25511610869566,
+      121.25499017391304
+    ],
+    "status": "NO_ROAD_NAME",
+    "roadName": "",
+    "nearestDistanceMeter": 34351.2,
+    "secondCandidateRoad": "中坑路",
+    "riskNote": "距離最近道路仍超出一範圍 (34351.2m)"
+  },
+  {
+    "sectionId": "8553003",
+    "spotCount": 6,
+    "centroid": [
+      24.317156166666667,
+      121.29350633333335
+    ],
+    "status": "NO_ROAD_NAME",
+    "roadName": "",
+    "nearestDistanceMeter": 38818.1,
+    "secondCandidateRoad": "白布帆產業道路",
+    "riskNote": "距離最近道路仍超出一範圍 (38818.1m)"
+  },
+  {
+    "sectionId": "8583201",
+    "spotCount": 4,
+    "centroid": [
+      24.316182499999996,
+      121.294687
+    ],
+    "status": "NO_ROAD_NAME",
+    "roadName": "",
+    "nearestDistanceMeter": 38917.3,
+    "secondCandidateRoad": "白布帆產業道路",
+    "riskNote": "距離最近道路仍超出一範圍 (38917.3m)"
+  },
+  {
+    "sectionId": "9137902",
+    "spotCount": 14,
+    "centroid": [
+      24.24687942857143,
+      120.72000485714285
+    ],
+    "status": "NO_ROAD_NAME",
+    "roadName": "",
+    "nearestDistanceMeter": 61,
+    "secondCandidateRoad": "陽明街",
+    "secondDistanceMeter": 67.6,
+    "riskNote": "距離最近道路仍超出一範圍 (61.0m)"
+  },
+  {
+    "sectionId": "9199382",
+    "spotCount": 60,
+    "centroid": [
+      24.24595538333334,
+      120.72011199999999
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "樂天街53巷",
+    "nearestDistanceMeter": 38,
+    "secondCandidateRoad": "自強南街180巷",
+    "secondDistanceMeter": 46.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「樂天街53巷」(38.0m), 次路名「自強南街180巷」(46.1m)"
+  },
+  {
+    "sectionId": "9401380",
+    "spotCount": 20,
+    "centroid": [
+      24.153540099999997,
+      120.63224894999999
+    ],
+    "status": "SUCCESS",
+    "roadName": "大業路",
+    "nearestDistanceMeter": 9.6,
+    "secondCandidateRoad": "博愛街",
+    "secondDistanceMeter": 36.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9433101",
+    "spotCount": 3,
+    "centroid": [
+      24.14895466666667,
+      120.63874933333334
+    ],
+    "status": "SUCCESS",
+    "roadName": "大富街",
+    "nearestDistanceMeter": 2.9,
+    "secondCandidateRoad": "大墩十一街",
+    "secondDistanceMeter": 22.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9433505",
+    "spotCount": 162,
+    "centroid": [
+      24.1536827037037,
+      120.63791400617284
+    ],
+    "status": "SUCCESS",
+    "roadName": "大業路",
+    "nearestDistanceMeter": 1.9,
+    "secondCandidateRoad": "惠來路一段",
+    "secondDistanceMeter": 45.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9433511",
+    "spotCount": 46,
+    "centroid": [
+      24.153606673913053,
+      120.65055878260868
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大業路",
+    "nearestDistanceMeter": 1.5,
+    "secondCandidateRoad": "大聖街",
+    "secondDistanceMeter": 7.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大業路」(1.5m), 次路名「大聖街」(7.3m)"
+  },
+  {
+    "sectionId": "9434305",
+    "spotCount": 38,
+    "centroid": [
+      24.143328421052626,
+      120.64055442105264
+    ],
+    "status": "SUCCESS",
+    "roadName": "惠中路三段",
+    "nearestDistanceMeter": 5.4,
+    "secondCandidateRoad": "大墩六街",
+    "secondDistanceMeter": 20.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9434313",
+    "spotCount": 6,
+    "centroid": [
+      24.154366666666665,
+      120.64070716666667
+    ],
+    "status": "SUCCESS",
+    "roadName": "惠中路二段",
+    "nearestDistanceMeter": 5.4,
+    "secondCandidateRoad": "文心一路",
+    "secondDistanceMeter": 34.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9435203",
+    "spotCount": 12,
+    "centroid": [
+      24.15256325,
+      120.64976791666668
+    ],
+    "status": "SUCCESS",
+    "roadName": "大墩路",
+    "nearestDistanceMeter": 2.5,
+    "secondCandidateRoad": "大墩十四街",
+    "secondDistanceMeter": 24.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9435204",
+    "spotCount": 34,
+    "centroid": [
+      24.148469705882352,
+      120.6498055882353
+    ],
+    "status": "SUCCESS",
+    "roadName": "大墩路",
+    "nearestDistanceMeter": 3.8,
+    "secondCandidateRoad": "大墩十一街",
+    "secondDistanceMeter": 41.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9435212",
+    "spotCount": 27,
+    "centroid": [
+      24.154680185185185,
+      120.64972222222221
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大墩路",
+    "nearestDistanceMeter": 5.1,
+    "secondCandidateRoad": "大墩十六街",
+    "secondDistanceMeter": 10.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大墩路」(5.1m), 次路名「大墩十六街」(10.9m)"
+  },
+  {
+    "sectionId": "9435215",
+    "spotCount": 23,
+    "centroid": [
+      24.142477826086953,
+      120.64984130434777
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大墩路",
+    "nearestDistanceMeter": 6.9,
+    "secondCandidateRoad": "大墩六街",
+    "secondDistanceMeter": 14.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大墩路」(6.9m), 次路名「大墩六街」(14.4m)"
+  },
+  {
+    "sectionId": "9440004",
+    "spotCount": 30,
+    "centroid": [
+      24.150898699999996,
+      120.64487220000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "公益路二段",
+    "nearestDistanceMeter": 0.5,
+    "secondCandidateRoad": "大福街",
+    "secondDistanceMeter": 45.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9440005",
+    "spotCount": 24,
+    "centroid": [
+      24.151114791666668,
+      120.64257779166667
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "公益路二段",
+    "nearestDistanceMeter": 2.4,
+    "secondCandidateRoad": "大觀路",
+    "secondDistanceMeter": 7.7,
+    "riskNote": "路口轉角交叉疑慮: 主路名「公益路二段」(2.4m), 次路名「大觀路」(7.7m)"
+  },
+  {
+    "sectionId": "9440006",
+    "spotCount": 40,
+    "centroid": [
+      24.151364675000004,
+      120.6374097
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "河南路四段",
+    "nearestDistanceMeter": 1.7,
+    "secondCandidateRoad": "公益路二段",
+    "secondDistanceMeter": 6.4,
+    "riskNote": "路口轉角交叉疑慮: 主路名「河南路四段」(1.7m), 次路名「公益路二段」(6.4m)"
+  },
+  {
+    "sectionId": "9440007",
+    "spotCount": 24,
+    "centroid": [
+      24.151100541666665,
+      120.63429033333334
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "公益路二段",
+    "nearestDistanceMeter": 4.3,
+    "secondCandidateRoad": "三厝街",
+    "secondDistanceMeter": 6.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「公益路二段」(4.3m), 次路名「三厝街」(6.9m)"
+  },
+  {
+    "sectionId": "9440008",
+    "spotCount": 113,
+    "centroid": [
+      24.151389168141588,
+      120.62858809734512
+    ],
+    "status": "SUCCESS",
+    "roadName": "公益路二段",
+    "nearestDistanceMeter": 4.5,
+    "secondCandidateRoad": "益豐路四段",
+    "secondDistanceMeter": 26,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9440013",
+    "spotCount": 19,
+    "centroid": [
+      24.15085205263158,
+      120.64952757894736
+    ],
+    "status": "SUCCESS",
+    "roadName": "公益路二段",
+    "nearestDistanceMeter": 2.8,
+    "secondCandidateRoad": "大墩路",
+    "secondDistanceMeter": 28.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9443504",
+    "spotCount": 16,
+    "centroid": [
+      24.1400796875,
+      120.6514725
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西路二段",
+    "nearestDistanceMeter": 5,
+    "secondCandidateRoad": "大墩三街",
+    "secondDistanceMeter": 66.8,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9443505",
+    "spotCount": 12,
+    "centroid": [
+      24.140121249999996,
+      120.64874158333333
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西路二段",
+    "nearestDistanceMeter": 0.8,
+    "secondCandidateRoad": "大墩三街",
+    "secondDistanceMeter": 73.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9443506",
+    "spotCount": 34,
+    "centroid": [
+      24.14105720588236,
+      120.6417816764706
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西路二段",
+    "nearestDistanceMeter": 2,
+    "secondCandidateRoad": "惠文路",
+    "secondDistanceMeter": 51.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9443507",
+    "spotCount": 21,
+    "centroid": [
+      24.143308095238098,
+      120.63576900000001
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "五權西路二段",
+    "nearestDistanceMeter": 3.3,
+    "secondCandidateRoad": "三厝街",
+    "secondDistanceMeter": 8.6,
+    "riskNote": "路口轉角交叉疑慮: 主路名「五權西路二段」(3.3m), 次路名「三厝街」(8.6m)"
+  },
+  {
+    "sectionId": "9443508",
+    "spotCount": 47,
+    "centroid": [
+      24.147063723404248,
+      120.62941725531914
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西路二段",
+    "nearestDistanceMeter": 26.8,
+    "secondCandidateRoad": "龍富十八路",
+    "secondDistanceMeter": 50.4,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9443513",
+    "spotCount": 8,
+    "centroid": [
+      24.140129249999998,
+      120.65401725000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "五權西路二段",
+    "nearestDistanceMeter": 2,
+    "secondCandidateRoad": "東興路二段140巷",
+    "secondDistanceMeter": 43.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9444133",
+    "spotCount": 63,
+    "centroid": [
+      24.146277380952384,
+      120.64670677777775
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心路一段",
+    "nearestDistanceMeter": 8.8,
+    "secondCandidateRoad": "向上路一段",
+    "secondDistanceMeter": 57.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9445003",
+    "spotCount": 51,
+    "centroid": [
+      24.128048000000007,
+      120.64631966666668
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心南路",
+    "nearestDistanceMeter": 7.7,
+    "secondCandidateRoad": "文心南九路",
+    "secondDistanceMeter": 18.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9445004",
+    "spotCount": 7,
+    "centroid": [
+      24.136627142857144,
+      120.646528
+    ],
+    "status": "SUCCESS",
+    "roadName": "文心南路",
+    "nearestDistanceMeter": 10.8,
+    "secondCandidateRoad": "文心南一路",
+    "secondDistanceMeter": 35.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9448701",
+    "spotCount": 5,
+    "centroid": [
+      24.152895,
+      120.6464222
+    ],
+    "status": "SUCCESS",
+    "roadName": "水安街",
+    "nearestDistanceMeter": 5.7,
+    "secondCandidateRoad": "文心路一段",
+    "secondDistanceMeter": 26.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9456501",
+    "spotCount": 10,
+    "centroid": [
+      24.15653,
+      120.6355262
+    ],
+    "status": "SUCCESS",
+    "roadName": "市政南二路188巷",
+    "nearestDistanceMeter": 16,
+    "secondCandidateRoad": "河南路四段",
+    "secondDistanceMeter": 83.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9456603",
+    "spotCount": 14,
+    "centroid": [
+      24.1426285,
+      120.63563235714287
+    ],
+    "status": "SUCCESS",
+    "roadName": "永春東六路",
+    "nearestDistanceMeter": 2.5,
+    "secondCandidateRoad": "南屯路二段900巷",
+    "secondDistanceMeter": 58.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9458300",
+    "spotCount": 3,
+    "centroid": [
+      24.134806666666666,
+      120.64868266666667
+    ],
+    "status": "SUCCESS",
+    "roadName": "永春東路",
+    "nearestDistanceMeter": 6.2,
+    "secondCandidateRoad": "豐富路",
+    "secondDistanceMeter": 32.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9460202",
+    "spotCount": 18,
+    "centroid": [
+      24.144933888888893,
+      120.64799277777777
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "向上南路一段",
+    "nearestDistanceMeter": 0.6,
+    "secondCandidateRoad": "大英西二街",
+    "secondDistanceMeter": 5.1,
+    "riskNote": "路口轉角交叉疑慮: 主路名「向上南路一段」(0.6m), 次路名「大英西二街」(5.1m)"
+  },
+  {
+    "sectionId": "9460211",
+    "spotCount": 22,
+    "centroid": [
+      24.14495999999999,
+      120.6539159090909
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "向上南路一段",
+    "nearestDistanceMeter": 0.3,
+    "secondCandidateRoad": "大同街",
+    "secondDistanceMeter": 5.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「向上南路一段」(0.3m), 次路名「大同街」(5.9m)"
+  },
+  {
+    "sectionId": "9460306",
+    "spotCount": 3,
+    "centroid": [
+      24.146806666666667,
+      120.64771
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "向上路一段",
+    "nearestDistanceMeter": 2.9,
+    "secondCandidateRoad": "大光街",
+    "secondDistanceMeter": 9.5,
+    "riskNote": "路口轉角交叉疑慮: 主路名「向上路一段」(2.9m), 次路名「大光街」(9.5m)"
+  },
+  {
+    "sectionId": "9460308",
+    "spotCount": 32,
+    "centroid": [
+      24.14690425,
+      120.64044300000002
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路二段",
+    "nearestDistanceMeter": 1.3,
+    "secondCandidateRoad": "惠中路三段",
+    "secondDistanceMeter": 16.5,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9460310",
+    "spotCount": 75,
+    "centroid": [
+      24.144994306666653,
+      120.6286371333333
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "向上路三段",
+    "nearestDistanceMeter": 1.8,
+    "secondCandidateRoad": "益豐路四段",
+    "secondDistanceMeter": 7.3,
+    "riskNote": "路口轉角交叉疑慮: 主路名「向上路三段」(1.8m), 次路名「益豐路四段」(7.3m)"
+  },
+  {
+    "sectionId": "9460315",
+    "spotCount": 10,
+    "centroid": [
+      24.146754,
+      120.65086900000001
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路一段",
+    "nearestDistanceMeter": 1,
+    "secondCandidateRoad": "大聖街",
+    "secondDistanceMeter": 23.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9466808",
+    "spotCount": 62,
+    "centroid": [
+      24.149900048387092,
+      120.63562356451612
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "黎明路二段",
+    "nearestDistanceMeter": 13.7,
+    "secondCandidateRoad": "大墩十二街",
+    "secondDistanceMeter": 14.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「黎明路二段」(13.7m), 次路名「大墩十二街」(14.8m)"
+  },
+  {
+    "sectionId": "9466817",
+    "spotCount": 28,
+    "centroid": [
+      24.157866321428568,
+      120.63416132142864
+    ],
+    "status": "SUCCESS",
+    "roadName": "黎明路二段",
+    "nearestDistanceMeter": 0.3,
+    "secondCandidateRoad": "市政南一路",
+    "secondDistanceMeter": 41.2,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9476601",
+    "spotCount": 33,
+    "centroid": [
+      24.14682433333333,
+      120.62410227272727
+    ],
+    "status": "SUCCESS",
+    "roadName": "龍德路一段",
+    "nearestDistanceMeter": 5.4,
+    "secondCandidateRoad": "龍富十八路",
+    "secondDistanceMeter": 19.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9486702",
+    "spotCount": 14,
+    "centroid": [
+      24.154628785714287,
+      120.65323835714287
+    ],
+    "status": "SUCCESS",
+    "roadName": "東興路三段",
+    "nearestDistanceMeter": 8.8,
+    "secondCandidateRoad": "大業北路",
+    "secondDistanceMeter": 68.1,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9486703",
+    "spotCount": 13,
+    "centroid": [
+      24.152790615384614,
+      120.65295269230768
+    ],
+    "status": "SUCCESS",
+    "roadName": "東興路三段",
+    "nearestDistanceMeter": 7.2,
+    "secondCandidateRoad": "大墩十四街",
+    "secondDistanceMeter": 51,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9486714",
+    "spotCount": 4,
+    "centroid": [
+      24.1501525,
+      120.65295
+    ],
+    "status": "SUCCESS",
+    "roadName": "東興路三段",
+    "nearestDistanceMeter": 7.1,
+    "secondCandidateRoad": "大墩十二街",
+    "secondDistanceMeter": 23.7,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9486715",
+    "spotCount": 14,
+    "centroid": [
+      24.142662142857144,
+      120.652975
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "大墩六街",
+    "nearestDistanceMeter": 2.1,
+    "secondCandidateRoad": "東興路二段",
+    "secondDistanceMeter": 3.8,
+    "riskNote": "路口轉角交叉疑慮: 主路名「大墩六街」(2.1m), 次路名「東興路二段」(3.8m)"
+  },
+  {
+    "sectionId": "9487209",
+    "spotCount": 58,
+    "centroid": [
+      24.150945758620683,
+      120.63738186206898
+    ],
+    "status": "SUCCESS",
+    "roadName": "河南路四段",
+    "nearestDistanceMeter": 4.6,
+    "secondCandidateRoad": "公益路二段",
+    "secondDistanceMeter": 53,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9487210",
+    "spotCount": 34,
+    "centroid": [
+      24.14568820588235,
+      120.63887264705885
+    ],
+    "status": "SUCCESS",
+    "roadName": "河南路四段",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "三和街",
+    "secondDistanceMeter": 22.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9488901",
+    "spotCount": 43,
+    "centroid": [
+      24.146679325581395,
+      120.61123625581396
+    ],
+    "status": "SUCCESS",
+    "roadName": "嶺東路",
+    "nearestDistanceMeter": 1.7,
+    "secondCandidateRoad": "文山三街",
+    "secondDistanceMeter": 83.6,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9499449",
+    "spotCount": 4,
+    "centroid": [
+      24.14576875,
+      120.63258275
+    ],
+    "status": "SUCCESS",
+    "roadName": "向上路三段",
+    "nearestDistanceMeter": 16.6,
+    "secondCandidateRoad": "五權西路二段",
+    "secondDistanceMeter": 27.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9499612",
+    "spotCount": 20,
+    "centroid": [
+      24.138283750000003,
+      120.64204175
+    ],
+    "status": "SUCCESS",
+    "roadName": "南屯路二段415巷",
+    "nearestDistanceMeter": 3,
+    "secondCandidateRoad": "南屯路二段415巷15弄",
+    "secondDistanceMeter": 16.9,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9499680",
+    "spotCount": 21,
+    "centroid": [
+      24.15386123809524,
+      120.62984547619047
+    ],
+    "status": "SUCCESS",
+    "roadName": "懷德街145巷5弄",
+    "nearestDistanceMeter": 6.8,
+    "secondCandidateRoad": "干城街145巷3弄",
+    "secondDistanceMeter": 38.3,
+    "riskNote": ""
+  },
+  {
+    "sectionId": "9499943",
+    "spotCount": 9,
+    "centroid": [
+      24.137967,
+      120.64341466666666
+    ],
+    "status": "SUSPICIOUS_INTERSECTION",
+    "roadName": "南屯路二段",
+    "nearestDistanceMeter": 34.2,
+    "secondCandidateRoad": "向心南路981巷",
+    "secondDistanceMeter": 41.9,
+    "riskNote": "路口轉角交叉疑慮: 主路名「南屯路二段」(34.2m), 次路名「向心南路981巷」(41.9m)"
+  }
+]
