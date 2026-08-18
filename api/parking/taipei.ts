@@ -88,6 +88,7 @@ function parseRoadXml(xmlText: string): any[] {
       roadSegtimeStart: String(item?.roadSegtimeStart || item?.roadSegTmStart || ''),
       roadSegtimeEnd: String(item?.roadSegtimeEnd || item?.roadSegTmEnd || ''),
       roadSegUpdatetime: String(item?.roadSegUpdatetime || item?.roadSegUpdateTm || ''),
+      cellStatusList: item?.cellStatusList || null,
     }));
   } catch (e) {
     console.error('Failed to parse road XML:', e);

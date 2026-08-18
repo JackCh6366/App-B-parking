@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ParkingSpot } from '../types/parking';
 import { formatDistance, formatTime } from '../utils/distance';
+import { getSpotDisplayInfo } from '../utils/spotDisplay';
 import {
   X,
   MapPin,
@@ -13,7 +14,9 @@ import {
   Truck,
   Car,
   Copy,
-  Check
+  Check,
+  Activity,
+  Info
 } from 'lucide-react';
 
 interface SpotDetailDrawerProps {
@@ -31,17 +34,17 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
 
   if (!spot) return null;
 
-  const isAvailable = spot.status === 'empty';
+  const displayInfo = getSpotDisplayInfo(spot);
 
   const handleCopy = () => {
-    const text = `【${spot.city === 'newtaipei' ? '新北市' : '臺中市'}路邊停車格】\n車格編號：${spot.id}\n位置：${spot.district} ${spot.roadName} ${spot.addressDesc || ''}\n類型：${spot.typeLabel}\n費率：${spot.feeInfo}`;
+    const text = `【${spot.city === 'newtaipei' ? '新北市' : spot.city === 'taipei' ? '臺北市' : '臺中市'}路邊停車格】\n車格編號：${spot.id}\n位置：${spot.district} ${spot.roadName} ${spot.addressDesc || ''}\n類型：${spot.typeLabel}\n費率：${spot.feeInfo}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleNavigateGoogleMaps = () => {
-    let url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`臺北市${spot.district}${spot.roadName}`)}`;
+    let url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${spot.district}${spot.roadName}`)}`;
     if (spot.lat !== null && spot.lng !== null) {
       url = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
     }
@@ -58,18 +61,10 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
         <div className="p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex items-start justify-between relative">
           <div className="pr-8">
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              {/* 狀態 Badge */}
-              <span
-                className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border ${
-                  isAvailable
-                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                    : spot.status === 'occupied'
-                    ? 'bg-slate-100 text-slate-500 border-slate-200'
-                    : 'bg-amber-50 text-amber-700 border-amber-200'
-                }`}
-              >
-                <span className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`} />
-                {isAvailable ? '即時可停車' : spot.status === 'occupied' ? '車位佔用中' : '車格維護中'}
+              {/* 狀態 Badge (共用邏輯) */}
+              <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border ${displayInfo.statusBadge.bg}`}>
+                <span className={`w-2 h-2 rounded-full ${displayInfo.statusBadge.dot}`} />
+                {displayInfo.statusBadge.text}
               </span>
 
               {/* 類型 Badge */}
@@ -81,6 +76,13 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
                 {spot.type === 'general' && <Car className="w-3.5 h-3.5 text-slate-500" />}
                 <span>{spot.typeLabel}</span>
               </span>
+
+              {/* 資料來源強度標籤 (共用邏輯) */}
+              {displayInfo.dataSourceBadge && (
+                <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-xs font-semibold border ${displayInfo.dataSourceBadge.bg}`}>
+                  {displayInfo.dataSourceBadge.text}
+                </span>
+              )}
 
               <span className="text-xs text-slate-500 font-medium">車格編號: {spot.id}</span>
             </div>
@@ -102,11 +104,38 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
         {/* Body content */}
         <div className="p-4 sm:p-5 overflow-y-auto space-y-4">
           
-          {/* 位置描述 */}
+          {/* 位置與即時動態明細描述 */}
           {spot.addressDesc && (
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700">
-              <span className="text-slate-500 font-semibold block mb-0.5">顯著地標 / 門牌位置：</span>
+            <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+              <div className="flex items-center gap-1.5 text-blue-700 font-bold mb-1">
+                <Activity className="w-4 h-4" />
+                <span>即時偵測動態說明：</span>
+              </div>
               <span>{spot.addressDesc}</span>
+            </div>
+          )}
+
+          {/* 若地磁即時資料存在，呈現拆解統計網格 */}
+          {spot.sensorDetail && spot.sensorDetail.dataSource === 'geomagnetic' && (
+            <div className="bg-blue-50/60 border border-blue-200/80 p-3.5 rounded-xl">
+              <div className="text-xs font-bold text-blue-900 mb-2 flex items-center gap-1.5">
+                <Info className="w-4 h-4 text-blue-600" />
+                <span>實體地磁感測器明細 (動態掃描)</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                <div className="bg-white p-2 rounded-lg border border-blue-100 shadow-2xs">
+                  <span className="text-slate-500 block text-[11px]">即時空位</span>
+                  <span className="text-emerald-700 font-black text-base">{spot.sensorDetail.emptyCount ?? 0}</span>
+                </div>
+                <div className="bg-white p-2 rounded-lg border border-blue-100 shadow-2xs">
+                  <span className="text-slate-500 block text-[11px]">車位佔用</span>
+                  <span className="text-rose-600 font-bold text-base">{spot.sensorDetail.occupiedCount ?? 0}</span>
+                </div>
+                <div className="bg-white p-2 rounded-lg border border-blue-100 shadow-2xs">
+                  <span className="text-slate-500 block text-[11px]">訊號離線</span>
+                  <span className="text-slate-600 font-bold text-base">{spot.sensorDetail.offlineCount ?? 0}</span>
+                </div>
+              </div>
             </div>
           )}
 
@@ -186,4 +215,3 @@ export const SpotDetailDrawer: React.FC<SpotDetailDrawerProps> = ({
     </div>
   );
 };
-
