@@ -4,6 +4,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import newtaipeiHandler from './api/parking/newtaipei';
 import taichungHandler from './api/parking/taichung';
+import taipeiHandler from './api/parking/taipei';
 
 export default defineConfig({
   plugins: [
@@ -35,6 +36,17 @@ export default defineConfig({
               }
             };
             return taichungHandler(req, mockRes);
+          }
+          if (url.startsWith('/api/parking/taipei')) {
+            const mockRes = {
+              status(code: number) { res.statusCode = code; return mockRes; },
+              setHeader(k: string, v: string) { res.setHeader(k, v); },
+              json(data: any) {
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify(data));
+              }
+            };
+            return taipeiHandler(req, mockRes);
           }
           next();
         });

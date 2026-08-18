@@ -54,6 +54,10 @@ export const CityStatsBanner: React.FC<CityStatsBannerProps> = ({ stats, cityNam
         </div>
       )}
 
+      <div className="flex items-center gap-1.5 shrink-0 text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200 text-[11px]">
+        <span>資料來源：{cityName === '臺北市' ? '臺北市停車管理工程處' : `${cityName}政府交通局 (開放資料)`}</span>
+      </div>
+
       <div className="hidden sm:flex items-center gap-2 ml-auto shrink-0 text-slate-500 font-medium">
         <span>周邊車位佔用率 {occupancyRate}%</span>
         <div className="w-20 bg-slate-200 h-1.5 rounded-full overflow-hidden border border-slate-200">

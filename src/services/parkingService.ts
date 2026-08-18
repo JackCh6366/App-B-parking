@@ -1,12 +1,149 @@
 import { City, ParkingSpot, SpotStatus, SpotType } from '../types/parking';
-import { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS } from '../config/cities.config';
+import { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS, TAIPEI_DISTRICTS } from '../config/cities.config';
 
-export { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS };
+export { CITIES, CITIES_LIST, NEW_TAIPEI_DISTRICTS, TAICHUNG_DISTRICTS, TAIPEI_DISTRICTS };
 
-export const CITY_DATA_ADAPTERS: Record<string, (data: any[]) => ParkingSpot[]> = {
-  newtaipei: adaptNewTaipeiData,
-  taichung: adaptTaichungData,
+const TAIPEI_DISTRICT_CENTERS: Record<string, [number, number]> = {
+  '中正區': [25.0324, 121.5190],
+  '大安區': [25.0264, 121.5434],
+  '信義區': [25.0330, 121.5654],
+  '中山區': [25.0685, 121.5332],
+  '松山區': [25.0599, 121.5574],
+  '大同區': [25.0628, 121.5126],
+  '萬華區': [25.0354, 121.4997],
+  '文山區': [24.9892, 121.5701],
+  '南港區': [25.0553, 121.6171],
+  '內湖區': [25.0830, 121.5868],
+  '士林區': [25.0928, 121.5245],
+  '北投區': [25.1321, 121.4987],
 };
+
+function extractTaipeiDistrict(roadName: string): { district: string; center: [number, number] } {
+  for (const dist of Object.keys(TAIPEI_DISTRICT_CENTERS)) {
+    const key = dist.replace('區', '');
+    if (roadName.includes(dist) || roadName.includes(key)) {
+      return { district: dist, center: TAIPEI_DISTRICT_CENTERS[dist] };
+    }
+  }
+
+  // 根據常見路名推導行政區
+  if (roadName.includes('敦化') || roadName.includes('仁愛') || roadName.includes('和平') || roadName.includes('復興南')) {
+    return { district: '大安區', center: TAIPEI_DISTRICT_CENTERS['大安區'] };
+  }
+  if (roadName.includes('忠孝東') || roadName.includes('基隆路')) {
+    return { district: '信義區', center: TAIPEI_DISTRICT_CENTERS['信義區'] };
+  }
+  if (roadName.includes('重慶') || roadName.includes('愛國') || roadName.includes('羅斯福')) {
+    return { district: '中正區', center: TAIPEI_DISTRICT_CENTERS['中正區'] };
+  }
+  if (roadName.includes('民權東') || roadName.includes('南京東') || roadName.includes('民生東')) {
+    return { district: '松山區', center: TAIPEI_DISTRICT_CENTERS['松山區'] };
+  }
+  if (roadName.includes('重慶北') || roadName.includes('延平北') || roadName.includes('承德路一段') || roadName.includes('承德路二段')) {
+    return { district: '大同區', center: TAIPEI_DISTRICT_CENTERS['大同區'] };
+  }
+  if (roadName.includes('西園') || roadName.includes('和平西') || roadName.includes('廣州')) {
+    return { district: '萬華區', center: TAIPEI_DISTRICT_CENTERS['萬華區'] };
+  }
+  if (roadName.includes('木柵') || roadName.includes('景美') || roadName.includes('興隆')) {
+    return { district: '文山區', center: TAIPEI_DISTRICT_CENTERS['文山區'] };
+  }
+  if (roadName.includes('瑞光') || roadName.includes('洲子') || roadName.includes('成功路') || roadName.includes('民權東路六段')) {
+    return { district: '內湖區', center: TAIPEI_DISTRICT_CENTERS['內湖區'] };
+  }
+  if (roadName.includes('忠孝東路六段') || roadName.includes('忠孝東路七段') || roadName.includes('研究院')) {
+    return { district: '南港區', center: TAIPEI_DISTRICT_CENTERS['南港區'] };
+  }
+  if (roadName.includes('天母') || roadName.includes('文林') || roadName.includes('承德路四段') || roadName.includes('承德路五段')) {
+    return { district: '士林區', center: TAIPEI_DISTRICT_CENTERS['士林區'] };
+  }
+  if (roadName.includes('石牌') || roadName.includes('中央北') || roadName.includes('光明')) {
+    return { district: '北投區', center: TAIPEI_DISTRICT_CENTERS['北投區'] };
+  }
+
+  // 預設為 中山區
+  return { district: '中山區', center: TAIPEI_DISTRICT_CENTERS['中山區'] };
+}
+
+function adaptTaipeiData(rawData: any[]): ParkingSpot[] {
+  if (!Array.isArray(rawData)) return [];
+
+  return rawData.map((item, index) => {
+    const avail = parseInt(item.roadSegAvail, 10);
+    const total = parseInt(item.roadSegTotalValue, 10) || 0;
+    
+    // 狀態判斷：可用數 > 0 為 empty，等於 0 為 occupied，負數 (如 -99) 表示未量測/維護中
+    let status: SpotStatus = 'empty';
+    let statusCode = 0;
+    if (isNaN(avail) || avail < 0) {
+      status = 'maintenance';
+      statusCode = 2;
+    } else if (avail === 0) {
+      status = 'occupied';
+      statusCode = 1;
+    }
+
+    const roadName = item.roadSegName || `路段 #${item.roadSegID || index}`;
+    const { district, center } = extractTaipeiDistrict(roadName);
+
+    // 依據 roadSegID 產生微幅 offset (約 ±300 公尺)，避免所有路段標記重疊於同點
+    const hash = String(item.roadSegID || index).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const offsetLat = ((hash % 97) - 48) * 0.0003;
+    const offsetLng = (((hash * 13) % 97) - 48) * 0.0003;
+    const lat = center[0] + offsetLat;
+    const lng = center[1] + offsetLng;
+
+    const isMotorcycle = item.roadSegCarType === '2' || item.roadSegCarType === 2;
+    let spotType: SpotType = isMotorcycle ? 'motorcycle' : 'general';
+    let typeLabel = isMotorcycle ? '機車格' : '一般車格';
+
+    if (roadName.includes('身障') || roadName.includes('身心障礙')) {
+      spotType = 'disability';
+      typeLabel = '身障專用格';
+    } else if (roadName.includes('孕婦') || roadName.includes('親')) {
+      spotType = 'maternity';
+      typeLabel = '孕婦親子格';
+    } else if (roadName.includes('充') || roadName.includes('綠')) {
+      spotType = 'charging';
+      typeLabel = '綠能充電格';
+    } else if (roadName.includes('卸貨') || roadName.includes('貨')) {
+      spotType = 'loading';
+      typeLabel = '裝卸貨專用';
+    }
+
+    const availDisplay = avail >= 0 ? `${avail}` : '未定';
+    const addressDesc = `目前剩餘空位: ${availDisplay} / 總格數: ${total > 0 ? total : '未知'} (路段代號: ${item.roadSegID})`;
+
+    const startTime = item.roadSegtimeStart || '07:00';
+    const endTime = item.roadSegtimeEnd || '20:00';
+    const payTime = `${startTime}-${endTime}`;
+
+    let updatedAt = new Date().toISOString();
+    if (item.roadSegUpdatetime && typeof item.roadSegUpdatetime === 'string' && item.roadSegUpdatetime.length >= 15) {
+      // 格式： 20260818T111012 -> ISO Format
+      const u = item.roadSegUpdatetime;
+      updatedAt = `${u.slice(0,4)}-${u.slice(4,6)}-${u.slice(6,8)}T${u.slice(9,11)}:${u.slice(11,13)}:${u.slice(13,15)}`;
+    }
+
+    return {
+      id: item.roadSegID ? `TPE-${item.roadSegID}` : `TPE-${index}`,
+      city: 'taipei',
+      district,
+      roadName,
+      addressDesc,
+      lat,
+      lng,
+      status,
+      statusCode,
+      type: spotType,
+      typeLabel,
+      feeInfo: item.roadSegFee || '30元/小時',
+      payTime,
+      updatedAt,
+      rawSourceData: item
+    };
+  });
+}
 
 export async function fetchRealSpotsForCity(cityId: string): Promise<ParkingSpot[]> {
   const response = await fetch(`/api/parking/${cityId}`);
@@ -29,6 +166,10 @@ export async function fetchRealSpotsForCity(cityId: string): Promise<ParkingSpot
 
 export async function fetchParkingSpots(cityId: string): Promise<ParkingSpot[]> {
   return fetchRealSpotsForCity(cityId);
+}
+
+export async function fetchRealTaipeiSpots(): Promise<ParkingSpot[]> {
+  return fetchRealSpotsForCity('taipei');
 }
 
 export async function fetchRealNewTaipeiSpots(): Promise<ParkingSpot[]> {
@@ -155,4 +296,10 @@ function adaptTaichungData(rawData: any[]): ParkingSpot[] {
     };
   });
 }
+
+export const CITY_DATA_ADAPTERS: Record<string, (data: any[]) => ParkingSpot[]> = {
+  taipei: adaptTaipeiData,
+  newtaipei: adaptNewTaipeiData,
+  taichung: adaptTaichungData,
+};
 

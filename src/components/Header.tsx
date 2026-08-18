@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({
                   </span>
                 </h1>
                 <p className="text-xs text-slate-500 hidden xs:block">
-                  新北市 & 臺中市路邊即時車格查詢系統
+                  臺北市、新北市 & 臺中市路邊即時車格查詢系統
                 </p>
               </div>
             </div>

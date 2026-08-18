@@ -14,7 +14,22 @@ export const TAICHUNG_DISTRICTS = [
   '清水區', '大甲區', '外埔區', '大安區'
 ];
 
+export const TAIPEI_DISTRICTS = [
+  '中正區', '大安區', '信義區', '中山區', '松山區', '大同區',
+  '萬華區', '文山區', '南港區', '內湖區', '士林區', '北投區'
+];
+
 export const CITIES_LIST: CityInfo[] = [
+  {
+    id: 'taipei',
+    name: '臺北市',
+    shortName: '台北',
+    center: [25.0375, 121.5637], // 臺北市中心/信義區周邊
+    zoom: 13,
+    description: '整合臺北市全轄 12 個行政區路邊停車格位即時使用情形 XML 資料',
+    apiEndpointDoc: '臺北市資料大平臺 - 臺北市路邊停車格位使用情形 (資料來源：臺北市停車管理工程處)',
+    districts: TAIPEI_DISTRICTS
+  },
   {
     id: 'newtaipei',
     name: '新北市',
