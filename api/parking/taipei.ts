@@ -1,5 +1,5 @@
 import { XMLParser } from 'fast-xml-parser';
-import { getCachedData, setCachedData, isFresh, isWithinStale } from '../_lib/redisCache';
+import { getCachedData, setCachedData, isFresh, isWithinStale } from '../lib/redisCache';
 
 const CACHE_KEY = 'taipei';
 const CACHE_TTL_MS = 60000; // 60 秒：視為新鮮

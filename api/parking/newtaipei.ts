@@ -1,4 +1,4 @@
-import { getCachedData, setCachedData, isFresh, isWithinStale } from '../_lib/redisCache';
+import { getCachedData, setCachedData, isFresh, isWithinStale } from '../lib/redisCache';
 
 // 全量31,611筆拉取需要~20秒，改用平行請求可在 3~5 秒內完成
 const CACHE_KEY = 'newtaipei';
