@@ -1,4 +1,4 @@
-import { getCachedData, setCachedData, isFresh, isWithinStale } from '../lib/redisCache.js';
+// 臺中市即時停車位 API 處理器 (含 Upstash Redis 持久化快取 + 記憶體備援模式)
 
 const CACHE_KEY = 'taichung';
 const CACHE_TTL_MS = 60000; // 60 秒：視為新鮮
@@ -6,6 +6,92 @@ const STALE_SERVE_MS = 300000; // 5 分鐘內：過期但仍可先頂著用
 
 const TAICHUNG_API_URL = 'https://newdatacenter.taichung.gov.tw/api/v1/no-auth/resource.download?rid=1744bc00-cd16-48f3-9632-309f364662bb';
 
+// --- 自洽式持久化快取 (Upstash Redis + 記憶體備援) ---
+interface CacheEnvelope<T> {
+  timestamp: number;
+  data: T;
+  isComplete?: boolean;
+}
+
+const memoryCacheMap = new Map<string, CacheEnvelope<any>>();
+let redisClient: any = null;
+let redisInitFailed = false;
+
+async function getRedisClient(): Promise<any> {
+  if (redisClient) return redisClient;
+  if (redisInitFailed) return null;
+
+  try {
+    const url =
+      process.env.KV_REST_API_URL ||
+      process.env.UPSTASH_REDIS_REST_URL ||
+      process.env.REDIS_REST_API_URL;
+    const token =
+      process.env.KV_REST_API_TOKEN ||
+      process.env.UPSTASH_REDIS_REST_TOKEN ||
+      process.env.REDIS_REST_API_TOKEN;
+
+    if (!url || !token) {
+      redisInitFailed = true;
+      return null;
+    }
+
+    const upstashModule: any = await import('@upstash/redis');
+    const RedisClass = upstashModule.Redis || upstashModule.default?.Redis || upstashModule.default;
+    redisClient = new RedisClass({ url, token });
+    return redisClient;
+  } catch (err) {
+    redisInitFailed = true;
+    return null;
+  }
+}
+
+async function getCachedData<T>(key: string): Promise<CacheEnvelope<T> | null> {
+  const client = await getRedisClient();
+  if (!client) {
+    return memoryCacheMap.get(key) || null;
+  }
+
+  try {
+    const raw = (await client.get(`parking:${key}`)) as CacheEnvelope<T> | null;
+    if (!raw) return memoryCacheMap.get(key) || null;
+    return raw;
+  } catch (err) {
+    return memoryCacheMap.get(key) || null;
+  }
+}
+
+async function setCachedData<T>(
+  key: string,
+  data: T,
+  isComplete: boolean = true,
+  expireSeconds: number = 1800
+): Promise<boolean> {
+  const envelope: CacheEnvelope<T> = { timestamp: Date.now(), data, isComplete };
+  memoryCacheMap.set(key, envelope);
+
+  const client = await getRedisClient();
+  if (!client) return true;
+
+  try {
+    await client.set(`parking:${key}`, envelope, { ex: expireSeconds });
+    return true;
+  } catch (err) {
+    return true;
+  }
+}
+
+function isFresh(envelope: CacheEnvelope<unknown> | null, ttlMs: number): boolean {
+  if (!envelope) return false;
+  return Date.now() - envelope.timestamp < ttlMs;
+}
+
+function isWithinStale(envelope: CacheEnvelope<unknown> | null, staleMs: number): boolean {
+  if (!envelope) return false;
+  return Date.now() - envelope.timestamp < staleMs;
+}
+
+// --- 抓取開放資料邏輯 ---
 async function fetchFreshData(): Promise<any[]> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 9000);
@@ -38,50 +124,42 @@ async function fetchFreshData(): Promise<any[]> {
 }
 
 export default async function handler(req: any, res: any) {
-  try {
-    if (req.method !== 'GET') {
-      return res.status(405).json({ error: 'Method Not Allowed' });
-    }
-
-    const cached = await getCachedData<any[]>(CACHE_KEY);
-
-    // 1. 快取新鮮（60秒內）：直接回傳
-    if (isFresh(cached, CACHE_TTL_MS)) {
-      res.setHeader('X-Cache', 'HIT');
-      return res.status(200).json(cached!.data);
-    }
-
-    // 2. 快取過期但仍在 stale 容忍範圍（5分鐘內）：同步刷新，失敗則降級回傳舊資料
-    if (isWithinStale(cached, STALE_SERVE_MS)) {
-      const freshData = await fetchFreshData();
-      if (freshData.length > 0) {
-        await setCachedData(CACHE_KEY, freshData);
-        res.setHeader('X-Cache', 'REFRESHED');
-        return res.status(200).json(freshData);
-      }
-      res.setHeader('X-Cache', 'STALE-FALLBACK');
-      return res.status(200).json(cached!.data);
-    }
-
-    // 3. 完全沒有可用快取：同步拉取全新資料
-    const freshData = await fetchFreshData();
-
-    if (freshData.length === 0) {
-      if (cached) {
-        res.setHeader('X-Cache', 'STALE-ERROR');
-        return res.status(200).json(cached.data);
-      }
-      return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
-    }
-
-    await setCachedData(CACHE_KEY, freshData);
-    res.setHeader('X-Cache', 'MISS');
-    return res.status(200).json(freshData);
-  } catch (globalErr: any) {
-    console.error('Taichung Handler Exception:', globalErr);
-    return res.status(500).json({
-      error: globalErr?.message || String(globalErr),
-      stack: globalErr?.stack || null
-    });
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
   }
+
+  const cached = await getCachedData<any[]>(CACHE_KEY);
+
+  // 1. 快取新鮮（60秒內）：直接回傳
+  if (isFresh(cached, CACHE_TTL_MS)) {
+    res.setHeader('X-Cache', 'HIT');
+    return res.status(200).json(cached!.data);
+  }
+
+  // 2. 快取過期但仍在 stale 容忍範圍（5分鐘內）：同步刷新，失敗則降級回傳舊資料
+  if (isWithinStale(cached, STALE_SERVE_MS)) {
+    const freshData = await fetchFreshData();
+    if (freshData.length > 0) {
+      await setCachedData(CACHE_KEY, freshData);
+      res.setHeader('X-Cache', 'REFRESHED');
+      return res.status(200).json(freshData);
+    }
+    res.setHeader('X-Cache', 'STALE-FALLBACK');
+    return res.status(200).json(cached!.data);
+  }
+
+  // 3. 完全沒有可用快取：同步拉取全新資料
+  const freshData = await fetchFreshData();
+
+  if (freshData.length === 0) {
+    if (cached) {
+      res.setHeader('X-Cache', 'STALE-ERROR');
+      return res.status(200).json(cached.data);
+    }
+    return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
+  }
+
+  await setCachedData(CACHE_KEY, freshData);
+  res.setHeader('X-Cache', 'MISS');
+  return res.status(200).json(freshData);
 }
