@@ -1,6 +1,6 @@
 import { getCachedData, setCachedData, isFresh, isWithinStale } from '../_lib/redisCache';
 
-// 全量31,611筆拉取需要~20秒，需拉長快取時間降低頻率
+// 全量31,611筆拉取需要~20秒，改用平行請求可在 3~5 秒內完成
 const CACHE_KEY = 'newtaipei';
 const CACHE_TTL_MS = 300000; // 5分鐘：視為新鮮
 const STALE_SERVE_MS = 600000; // 過期後10分鐘內仍可先頂著用
@@ -8,7 +8,7 @@ const STALE_SERVE_MS = 600000; // 過期後10分鐘內仍可先頂著用
 const NTP_BASE_URL = 'https://data.ntpc.gov.tw/api/datasets/54A507C4-C038-41B5-BF60-BBECB9D052C6/json';
 const PAGE_SIZE = 2000;
 const MAX_PAGES = 20;
-const PER_PAGE_TIMEOUT_MS = 9000; // 每頁9秒逾時
+const PER_PAGE_TIMEOUT_MS = 8000; // 每頁8秒逾時
 
 interface NewTaipeiResult {
   data: any[];
@@ -16,9 +16,7 @@ interface NewTaipeiResult {
 }
 
 async function fetchAllPages(): Promise<NewTaipeiResult> {
-  const allItems: any[] = [];
-
-  for (let page = 0; page < MAX_PAGES; page++) {
+  const pagePromises = Array.from({ length: MAX_PAGES }, async (_, page) => {
     const url = `${NTP_BASE_URL}?page=${page}&size=${PAGE_SIZE}`;
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), PER_PAGE_TIMEOUT_MS);
@@ -37,28 +35,29 @@ async function fetchAllPages(): Promise<NewTaipeiResult> {
 
       if (!response.ok) {
         console.error(`NewTaipei page ${page} HTTP error: ${response.status}`);
-        break;
+        return [];
       }
 
       const json = await response.json();
       const pageData = Array.isArray(json) ? json : json?.result?.records || json?.result || [];
-
-      if (pageData.length === 0) break;
-      allItems.push(...pageData);
-      if (pageData.length < PAGE_SIZE) break; // 最後一頁
+      return pageData;
     } catch (err: any) {
       clearTimeout(timeoutId);
       if (err?.name === 'AbortError') {
-        console.warn(`NewTaipei page ${page} timed out, stopping pagination with ${allItems.length} items so far`);
+        console.warn(`NewTaipei page ${page} timed out`);
       } else {
         console.error(`NewTaipei page ${page} error:`, err?.message || err);
       }
-      // 返回目前已拉到的部分資料（partial），標記 isComplete=false
-      return { data: allItems, isComplete: false };
+      return [];
     }
-  }
+  });
 
-  return { data: allItems, isComplete: true };
+  const pagesData = await Promise.all(pagePromises);
+  const allItems = pagesData.flat();
+  const successfulPages = pagesData.filter(p => p.length > 0).length;
+  const isComplete = successfulPages >= MAX_PAGES || (pagesData.length > 0 && pagesData[pagesData.length - 1].length < PAGE_SIZE);
+
+  return { data: allItems, isComplete };
 }
 
 export default async function handler(req: any, res: any) {
@@ -77,7 +76,6 @@ export default async function handler(req: any, res: any) {
   }
 
   // 2. 快取過期但仍在 stale 容忍範圍（10分鐘內）：同步刷新，失敗則降級回傳舊資料
-  //    （Serverless 無法保證背景任務在回應送出後真的執行完，改為同步刷新較可靠）
   if (isWithinStale(cached, STALE_SERVE_MS)) {
     const { data, isComplete } = await fetchAllPages();
     if (data.length > 0) {
