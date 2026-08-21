@@ -58,7 +58,6 @@ export interface CacheEnvelope<T> {
 /**
  * 讀取快取資料。
  * @param key 快取鍵值（例如 'taipei' / 'newtaipei' / 'taichung'）
- * @param ttlMs 新鮮度判斷（毫秒），超過則視為過期（但仍會回傳資料，由呼叫端決定要不要用 stale）
  */
 export async function getCachedData<T>(key: string): Promise<CacheEnvelope<T> | null> {
   const client = getRedisClient();
