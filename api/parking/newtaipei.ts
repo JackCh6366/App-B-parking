@@ -61,51 +61,59 @@ async function fetchAllPages(): Promise<NewTaipeiResult> {
 }
 
 export default async function handler(req: any, res: any) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
+  try {
+    if (req.method !== 'GET') {
+      return res.status(405).json({ error: 'Method Not Allowed' });
+    }
 
-  const cached = await getCachedData<any[]>(CACHE_KEY);
+    const cached = await getCachedData<any[]>(CACHE_KEY);
 
-  // 1. 快取新鮮（5分鐘內）：直接回傳
-  if (isFresh(cached, CACHE_TTL_MS)) {
-    res.setHeader('X-Cache', 'HIT');
-    res.setHeader('X-Cache-Items', String(cached!.data.length));
-    res.setHeader('X-Cache-Complete', String(cached!.isComplete ?? true));
-    return res.status(200).json(cached!.data);
-  }
+    // 1. 快取新鮮（5分鐘內）：直接回傳
+    if (isFresh(cached, CACHE_TTL_MS)) {
+      res.setHeader('X-Cache', 'HIT');
+      res.setHeader('X-Cache-Items', String(cached!.data.length));
+      res.setHeader('X-Cache-Complete', String(cached!.isComplete ?? true));
+      return res.status(200).json(cached!.data);
+    }
 
-  // 2. 快取過期但仍在 stale 容忍範圍（10分鐘內）：同步刷新，失敗則降級回傳舊資料
-  if (isWithinStale(cached, STALE_SERVE_MS)) {
+    // 2. 快取過期但仍在 stale 容忍範圍（10分鐘內）：同步刷新，失敗則降級回傳舊資料
+    if (isWithinStale(cached, STALE_SERVE_MS)) {
+      const { data, isComplete } = await fetchAllPages();
+      if (data.length > 0) {
+        await setCachedData(CACHE_KEY, data, isComplete);
+        res.setHeader('X-Cache', 'REFRESHED');
+        res.setHeader('X-Cache-Items', String(data.length));
+        res.setHeader('X-Cache-Complete', String(isComplete));
+        return res.status(200).json(data);
+      }
+      res.setHeader('X-Cache', 'STALE-FALLBACK');
+      res.setHeader('X-Cache-Items', String(cached!.data.length));
+      res.setHeader('X-Cache-Complete', String(cached!.isComplete ?? true));
+      return res.status(200).json(cached!.data);
+    }
+
+    // 3. 完全沒有可用快取：同步拉取全量資料
     const { data, isComplete } = await fetchAllPages();
-    if (data.length > 0) {
-      await setCachedData(CACHE_KEY, data, isComplete);
-      res.setHeader('X-Cache', 'REFRESHED');
-      res.setHeader('X-Cache-Items', String(data.length));
-      res.setHeader('X-Cache-Complete', String(isComplete));
-      return res.status(200).json(data);
+
+    if (data.length === 0) {
+      if (cached) {
+        res.setHeader('X-Cache', 'STALE-ERROR');
+        return res.status(200).json(cached.data);
+      }
+      return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
     }
-    res.setHeader('X-Cache', 'STALE-FALLBACK');
-    res.setHeader('X-Cache-Items', String(cached!.data.length));
-    res.setHeader('X-Cache-Complete', String(cached!.isComplete ?? true));
-    return res.status(200).json(cached!.data);
+
+    await setCachedData(CACHE_KEY, data, isComplete);
+
+    res.setHeader('X-Cache', 'MISS');
+    res.setHeader('X-Cache-Items', String(data.length));
+    res.setHeader('X-Cache-Complete', String(isComplete));
+    return res.status(200).json(data);
+  } catch (globalErr: any) {
+    console.error('NewTaipei Handler Exception:', globalErr);
+    return res.status(500).json({
+      error: globalErr?.message || String(globalErr),
+      stack: globalErr?.stack || null
+    });
   }
-
-  // 3. 完全沒有可用快取：同步拉取全量資料
-  const { data, isComplete } = await fetchAllPages();
-
-  if (data.length === 0) {
-    if (cached) {
-      res.setHeader('X-Cache', 'STALE-ERROR');
-      return res.status(200).json(cached.data);
-    }
-    return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
-  }
-
-  await setCachedData(CACHE_KEY, data, isComplete);
-
-  res.setHeader('X-Cache', 'MISS');
-  res.setHeader('X-Cache-Items', String(data.length));
-  res.setHeader('X-Cache-Complete', String(isComplete));
-  return res.status(200).json(data);
 }

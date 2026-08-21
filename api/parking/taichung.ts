@@ -38,42 +38,50 @@ async function fetchFreshData(): Promise<any[]> {
 }
 
 export default async function handler(req: any, res: any) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
+  try {
+    if (req.method !== 'GET') {
+      return res.status(405).json({ error: 'Method Not Allowed' });
+    }
 
-  const cached = await getCachedData<any[]>(CACHE_KEY);
+    const cached = await getCachedData<any[]>(CACHE_KEY);
 
-  // 1. 快取新鮮（60秒內）：直接回傳
-  if (isFresh(cached, CACHE_TTL_MS)) {
-    res.setHeader('X-Cache', 'HIT');
-    return res.status(200).json(cached!.data);
-  }
+    // 1. 快取新鮮（60秒內）：直接回傳
+    if (isFresh(cached, CACHE_TTL_MS)) {
+      res.setHeader('X-Cache', 'HIT');
+      return res.status(200).json(cached!.data);
+    }
 
-  // 2. 快取過期但仍在 stale 容忍範圍（5分鐘內）：同步刷新，失敗則降級回傳舊資料
-  if (isWithinStale(cached, STALE_SERVE_MS)) {
+    // 2. 快取過期但仍在 stale 容忍範圍（5分鐘內）：同步刷新，失敗則降級回傳舊資料
+    if (isWithinStale(cached, STALE_SERVE_MS)) {
+      const freshData = await fetchFreshData();
+      if (freshData.length > 0) {
+        await setCachedData(CACHE_KEY, freshData);
+        res.setHeader('X-Cache', 'REFRESHED');
+        return res.status(200).json(freshData);
+      }
+      res.setHeader('X-Cache', 'STALE-FALLBACK');
+      return res.status(200).json(cached!.data);
+    }
+
+    // 3. 完全沒有可用快取：同步拉取全新資料
     const freshData = await fetchFreshData();
-    if (freshData.length > 0) {
-      await setCachedData(CACHE_KEY, freshData);
-      res.setHeader('X-Cache', 'REFRESHED');
-      return res.status(200).json(freshData);
+
+    if (freshData.length === 0) {
+      if (cached) {
+        res.setHeader('X-Cache', 'STALE-ERROR');
+        return res.status(200).json(cached.data);
+      }
+      return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
     }
-    res.setHeader('X-Cache', 'STALE-FALLBACK');
-    return res.status(200).json(cached!.data);
+
+    await setCachedData(CACHE_KEY, freshData);
+    res.setHeader('X-Cache', 'MISS');
+    return res.status(200).json(freshData);
+  } catch (globalErr: any) {
+    console.error('Taichung Handler Exception:', globalErr);
+    return res.status(500).json({
+      error: globalErr?.message || String(globalErr),
+      stack: globalErr?.stack || null
+    });
   }
-
-  // 3. 完全沒有可用快取：同步拉取全新資料
-  const freshData = await fetchFreshData();
-
-  if (freshData.length === 0) {
-    if (cached) {
-      res.setHeader('X-Cache', 'STALE-ERROR');
-      return res.status(200).json(cached.data);
-    }
-    return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
-  }
-
-  await setCachedData(CACHE_KEY, freshData);
-  res.setHeader('X-Cache', 'MISS');
-  return res.status(200).json(freshData);
 }
