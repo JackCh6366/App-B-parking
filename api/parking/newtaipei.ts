@@ -1,19 +1,21 @@
-// In-memory cache per serverless function instance
-// TTL 300秒（5分鐘）：全量31,611筆拉取需要~20秒，需拉長快取時間降低頻率
-// Vercel Hobby 限10秒 → 冷啟動會逾時，需升級Pro或使用以下背景刷新策略
-let cache: { timestamp: number; data: any[]; isComplete: boolean } | null = null;
-const CACHE_TTL_MS = 300000; // 5分鐘（全量拉取成本高，減少頻率）
-const STALE_SERVE_MS = 600000; // 過期10分鐘內仍可提供stale資料
+import { getCachedData, setCachedData, isFresh, isWithinStale } from '../_lib/redisCache';
+
+// 全量31,611筆拉取需要~20秒，需拉長快取時間降低頻率
+const CACHE_KEY = 'newtaipei';
+const CACHE_TTL_MS = 300000; // 5分鐘：視為新鮮
+const STALE_SERVE_MS = 600000; // 過期後10分鐘內仍可先頂著用
 
 const NTP_BASE_URL = 'https://data.ntpc.gov.tw/api/datasets/54A507C4-C038-41B5-BF60-BBECB9D052C6/json';
 const PAGE_SIZE = 2000;
 const MAX_PAGES = 20;
 const PER_PAGE_TIMEOUT_MS = 9000; // 每頁9秒逾時
 
-// 是否正在背景刷新（避免多個請求同時觸發拉取）
-let isRefreshing = false;
+interface NewTaipeiResult {
+  data: any[];
+  isComplete: boolean;
+}
 
-async function fetchAllPages(): Promise<{ data: any[]; isComplete: boolean }> {
+async function fetchAllPages(): Promise<NewTaipeiResult> {
   const allItems: any[] = [];
 
   for (let page = 0; page < MAX_PAGES; page++) {
@@ -64,63 +66,48 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const now = Date.now();
+  const cached = await getCachedData<any[]>(CACHE_KEY);
 
-  // 1. 快取命中（TTL 5分鐘內）
-  if (cache && (now - cache.timestamp) < CACHE_TTL_MS) {
+  // 1. 快取新鮮（5分鐘內）：直接回傳
+  if (isFresh(cached, CACHE_TTL_MS)) {
     res.setHeader('X-Cache', 'HIT');
-    res.setHeader('X-Cache-Items', String(cache.data.length));
-    res.setHeader('X-Cache-Complete', String(cache.isComplete));
-    return res.status(200).json(cache.data);
+    res.setHeader('X-Cache-Items', String(cached!.data.length));
+    res.setHeader('X-Cache-Complete', String(cached!.isComplete ?? true));
+    return res.status(200).json(cached!.data);
   }
 
-  // 2. 快取過期但仍在 stale 容忍範圍（10分鐘內），先回傳舊資料，非同步背景刷新
-  if (cache && (now - cache.timestamp) < STALE_SERVE_MS && !isRefreshing) {
-    // 啟動背景刷新（不等待）
-    isRefreshing = true;
-    fetchAllPages()
-      .then(({ data, isComplete }) => {
-        if (data.length > 0) {
-          cache = { timestamp: Date.now(), data, isComplete };
-          console.log(`NewTaipei background refresh done: ${data.length} items, complete=${isComplete}`);
-        }
-      })
-      .catch(err => console.error('NewTaipei background refresh error:', err?.message))
-      .finally(() => { isRefreshing = false; });
-
-    res.setHeader('X-Cache', 'STALE-REFRESHING');
-    res.setHeader('X-Cache-Items', String(cache.data.length));
-    res.setHeader('X-Cache-Complete', String(cache.isComplete));
-    return res.status(200).json(cache.data);
-  }
-
-  // 3. 冷啟動或快取完全失效：同步拉取全量資料
-  try {
+  // 2. 快取過期但仍在 stale 容忍範圍（10分鐘內）：同步刷新，失敗則降級回傳舊資料
+  //    （Serverless 無法保證背景任務在回應送出後真的執行完，改為同步刷新較可靠）
+  if (isWithinStale(cached, STALE_SERVE_MS)) {
     const { data, isComplete } = await fetchAllPages();
-
-    if (data.length === 0) {
-      // 嘗試返回過期快取（降級）
-      if (cache) {
-        res.setHeader('X-Cache', 'STALE-ERROR');
-        return res.status(200).json(cache.data);
-      }
-      return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
+    if (data.length > 0) {
+      await setCachedData(CACHE_KEY, data, isComplete);
+      res.setHeader('X-Cache', 'REFRESHED');
+      res.setHeader('X-Cache-Items', String(data.length));
+      res.setHeader('X-Cache-Complete', String(isComplete));
+      return res.status(200).json(data);
     }
+    res.setHeader('X-Cache', 'STALE-FALLBACK');
+    res.setHeader('X-Cache-Items', String(cached!.data.length));
+    res.setHeader('X-Cache-Complete', String(cached!.isComplete ?? true));
+    return res.status(200).json(cached!.data);
+  }
 
-    cache = { timestamp: now, data, isComplete };
+  // 3. 完全沒有可用快取：同步拉取全量資料
+  const { data, isComplete } = await fetchAllPages();
 
-    res.setHeader('X-Cache', 'MISS');
-    res.setHeader('X-Cache-Items', String(data.length));
-    res.setHeader('X-Cache-Complete', String(isComplete));
-    return res.status(200).json(data);
-  } catch (err: any) {
-    console.error('NewTaipei handler error:', err?.message || err);
-
-    if (cache) {
+  if (data.length === 0) {
+    if (cached) {
       res.setHeader('X-Cache', 'STALE-ERROR');
-      return res.status(200).json(cache.data);
+      return res.status(200).json(cached.data);
     }
-
     return res.status(502).json({ error: '無法取得即時車位資料，請 5 分鐘後再試' });
   }
+
+  await setCachedData(CACHE_KEY, data, isComplete);
+
+  res.setHeader('X-Cache', 'MISS');
+  res.setHeader('X-Cache-Items', String(data.length));
+  res.setHeader('X-Cache-Complete', String(isComplete));
+  return res.status(200).json(data);
 }
