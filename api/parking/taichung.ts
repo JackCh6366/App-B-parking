@@ -1,4 +1,4 @@
-import { getCachedData, setCachedData, isFresh, isWithinStale } from '../lib/redisCache';
+import { getCachedData, setCachedData, isFresh, isWithinStale } from '../lib/redisCache.ts';
 
 const CACHE_KEY = 'taichung';
 const CACHE_TTL_MS = 60000; // 60 秒：視為新鮮
