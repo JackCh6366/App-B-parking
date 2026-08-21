@@ -1,4 +1,4 @@
-// 共用 Redis 持久化快取工具 (含記憶體備援機制)
+// 共用 Redis 持久化快取工具 (含記憶體備援與動態加載機制)
 //
 // 背景：Vercel Serverless Function 在低流量情況下會頻繁建立全新的執行個體，
 // 每個執行個體的記憶體互不共享，導致原本用 `let cache = ...` 模組層級變數
@@ -8,15 +8,14 @@
 // 解法：改用 Upstash Redis（透過 Vercel Storage 整合，環境變數已自動注入）
 // 做真正跨執行個體共享的持久化快取。若未設定環境變數，自動降級為記憶體快取備援。
 
-import { Redis } from '@upstash/redis';
-
-let redisClient: Redis | null = null;
+let redisClient: any = null;
 let redisInitFailed = false;
+let RedisClass: any = null;
 
 // 記憶體備用快取（當 Redis 未設定或連線失敗時，供單個執行個體內重複使用）
 const memoryCacheMap = new Map<string, CacheEnvelope<any>>();
 
-function getRedisClient(): Redis | null {
+async function getRedisClient(): Promise<any> {
   if (redisClient) return redisClient;
   if (redisInitFailed) return null;
 
@@ -36,7 +35,12 @@ function getRedisClient(): Redis | null {
       return null;
     }
 
-    redisClient = new Redis({ url, token });
+    if (!RedisClass) {
+      const upstashModule: any = await import('@upstash/redis');
+      RedisClass = upstashModule.Redis || upstashModule.default?.Redis || upstashModule.default;
+    }
+
+    redisClient = new RedisClass({ url, token });
     return redisClient;
   } catch (err: any) {
     console.error('[redisCache] 初始化 Redis client 失敗:', err?.message || err);
@@ -56,13 +60,13 @@ export interface CacheEnvelope<T> {
  * @param key 快取鍵值（例如 'taipei' / 'newtaipei' / 'taichung'）
  */
 export async function getCachedData<T>(key: string): Promise<CacheEnvelope<T> | null> {
-  const client = getRedisClient();
+  const client = await getRedisClient();
   if (!client) {
     return memoryCacheMap.get(key) || null;
   }
 
   try {
-    const raw = await client.get<CacheEnvelope<T>>(`parking:${key}`);
+    const raw = (await client.get(`parking:${key}`)) as CacheEnvelope<T> | null;
     if (!raw) return memoryCacheMap.get(key) || null;
     return raw;
   } catch (err: any) {
@@ -93,7 +97,7 @@ export async function setCachedData<T>(
   // 同步寫入記憶體備援
   memoryCacheMap.set(key, envelope);
 
-  const client = getRedisClient();
+  const client = await getRedisClient();
   if (!client) return true;
 
   try {
