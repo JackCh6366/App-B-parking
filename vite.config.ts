@@ -1,4 +1,8 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+
+// Load local environment variables for Vite dev server
+dotenv.config({ path: '.env.local', quiet: true });
+dotenv.config({ quiet: true });
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
