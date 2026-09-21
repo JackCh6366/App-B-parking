@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
+import 'leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { ParkingSpot, UserLocation } from '../types/parking';
 
 interface ParkingMapProps {
@@ -25,7 +28,8 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
-  const markersGroupRef = useRef<L.LayerGroup | null>(null);
+  const clusterGroupRef = useRef<any | null>(null);
+  const userGroupRef = useRef<L.LayerGroup | null>(null);
   const heatmapGroupRef = useRef<L.LayerGroup | null>(null);
   const userMarkerRef = useRef<L.Marker | null>(null);
 
@@ -51,7 +55,48 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
       L.control.zoom({ position: 'topright' }).addTo(map);
 
       heatmapGroupRef.current = L.layerGroup().addTo(map);
-      markersGroupRef.current = L.layerGroup().addTo(map);
+      userGroupRef.current = L.layerGroup().addTo(map);
+
+      // 初始化 MarkerClusterGroup 群集功能
+      const clusterGroup = (L as any).markerClusterGroup({
+        maxClusterRadius: 45,
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        disableClusteringAtZoom: 17, // 放大至 17 級（街道/車格級別）時完全展開為個別標記
+        iconCreateFunction: (cluster: any) => {
+          const count = cluster.getChildCount();
+          let size = 36;
+          let badgeClass = 'bg-gradient-to-tr from-indigo-600 to-blue-500 text-white border-2 border-white shadow-lg ring-2 ring-indigo-300/50';
+          let textSize = 'text-xs font-bold';
+
+          if (count >= 100) {
+            size = 46;
+            badgeClass = 'bg-gradient-to-tr from-rose-600 to-red-500 text-white border-2 border-white shadow-xl ring-2 ring-rose-300/60 animate-pulse';
+            textSize = 'text-sm font-black';
+          } else if (count >= 30) {
+            size = 40;
+            badgeClass = 'bg-gradient-to-tr from-amber-500 to-orange-500 text-white border-2 border-white shadow-lg ring-2 ring-amber-300/50';
+            textSize = 'text-xs font-black';
+          }
+
+          return L.divIcon({
+            html: `
+              <div class="flex items-center justify-center w-full h-full cursor-pointer transition-transform duration-200 hover:scale-115">
+                <div class="w-full h-full rounded-full flex items-center justify-center ${badgeClass} ${textSize} tracking-tight">
+                  ${count}
+                </div>
+              </div>
+            `,
+            className: 'custom-cluster-marker',
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2]
+          });
+        }
+      });
+      clusterGroup.addTo(map);
+      clusterGroupRef.current = clusterGroup;
+
       mapInstanceRef.current = map;
     }
 
@@ -202,13 +247,15 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
     });
   }, [showHeatmap, spots, allCitySpots]);
 
-  // 繪製車位標記與使用者位置標記
+  // 繪製車位標記與使用者位置標記 (支援群集 Cluster)
   useEffect(() => {
     const map = mapInstanceRef.current;
-    const markersGroup = markersGroupRef.current;
-    if (!map || !markersGroup) return;
+    const clusterGroup = clusterGroupRef.current;
+    const userGroup = userGroupRef.current;
+    if (!map || !clusterGroup || !userGroup) return;
 
-    markersGroup.clearLayers();
+    clusterGroup.clearLayers();
+    userGroup.clearLayers();
 
     // 1. 繪製使用者位置 Marker
     if (userLocation) {
@@ -232,10 +279,11 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
           permanent: false,
           direction: 'top'
         })
-        .addTo(markersGroup);
+        .addTo(userGroup);
     }
 
-    // 2. 繪製每一個車格 Marker
+    // 2. 繪製每一個車格 Marker 並加入群集群組
+    const markersToAdd: L.Marker[] = [];
     spots.forEach((spot) => {
       if (spot.lat === null || spot.lng === null) return;
       const isSelected = selectedSpot?.id === spot.id;
@@ -308,8 +356,11 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
         { direction: 'top', offset: [0, -10] }
       );
 
-      marker.addTo(markersGroup);
+      markersToAdd.push(marker);
     });
+
+    // 批次加入群集層，顯著提升千級點位效能
+    clusterGroup.addLayers(markersToAdd);
   }, [spots, userLocation, selectedSpot, onSelectSpot]);
 
   return (
