@@ -44,10 +44,9 @@ export const ParkingMap: React.FC<ParkingMapProps> = ({
         zoomControl: false
       });
 
-      // 使用 CartoDB Positron 簡約高亮地圖圖層
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
+      // 使用內政部國土測繪中心臺灣通用電子地圖 (NLSC EMAP)
+      L.tileLayer('https://wmts.nlsc.gov.tw/wmts/EMAP/default/GoogleMapsCompatible/{z}/{y}/{x}', {
+        attribution: '&copy; <a href="https://maps.nlsc.gov.tw/" target="_blank" rel="noopener noreferrer">國土測繪圖資服務雲</a>',
         maxZoom: 19
       }).addTo(map);
 
